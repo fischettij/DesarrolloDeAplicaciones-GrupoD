@@ -1,16 +1,22 @@
 package unq.tpi.desapp;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
-public class VehicleTests extends TestCase {
+import org.junit.Test;
 
-	public void testAccessing(){
-		Integer five = 5;
-		Vehicle vehicle = new Vehicle("Peugeot 408", five);
-		
+import unq.tpi.desapp.builders.VehicleBuilder;
+
+public class VehicleTests {
+
+	@Test
+	public void testAccessing() {
+		Vehicle vehicle = new VehicleBuilder()
+				.setModel("Peugeot 408")
+				.setMaxNumberPassangers(5)
+				.build();
+
 		assertEquals(vehicle.getModel(), "Peugeot 408");
-		assertEquals(vehicle.getMaxNumberPassangers(), five);
-		
+		assertEquals(vehicle.getMaxNumberPassangers(), (Integer) 5);
 	}
-	
+
 }
