@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import unq.tpi.desapp.builders.RouteBuilder;
 
-public class RouteTests {
+public class RouteTest {
 
 	@Test
 	public void testAccessing() {

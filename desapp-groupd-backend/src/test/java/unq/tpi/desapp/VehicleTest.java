@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import unq.tpi.desapp.builders.VehicleBuilder;
 
-public class VehicleTests {
+public class VehicleTest {
 
 	@Test
 	public void testAccessing() {

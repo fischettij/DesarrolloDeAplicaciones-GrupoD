@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import unq.tpi.desapp.builders.UserBuilder;
 
-public class UserTests {
+public class UserTest {
 
 	@Test
 	public void testAccessing() {
