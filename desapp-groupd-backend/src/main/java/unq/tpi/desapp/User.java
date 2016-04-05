@@ -49,4 +49,27 @@ public class User {
 		this.inscriptions = inscriptions;
 	}
 
+	public void addVehicle(Vehicle vehicle) {
+		this.vehicles.add(vehicle);
+	}
+
+	public void removeVehicle(Vehicle vehicle) {
+		this.vehicles.remove(vehicle);
+	}
+
+	public void addRoute(Route route) {
+		this.routes.add(route);
+	}
+
+	public void removeRoute(Route route) {
+		this.routes.remove(route);
+	}
+
+	public void addInscription(Inscription inscription) {
+		this.inscriptions.add(inscription);
+	}
+
+	public void removeInscription(Inscription inscription) {
+		this.inscriptions.remove(inscription);
+	}
 }

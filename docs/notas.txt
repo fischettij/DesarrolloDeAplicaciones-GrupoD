@@ -1,6 +1,8 @@
 Calendario - cambiar nombre es feo y poco representativo
 	- en este agregarle el dia de inicio del recorrido y el dia de fin (puede ser infinito).
 
+(Routine startingDate, endDate [daysOfWeek])
+
 user
 	+ la busqueda para recorridos se fija en todos los recorridos existentes en los cuales entre en el rango de fechas y que el dia de la semana corresponda, ademas puede tener una diferencia de horario de 1 hora + o -
 
