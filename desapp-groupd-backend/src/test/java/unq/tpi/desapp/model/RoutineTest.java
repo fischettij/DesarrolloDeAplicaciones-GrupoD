@@ -1,4 +1,4 @@
-package unq.tpi.desapp;
+package unq.tpi.desapp.model;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import org.joda.time.LocalDate;
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.RoutineBuilder;
+import unq.tpi.desapp.model.Routine;
 
 public class RoutineTest {
 

@@ -1,6 +1,6 @@
 package unq.tpi.desapp.builders;
 
-import unq.tpi.desapp.Vehicle;
+import unq.tpi.desapp.model.Vehicle;
 
 public class VehicleBuilder {
 	

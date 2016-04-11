@@ -3,10 +3,10 @@ package unq.tpi.desapp.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.tpi.desapp.Inscription;
-import unq.tpi.desapp.Route;
-import unq.tpi.desapp.User;
-import unq.tpi.desapp.Vehicle;
+import unq.tpi.desapp.model.Inscription;
+import unq.tpi.desapp.model.Route;
+import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.model.Vehicle;
 
 public class UserBuilder {
 

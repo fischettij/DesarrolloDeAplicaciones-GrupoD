@@ -6,7 +6,7 @@ import java.util.List;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
-import unq.tpi.desapp.Routine;
+import unq.tpi.desapp.model.Routine;
 
 public class RoutineBuilder {
 

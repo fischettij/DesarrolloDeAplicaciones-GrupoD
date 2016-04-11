@@ -1,4 +1,4 @@
-package unq.tpi.desapp;
+package unq.tpi.desapp.model;
 
 import java.util.List;
 
@@ -21,32 +21,16 @@ public class User {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public List<Vehicle> getVehicles() {
 		return vehicles;
-	}
-
-	public void setVehicles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
 	}
 
 	public List<Route> getRoutes() {
 		return routes;
 	}
 
-	public void setRoutes(List<Route> routes) {
-		this.routes = routes;
-	}
-
 	public List<Inscription> getInscriptions() {
 		return inscriptions;
-	}
-
-	public void setInscriptions(List<Inscription> inscriptions) {
-		this.inscriptions = inscriptions;
 	}
 
 	public void addVehicle(Vehicle vehicle) {
@@ -72,4 +56,27 @@ public class User {
 	public void removeInscription(Inscription inscription) {
 		this.inscriptions.remove(inscription);
 	}
+
+	private Inscription lookForInscriptionWith(Route route) {
+		for (Inscription inscription : this.inscriptions) {
+			if (inscription.contains(route)) {
+				return inscription;
+			}
+		}
+		new RuntimeException();
+		return null;
+	}
+
+	public void subscriptionRequestAccepted(Route route) {
+		Inscription inscription = this.lookForInscriptionWith(route);
+		inscription.accepted();
+	}
+
+	public void subscriptionRequestDenied(Route route) {
+		Inscription inscription = this.lookForInscriptionWith(route);
+		inscription.subscriptionRequestDenied();
+		this.inscriptions.remove(inscription);
+
+	}
+
 }

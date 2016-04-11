@@ -1,10 +1,11 @@
-package unq.tpi.desapp;
+package unq.tpi.desapp.model;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.VehicleBuilder;
+import unq.tpi.desapp.model.Vehicle;
 
 public class VehicleTest {
 

@@ -1,4 +1,4 @@
-package unq.tpi.desapp;
+package unq.tpi.desapp.model;
 
 import java.util.List;
 
@@ -21,24 +21,12 @@ public class Routine {
 		return startingDate;
 	}
 
-	public void setStartingDate(LocalDate startingDate) {
-		this.startingDate = startingDate;
-	}
-
 	public LocalDate getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
-
 	public List<DateTimeConstants> getDaysOfWeek() {
 		return daysOfWeek;
-	}
-
-	public void setDaysOfWeek(List<DateTimeConstants> daysOfWeek) {
-		this.daysOfWeek = daysOfWeek;
 	}
 
 }

@@ -1,4 +1,4 @@
-package unq.tpi.desapp;
+package unq.tpi.desapp.model;
 
 public class Vehicle {
 
@@ -14,16 +14,8 @@ public class Vehicle {
 		return model;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
-	}
-
 	public Integer getMaxNumberPassangers() {
 		return maxNumberPassangers;
-	}
-
-	public void setMaxNumberPassangers(Integer maxNumberPassangers) {
-		this.maxNumberPassangers = maxNumberPassangers;
 	}
 
 }

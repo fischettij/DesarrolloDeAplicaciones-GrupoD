@@ -3,22 +3,22 @@ package unq.tpi.desapp.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.tpi.desapp.Route;
-import unq.tpi.desapp.Routine;
-import unq.tpi.desapp.SubscribeRequest;
+import unq.tpi.desapp.model.Route;
+import unq.tpi.desapp.model.Routine;
+import unq.tpi.desapp.model.SubscriptionRequest;
 
 public class RouteBuilder {
 
 	private String startPoint;
 	private String endPoint;
 	private Routine routine;
-	private List<SubscribeRequest> subscribeRequests;
+	private List<SubscriptionRequest> subscriptionRequests;
 
 	public RouteBuilder() {
 		startPoint = "";
 		endPoint = "";
 		routine = new RoutineBuilder().build();
-		subscribeRequests = new ArrayList<SubscribeRequest>();
+		subscriptionRequests = new ArrayList<SubscriptionRequest>();
 	}
 
 	public RouteBuilder setStartingPoint(String startingPoint) {
@@ -36,13 +36,13 @@ public class RouteBuilder {
 		return this;
 	}
 
-	public RouteBuilder setSubscribeRequests(List<SubscribeRequest> subscribeRequests) {
-		this.subscribeRequests = subscribeRequests;
+	public RouteBuilder setSubscriptionRequests(List<SubscriptionRequest> subscribeRequests) {
+		this.subscriptionRequests = subscribeRequests;
 		return this;
 	}
 
 	public Route build() {
-		return new Route(startPoint, endPoint, routine, subscribeRequests);
+		return new Route(startPoint, endPoint, routine, subscriptionRequests);
 	}
 
 }
