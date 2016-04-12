@@ -9,3 +9,7 @@ user
 
 subscripciones
 	+ agregar fecha de inicio y fin 
+
+	
+Ver la forma mas prolija de hacer que los puntos de rutas o vehiculos los maneja un objeto separado para no dejar esto totalmente acoplado.
+    + Comenze a hacer un RaouteRankingManagement con objetos MentionedScore(Guardan punto y comentario) pero no me gusto la implementación. Discutir una buena forma de hacerlo
