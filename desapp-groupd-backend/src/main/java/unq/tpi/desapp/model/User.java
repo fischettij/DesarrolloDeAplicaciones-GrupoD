@@ -16,6 +16,7 @@ public class User {
 	private List<Route> routes;
 	private List<Inscription> inscriptions;
 	private HashMap<User, CommentedPoint> commentedPoints;
+	private List<Comment> comments;
 
 	public User(String name, List<Vehicle> vehicles, List<Route> routes, List<Inscription> inscriptions) {
 		super();
@@ -24,6 +25,7 @@ public class User {
 		this.routes = routes;
 		this.inscriptions = inscriptions;
 		this.commentedPoints = new HashMap<User,CommentedPoint>();
+		this.comments = new ArrayList<Comment>();
 	}
 
 	public String getName() {
@@ -95,6 +97,14 @@ public class User {
 
 	public Collection<CommentedPoint> getCommentedPoints() {	
 		return commentedPoints.values();
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void addComment(Comment aComment) {
+		comments.add(0,aComment);
 	}
 
 }
