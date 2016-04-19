@@ -2,17 +2,17 @@ package unq.tpi.desapp.model;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.UserBuilder;
-import unq.tpi.desapp.model.Inscription;
-import unq.tpi.desapp.model.Route;
-import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.manager.CommentManager;
+import unq.tpi.desapp.model.manager.InscriptionManager;
+import unq.tpi.desapp.model.manager.RouteManager;
+import unq.tpi.desapp.model.manager.ScoreManager;
+import unq.tpi.desapp.model.manager.VehicleManager;
 
 public class UserTest {
 
@@ -38,18 +38,16 @@ public class UserTest {
 
 	@Test
 	public void testRemoveRoute() {
+		RouteManager mockRouteManager = mock(RouteManager.class);
 		Route mockRoute = mock(Route.class);
-		User user = new UserBuilder().setRoutes(new ArrayList<Route>(Arrays.asList(mockRoute))).build();
-
-		assertTrue(user.getRoutes().contains(mockRoute));
+		User user = new UserBuilder().setRouteManager(mockRouteManager).build();
 
 		user.removeRoute(mockRoute);
-
-		assertTrue(user.getRoutes().isEmpty());
+		verify(mockRouteManager).remove(mockRoute);
 	}
 
 	@Test
-	public void testAddNewVehicle() {
+	public void testAddNewVehicle() throws Exception {
 		User user = new UserBuilder().build();
 		assertTrue(user.getVehicles().isEmpty());
 
@@ -61,18 +59,16 @@ public class UserTest {
 
 	@Test
 	public void testRemoveVehicle() {
+		VehicleManager mockVehicleManager = mock(VehicleManager.class);
 		Vehicle mockVehicle = mock(Vehicle.class);
-		User user = new UserBuilder().setVehicles(new ArrayList<Vehicle>(Arrays.asList(mockVehicle))).build();
-
-		assertTrue(user.getVehicles().contains(mockVehicle));
+		User user = new UserBuilder().setVehicleManager(mockVehicleManager).build();
 
 		user.removeVehicle(mockVehicle);
-
-		assertTrue(user.getVehicles().isEmpty());
+		verify(mockVehicleManager).remove(mockVehicle);
 	}
 
 	@Test
-	public void testAddNewInscription() {
+	public void testAddNewInscription() throws Exception {
 		User user = new UserBuilder().build();
 		assertTrue(user.getInscriptions().isEmpty());
 
@@ -85,82 +81,61 @@ public class UserTest {
 	@Test
 	public void testRemoveInscription() {
 		Inscription mockInscription = mock(Inscription.class);
-		User user = new UserBuilder().setInscriptions(new ArrayList<Inscription>(Arrays.asList(mockInscription)))
-				.build();
-
-		assertTrue(user.getInscriptions().contains(mockInscription));
+		InscriptionManager mockInscriptionManager = mock(InscriptionManager.class);
+		User user = new UserBuilder().setInscriptionManager(mockInscriptionManager).build();
 
 		user.removeInscription(mockInscription);
-
-		assertTrue(user.getInscriptions().isEmpty());
+		verify(mockInscriptionManager).remove(mockInscription);
 	}
 
 	@Test
 	public void testSubscriptionRequestAccepted() {
-		Inscription mockInscription = mock(Inscription.class);
+		InscriptionManager mockInscriptionManager = mock(InscriptionManager.class);
 		Route mockRoute = mock(Route.class);
-		when(mockInscription.contains(mockRoute)).thenReturn(true);
-
-		User user = new UserBuilder().setInscriptions(new ArrayList<Inscription>(Arrays.asList(mockInscription)))
-				.build();
+		User user = new UserBuilder().setInscriptionManager(mockInscriptionManager).build();
 
 		user.subscriptionRequestAccepted(mockRoute);
-		verify(mockInscription).accepted();
-	}
-
-	@Test(expected = RuntimeException.class)
-	public void testSubscriptionRequestAcceptedWithoutInscription() {
-		Inscription mockInscription = mock(Inscription.class);
-		Route mockRoute = mock(Route.class);
-		when(mockInscription.contains(mockRoute)).thenReturn(true);
-
-		User user = new UserBuilder().build();
-
-		user.subscriptionRequestAccepted(mockRoute);
-	}
-
-	@Test(expected = RuntimeException.class)
-	public void testSubscriptionRequestAcceptedWithDiferentRoute() {
-		Inscription mockInscription = mock(Inscription.class);
-		Route mockRoute = mock(Route.class);
-		when(mockInscription.contains(mockRoute)).thenReturn(true);
-
-		User user = new UserBuilder().build();
-
-		user.subscriptionRequestAccepted(mock(Route.class));
+		verify(mockInscriptionManager).requestAccepted(mockRoute);
 	}
 
 	@Test
 	public void testSubscriptionRequestDenied() {
-		Inscription mockInscription = mock(Inscription.class);
+		InscriptionManager mockInscriptionManager = mock(InscriptionManager.class);
 		Route mockRoute = mock(Route.class);
-		when(mockInscription.contains(mockRoute)).thenReturn(true);
-
-		User user = new UserBuilder().setInscriptions(new ArrayList<Inscription>(Arrays.asList(mockInscription)))
-				.build();
+		User user = new UserBuilder().setInscriptionManager(mockInscriptionManager).build();
 
 		user.subscriptionRequestDenied(mockRoute);
-		verify(mockInscription).subscriptionRequestDenied();
+		verify(mockInscriptionManager).requestDenied(mockRoute);
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void testSubscriptionRequestDeniedWithoutInscription() {
-		Route mockRoute = mock(Route.class);
+	@Test
+	public void testAddCommentedPoint() {
+		CommentedPoint mockCommentedPoint = mock(CommentedPoint.class);
+		ScoreManager mockScoreManager = mock(ScoreManager.class);
+		User user = new UserBuilder().setScoreManager(mockScoreManager).build();
 
-		User user = new UserBuilder().build();
-
-		user.subscriptionRequestDenied(mockRoute);
+		user.addCommentedPoint(mockCommentedPoint);
+		verify(mockScoreManager).add(mockCommentedPoint);
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void testSubscriptionRequestDeniedWithDiferentRoute() {
-		Inscription mockInscription = mock(Inscription.class);
-		Route mockRoute = mock(Route.class);
-		when(mockInscription.contains(mockRoute)).thenReturn(true);
+	@Test
+	public void testSendCommentedPoint() {
+		User mockUserReceiver = mock(User.class);
+		CommentedPoint mockCommentedPoint = mock(CommentedPoint.class);
+		ScoreManager mockScoreManager = mock(ScoreManager.class);
+		User user = new UserBuilder().setScoreManager(mockScoreManager).build();
 
-		User user = new UserBuilder().build();
-
-		user.subscriptionRequestDenied(mock(Route.class));
+		user.sendCommentedPoint(mockUserReceiver, mockCommentedPoint);
+		verify(mockUserReceiver).addCommentedPoint(mockCommentedPoint);
 	}
 
+	@Test
+	public void testAddComment() {
+		Comment mockComment = mock(Comment.class);
+		CommentManager mockCommentManager = mock(CommentManager.class);
+		User user = new UserBuilder().setCommentManager(mockCommentManager).build();
+
+		user.addComment(mockComment);
+		verify(mockCommentManager).add(mockComment);
+	}
 }

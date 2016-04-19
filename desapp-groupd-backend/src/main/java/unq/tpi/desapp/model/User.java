@@ -1,110 +1,100 @@
 package unq.tpi.desapp.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
-import unq.tpi.desapp.exceptions.InvalidAction;
+import unq.tpi.desapp.model.manager.CommentManager;
+import unq.tpi.desapp.model.manager.InscriptionManager;
+import unq.tpi.desapp.model.manager.RouteManager;
+import unq.tpi.desapp.model.manager.ScoreManager;
+import unq.tpi.desapp.model.manager.VehicleManager;
 
 public class User {
 
 	private String name;
-	private List<Vehicle> vehicles;
-	private List<Route> routes;
-	private List<Inscription> inscriptions;
-	private HashMap<User, CommentedPoint> commentedPoints;
-	private List<Comment> comments;
+	private VehicleManager vehicleManager;
+	private RouteManager routeManager;
+	private InscriptionManager inscriptionManager;
+	private ScoreManager scoreManager;
+	private CommentManager commentManager;
 
-	public User(String name, List<Vehicle> vehicles, List<Route> routes, List<Inscription> inscriptions) {
+	public User(String name, VehicleManager vehicleManager, RouteManager routeManager,
+			InscriptionManager inscriptionManager, ScoreManager scoreManager, CommentManager commentManager) {
 		super();
 		this.name = name;
-		this.vehicles = vehicles;
-		this.routes = routes;
-		this.inscriptions = inscriptions;
-		this.commentedPoints = new HashMap<User,CommentedPoint>();
-		this.comments = new ArrayList<Comment>();
+		this.vehicleManager = vehicleManager;
+		this.routeManager = routeManager;
+		this.inscriptionManager = inscriptionManager;
+		this.scoreManager = scoreManager;
+		this.commentManager = commentManager;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public List<Vehicle> getVehicles() {
-		return vehicles;
-	}
-
-	public List<Route> getRoutes() {
-		return routes;
-	}
-
-	public List<Inscription> getInscriptions() {
-		return inscriptions;
-	}
-
-	public void addVehicle(Vehicle vehicle) {
-		this.vehicles.add(vehicle);
+	public void addVehicle(Vehicle vehicle) throws Exception {
+		this.vehicleManager.add(vehicle);
 	}
 
 	public void removeVehicle(Vehicle vehicle) {
-		this.vehicles.remove(vehicle);
+		this.vehicleManager.remove(vehicle);
+	}
+
+	public List<Vehicle> getVehicles() {
+		return this.vehicleManager.getVehicles();
 	}
 
 	public void addRoute(Route route) {
-		this.routes.add(route);
+		this.routeManager.add(route);
 	}
 
 	public void removeRoute(Route route) {
-		this.routes.remove(route);
+		this.routeManager.remove(route);
 	}
 
-	public void addInscription(Inscription inscription){
-		this.inscriptions.add(inscription);
+	public List<Route> getRoutes() {
+		return this.routeManager.getRoutes();
+	}
+
+	public void addInscription(Inscription inscription) throws Exception {
+		this.inscriptionManager.add(inscription);
 	}
 
 	public void removeInscription(Inscription inscription) {
-		this.inscriptions.remove(inscription);
-	}
-
-	private Inscription lookForInscriptionWith(Route route) {
-		for (Inscription inscription : this.inscriptions) {
-			if (inscription.contains(route)) {
-				return inscription;
-			}
-		}
-		new RuntimeException();
-		return null;
+		this.inscriptionManager.remove(inscription);
 	}
 
 	public void subscriptionRequestAccepted(Route route) {
-		Inscription inscription = this.lookForInscriptionWith(route);
-		inscription.accepted();
+		this.inscriptionManager.requestAccepted(route);
 	}
 
 	public void subscriptionRequestDenied(Route route) {
-		Inscription inscription = this.lookForInscriptionWith(route);
-		inscription.subscriptionRequestDenied();
-		this.inscriptions.remove(inscription);
-
+		this.inscriptionManager.requestDenied(route);
 	}
 
-	public void addCommentedPoint(CommentedPoint commentedPoint) throws InvalidAction{
-		if (commentedPoint.getUser() == this){  throw new InvalidAction("No se puede puntuar uno mismo");} 
-		commentedPoints.put(commentedPoint.getUser(),commentedPoint);
+	public List<Inscription> getInscriptions() {
+		return this.inscriptionManager.getInscriptions();
 	}
 
-	public Collection<CommentedPoint> getCommentedPoints() {	
-		return commentedPoints.values();
+	public void addCommentedPoint(CommentedPoint commentedPoint) {
+		this.scoreManager.add(commentedPoint);
+	}
+
+	public void sendCommentedPoint(User receiver, CommentedPoint commentedPoint) {
+		receiver.addCommentedPoint(commentedPoint);
+	}
+
+	public Collection<CommentedPoint> getCommentedPoints() {
+		return scoreManager.getComments();
 	}
 
 	public List<Comment> getComments() {
-		return comments;
+		return commentManager.getComments();
 	}
 
 	public void addComment(Comment aComment) {
-		comments.add(0,aComment);
+		commentManager.add(aComment);
 	}
 
 }

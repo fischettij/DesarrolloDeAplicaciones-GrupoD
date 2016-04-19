@@ -8,19 +8,20 @@ import unq.tpi.desapp.builders.UserBuilder;
 
 public class CommentedPointTest {
 
-	private User someUser(){
+	private User someUser() {
 		return (new UserBuilder()).build();
 	}
+
 	@Test
-	public void testAccessing(){
+	public void testAccessing() {
 		User someUser = this.someUser();
-		Integer point = new Integer(3);
+		Boolean isNegative = true;
 		String someComment = "Algun comentario";
-		CommentedPoint commentedPoint = new CommentedPoint(someUser, point, someComment);
-		
-		assertEquals(commentedPoint.getUser(),someUser);
-		assertEquals(commentedPoint.getPoint(),new Integer(3));
-		assertEquals(commentedPoint.getComment(), someComment );
+		CommentedPoint commentedPoint = new CommentedPoint(someUser, isNegative, someComment);
+
+		assertEquals(commentedPoint.getUser(), someUser);
+		assertTrue(commentedPoint.isNegative());
+		assertEquals(commentedPoint.getComment(), someComment);
 	}
 
 }

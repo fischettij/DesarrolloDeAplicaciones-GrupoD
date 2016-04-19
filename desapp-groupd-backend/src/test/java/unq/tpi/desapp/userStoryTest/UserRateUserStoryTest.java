@@ -13,24 +13,23 @@ import unq.tpi.desapp.model.User;
 
 public class UserRateUserStoryTest {
 
-	
-	public User userNamed(String name){
+	public User userNamed(String name) {
 		UserBuilder builder = new UserBuilder();
 		builder.setName(name);
-		
+
 		return builder.build();
 	}
-	
+
 	@Test
 	public void someUserScoreAnotherUser() throws InvalidAction {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
-		
+
 		assertTrue(someUser.getCommentedPoints().isEmpty());
-		
-		CommentedPoint commentedPoint = new CommentedPoint(anotherUser, new Integer(4), "Insert Comment Here");
+
+		CommentedPoint commentedPoint = new CommentedPoint(anotherUser, false, "Insert Comment Here");
 		someUser.addCommentedPoint(commentedPoint);
-		
+
 		assertEquals(someUser.getCommentedPoints().size(), 1);
 		assertTrue(someUser.getCommentedPoints().contains(commentedPoint));
 	}
@@ -39,40 +38,32 @@ public class UserRateUserStoryTest {
 	public void canNotHaveMoreThanOnePointFromTheSameUser() throws InvalidAction {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
-		
-		CommentedPoint commentedPoint = new CommentedPoint(anotherUser, new Integer(4), "Insert Comment Here");
+
+		CommentedPoint commentedPoint = new CommentedPoint(anotherUser, false, "Insert Comment Here");
 		someUser.addCommentedPoint(commentedPoint);
-		
-		CommentedPoint anotherCommentedPoint = new CommentedPoint(anotherUser, new Integer(3), "Insert New Comment Here");
+
+		CommentedPoint anotherCommentedPoint = new CommentedPoint(anotherUser, false, "Insert New Comment Here");
 		someUser.addCommentedPoint(anotherCommentedPoint);
-		
+
 		assertEquals(someUser.getCommentedPoints().size(), 1);
 		assertFalse(someUser.getCommentedPoints().contains(commentedPoint));
 		assertTrue(someUser.getCommentedPoints().contains(anotherCommentedPoint));
 	}
-	
-	
+
 	@Test
-	public void moreThanOneUserCanRate() throws InvalidAction{
+	public void moreThanOneUserCanRate() throws InvalidAction {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
 		User thirdUser = this.userNamed("Third User");
-		
-		CommentedPoint anotherUserPoint = new CommentedPoint(anotherUser, new Integer(4), "Insert Comment Here");
-		CommentedPoint thirdUserPoint = new CommentedPoint(thirdUser, new Integer(5), "Insert Comment Here");
+
+		CommentedPoint anotherUserPoint = new CommentedPoint(anotherUser, false, "Insert Comment Here");
+		CommentedPoint thirdUserPoint = new CommentedPoint(thirdUser, false, "Insert Comment Here");
 		someUser.addCommentedPoint(anotherUserPoint);
 		someUser.addCommentedPoint(thirdUserPoint);
-		
+
 		assertEquals(someUser.getCommentedPoints().size(), 2);
 		assertTrue(someUser.getCommentedPoints().contains(anotherUserPoint));
-		assertTrue(someUser.getCommentedPoints().contains(thirdUserPoint));			
+		assertTrue(someUser.getCommentedPoints().contains(thirdUserPoint));
 	}
-	
-	@Test(expected=InvalidAction.class)
-	public void aUserCanNotsScoreItself() throws InvalidAction{
-		User someUser = this.userNamed("Some User");
-		CommentedPoint someUserPoint = new CommentedPoint(someUser, new Integer(4), "Insert Comment Here");
-		
-		someUser.addCommentedPoint(someUserPoint);
-	}
+
 }

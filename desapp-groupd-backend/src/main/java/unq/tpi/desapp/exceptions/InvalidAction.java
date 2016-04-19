@@ -1,9 +1,8 @@
 package unq.tpi.desapp.exceptions;
 
-public class InvalidAction extends Exception{
+public class InvalidAction extends Exception {
 
-	
-    public InvalidAction (String message) {
-        super(message);
-    }	
+	public InvalidAction(String message) {
+		super(message);
+	}
 }

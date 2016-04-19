@@ -4,8 +4,10 @@ public class Vehicle {
 
 	private String model;
 	private Integer maxNumberPassangers;
+	private String registrationNumber;
 
-	public Vehicle(String model, Integer maxNumberPassangers) {
+	public Vehicle(String registrationNumber, String model, Integer maxNumberPassangers) {
+		this.registrationNumber = registrationNumber;
 		this.model = model;
 		this.maxNumberPassangers = maxNumberPassangers;
 	}
@@ -16,6 +18,10 @@ public class Vehicle {
 
 	public Integer getMaxNumberPassangers() {
 		return maxNumberPassangers;
+	}
+
+	public String getRegistrationNumber() {
+		return registrationNumber;
 	}
 
 }

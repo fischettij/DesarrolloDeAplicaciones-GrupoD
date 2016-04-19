@@ -1,20 +1,19 @@
 package unq.tpi.desapp.model;
 
-
 public class CommentedPoint {
 
 	private User user;
-	private Integer point;
+	private Boolean isNegative;
 	private String comment;
-		
-	public CommentedPoint(User someUser, Integer point, String someComment) {
+
+	public CommentedPoint(User someUser, Boolean isNegative, String someComment) {
 		this.user = someUser;
-		this.point = point;
+		this.isNegative = isNegative;
 		this.comment = someComment;
 	}
 
-	public Integer getPoint() {
-		return point;
+	public Boolean isNegative() {
+		return isNegative;
 	}
 
 	public String getComment() {
@@ -24,6 +23,5 @@ public class CommentedPoint {
 	public User getUser() {
 		return user;
 	}
-
 
 }
