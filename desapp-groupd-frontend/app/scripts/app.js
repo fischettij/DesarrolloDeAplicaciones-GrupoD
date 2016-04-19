@@ -12,7 +12,6 @@ angular
   .module('desappGroupdFrontendApp', [
     'ngAnimate',
     'ngCookies',
-    'ngMessages',
     'ngResource',
     'ngRoute',
     'ngSanitize',
