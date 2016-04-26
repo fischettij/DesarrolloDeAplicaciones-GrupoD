@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="save-update">
+	<class name="unq.tpi.desapp.model.User" table="USERS">
+
+		<id column="ID_USER" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+
+		<property name="name" type="string" column="NAME" />
+
+		<property name="vehicleManager" column="ID_VEHICLE_MANAGER" type="unq.tpi.desapp.model.manager.VehicleManager" />
+
+		<property name="routeManager" column="ID_ROUTE_CAMANGER" type="unq.tpi.desapp.model.manager.RouteManager" />
+
+		<property name="inscriptionManager" column="ID_INSCRIPTION_MANAGER" type="unq.tpi.desapp.model.manager.inscriptionManager" />
+
+		<property name="scoreManager" column="ID_SCORE_MANAGER" type="unq.tpi.desapp.model.manager.ScoreManager" />
+
+		<property name="commentManager" column="ID_COMMENT_MANAGER" type="unq.tpi.desapp.model.manager.CommentManager" />	
+
+	</class>
+</hibernate-mapping>

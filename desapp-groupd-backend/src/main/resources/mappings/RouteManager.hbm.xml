@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="save-update">
+	<class name="unq.tpi.desapp.model.manager.RouteManger" table="ROUTE_MANAGERS">
+
+		<id column="ID_ROUTE_MANAGER" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+
+		<list name="routes" table="ROUTES"
+			inverse="false" cascade="all" lazy="true">
+			<key not-null="true">
+				<column name="ID_ROUTE_MANAGERS" not-null="true" />
+			</key>
+			<list-index column="indx" />
+			<one-to-many class="unq.tpi.desapp.model.Route" />
+		</list>
+
+	</class>
+</hibernate-mapping>

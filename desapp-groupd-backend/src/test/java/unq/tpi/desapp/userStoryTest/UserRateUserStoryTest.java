@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.UserBuilder;
-import unq.tpi.desapp.exceptions.InvalidAction;
 import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.User;
 
@@ -21,7 +20,7 @@ public class UserRateUserStoryTest {
 	}
 
 	@Test
-	public void someUserScoreAnotherUser() throws InvalidAction {
+	public void someUserScoreAnotherUser() {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
 
@@ -35,7 +34,7 @@ public class UserRateUserStoryTest {
 	}
 
 	@Test
-	public void canNotHaveMoreThanOnePointFromTheSameUser() throws InvalidAction {
+	public void canNotHaveMoreThanOnePointFromTheSameUser()  {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
 
@@ -51,7 +50,7 @@ public class UserRateUserStoryTest {
 	}
 
 	@Test
-	public void moreThanOneUserCanRate() throws InvalidAction {
+	public void moreThanOneUserCanRate() {
 		User someUser = this.userNamed("Some User");
 		User anotherUser = this.userNamed("Another User");
 		User thirdUser = this.userNamed("Third User");

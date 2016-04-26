@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="save-update">
+	<class name="unq.tpi.desapp.model.manager.CommentManager" table="COMMENT_MANAGERS">
+
+		<id column="ID_MANAGER_COMMENT" name="id" type="java.lang.Integer">
+			<generator class="identity" />
+		</id>
+
+		<list name="comments" table="COMMENTS"
+			inverse="false" cascade="all" lazy="true">
+			<key not-null="true">
+				<column name="ID_COMMENT_MANAGER" not-null="true" />
+			</key>
+			<list-index column="indx" />
+			<one-to-many class="unq.tpi.desapp.model.Comment" />
+		</list>
+
+	</class>
+</hibernate-mapping>
