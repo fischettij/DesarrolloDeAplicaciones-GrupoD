@@ -4,6 +4,7 @@ import unq.tpi.desapp.model.inscription.InscriptionState;
 
 public class Inscription {
 
+	private Integer id;
 	private Route route;
 	private InscriptionState inscriptionState;
 

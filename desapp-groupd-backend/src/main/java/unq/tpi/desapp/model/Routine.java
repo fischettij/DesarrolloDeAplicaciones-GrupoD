@@ -7,6 +7,7 @@ import org.joda.time.LocalDate;
 
 public class Routine {
 
+	private Integer id;
 	private LocalDate startingDate;
 	private LocalDate endDate;
 	private List<DateTimeConstants> daysOfWeek;

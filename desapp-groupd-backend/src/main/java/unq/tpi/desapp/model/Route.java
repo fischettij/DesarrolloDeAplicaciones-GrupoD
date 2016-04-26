@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Route {
 
+	private Integer id;
 	private String startingPoint;
 	private String endingPoint;
 	private Routine routine;

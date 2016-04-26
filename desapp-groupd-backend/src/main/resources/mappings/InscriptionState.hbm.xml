@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="save-update">
+	<class name="unq.tpi.desapp.model.inscription.InscriptionState"
+		table="INSCRIPTION_STATE" polymorphism="implicit">
+
+		<cache usage="read-only" />
+
+		<id name="id" column="ID_INSCRIPTION_STATE">
+			<generator class="assigned" />
+		</id>
+
+		<discriminator insert="false" column="ID_INSCRIPTION_STATE" />
+
+		<property name="description" column="description" />
+
+		<subclass name="unq.tpi.desapp.model.inscription.InscriptionAccepted"
+			discriminator-value="0" />
+
+		<subclass name="unq.tpi.desapp.model.inscription.InscriptionPending"
+			discriminator-value="1" />
+
+	</class>
+</hibernate-mapping>

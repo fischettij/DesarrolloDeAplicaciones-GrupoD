@@ -2,6 +2,7 @@ package unq.tpi.desapp.model;
 
 public class CommentedPoint {
 
+	private Integer id;
 	private User user;
 	private Boolean isNegative;
 	private String comment;
