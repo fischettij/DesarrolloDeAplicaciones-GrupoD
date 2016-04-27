@@ -3,9 +3,10 @@ package unq.tpi.desapp.model.manager;
 import java.util.List;
 
 import unq.tpi.desapp.model.CommentedPoint;
+import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.User;
 
-public class ScoreManager {
+public class ScoreManager extends Entity {
 
 	private Integer score;
 	private List<CommentedPoint> comments;

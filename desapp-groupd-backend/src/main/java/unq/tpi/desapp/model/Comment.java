@@ -1,8 +1,7 @@
 package unq.tpi.desapp.model;
 
-public class Comment {
+public class Comment extends Entity{
 
-	private Integer id;
 	private User user;
 	private String message;
 

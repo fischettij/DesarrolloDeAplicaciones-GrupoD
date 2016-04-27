@@ -1,8 +1,7 @@
 package unq.tpi.desapp.model;
 
-public class CommentedPoint {
+public class CommentedPoint extends Entity {
 
-	private Integer id;
 	private User user;
 	private Boolean isNegative;
 	private String comment;

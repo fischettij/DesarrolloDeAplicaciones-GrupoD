@@ -2,7 +2,7 @@ package unq.tpi.desapp.model;
 
 import unq.tpi.desapp.model.subscription.SubscriptionState;
 
-public class SubscriptionRequest {
+public class SubscriptionRequest extends Entity {
 
 	private User candidate;
 	private String mapPoint;

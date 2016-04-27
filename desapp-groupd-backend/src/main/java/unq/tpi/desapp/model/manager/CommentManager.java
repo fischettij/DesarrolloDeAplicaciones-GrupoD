@@ -3,8 +3,9 @@ package unq.tpi.desapp.model.manager;
 import java.util.List;
 
 import unq.tpi.desapp.model.Comment;
+import unq.tpi.desapp.model.Entity;
 
-public class CommentManager {
+public class CommentManager extends Entity {
 
 	private List<Comment> comments;
 

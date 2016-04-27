@@ -6,18 +6,19 @@ import java.util.List;
 import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
+import unq.tpi.desapp.model.DayOfWeek;
 import unq.tpi.desapp.model.Routine;
 
 public class RoutineBuilder {
 
 	private LocalDate startingDate;
 	private LocalDate endDate;
-	private List<DateTimeConstants> daysOfWeek;
+	private List<DayOfWeek> daysOfWeek;
 
 	public RoutineBuilder() {
 		startingDate = new LocalDate();
 		endDate = startingDate.plusDays(1);
-		daysOfWeek = new ArrayList<DateTimeConstants>();
+		daysOfWeek = new ArrayList<DayOfWeek>();
 	}
 
 	public RoutineBuilder setStatingDate(LocalDate startingDate) {
@@ -30,7 +31,7 @@ public class RoutineBuilder {
 		return this;
 	}
 
-	public RoutineBuilder setDaysOfWeek(List<DateTimeConstants> daysOfWeek) {
+	public RoutineBuilder setDaysOfWeek(List<DayOfWeek> daysOfWeek) {
 		this.daysOfWeek = daysOfWeek;
 		return this;
 	}

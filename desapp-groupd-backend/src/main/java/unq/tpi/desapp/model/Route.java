@@ -2,9 +2,8 @@ package unq.tpi.desapp.model;
 
 import java.util.List;
 
-public class Route {
+public class Route extends Entity {
 
-	private Integer id;
 	private String startingPoint;
 	private String endingPoint;
 	private Routine routine;

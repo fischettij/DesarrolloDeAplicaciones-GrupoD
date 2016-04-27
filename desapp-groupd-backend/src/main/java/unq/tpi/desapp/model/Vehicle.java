@@ -1,6 +1,6 @@
 package unq.tpi.desapp.model;
 
-public class Vehicle {
+public class Vehicle extends Entity {
 
 	private String model;
 	private Integer maxNumberPassangers;

@@ -2,9 +2,10 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
+import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Route;
 
-public class RouteManager {
+public class RouteManager extends Entity {
 
 	private List<Route> routes;
 

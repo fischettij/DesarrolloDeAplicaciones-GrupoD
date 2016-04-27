@@ -2,9 +2,10 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
+import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Vehicle;
 
-public class VehicleManager {
+public class VehicleManager extends Entity {
 
 	private List<Vehicle> vehicles;
 

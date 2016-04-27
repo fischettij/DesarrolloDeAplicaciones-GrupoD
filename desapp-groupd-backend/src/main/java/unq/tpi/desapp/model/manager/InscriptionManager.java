@@ -2,10 +2,11 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
+import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Route;
 
-public class InscriptionManager {
+public class InscriptionManager extends Entity {
 
 	private List<Inscription> inscriptions;
 

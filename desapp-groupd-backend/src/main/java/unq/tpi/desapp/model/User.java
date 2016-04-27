@@ -9,7 +9,7 @@ import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 
-public class User {
+public class User extends Entity {
 
 	private String name;
 	private VehicleManager vehicleManager;

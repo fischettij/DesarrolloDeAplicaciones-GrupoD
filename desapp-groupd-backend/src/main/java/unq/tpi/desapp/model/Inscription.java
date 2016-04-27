@@ -2,9 +2,8 @@ package unq.tpi.desapp.model;
 
 import unq.tpi.desapp.model.inscription.InscriptionState;
 
-public class Inscription {
+public class Inscription extends Entity {
 
-	private Integer id;
 	private Route route;
 	private InscriptionState inscriptionState;
 

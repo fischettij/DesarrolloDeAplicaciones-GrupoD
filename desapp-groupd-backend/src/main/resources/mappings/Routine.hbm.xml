@@ -14,7 +14,15 @@
 		<property name="endDate"
 			type="org.joda.time.contrib.hibernate.PersistentLocalDate" column="END_DATE" />
 
-		<!-- FALTA LA LISTA -->
+		<list name="daysOfWeek" table="DAYS_OF_WEEK" inverse="false"
+			cascade="all" lazy="true">
+			<key not-null="true">
+				<column name="ID_ROUTINE" not-null="true" />
+			</key>
+			<list-index column="indx" />
+			<one-to-many class="unq.tpi.desapp.model.DayOfWeek" />
+		</list>
+
 
 	</class>
 </hibernate-mapping>
