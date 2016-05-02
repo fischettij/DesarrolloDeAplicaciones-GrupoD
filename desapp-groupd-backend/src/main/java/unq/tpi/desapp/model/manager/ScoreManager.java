@@ -11,6 +11,9 @@ public class ScoreManager extends Entity {
 	private Integer score;
 	private List<CommentedPoint> comments;
 	private Integer amountOfNegativeComments;
+	
+	public ScoreManager() {
+	}
 
 	public ScoreManager(Integer score, List<CommentedPoint> comments, Integer amountOfNegativeComments) {
 		super();
@@ -69,6 +72,22 @@ public class ScoreManager extends Entity {
 
 	public List<CommentedPoint> getComments() {
 		return comments;
+	}
+
+	public Integer getAmountOfNegativeComments() {
+		return amountOfNegativeComments;
+	}
+
+	public void setAmountOfNegativeComments(Integer amountOfNegativeComments) {
+		this.amountOfNegativeComments = amountOfNegativeComments;
+	}
+
+	public void setScore(Integer score) {
+		this.score = score;
+	}
+
+	public void setComments(List<CommentedPoint> comments) {
+		this.comments = comments;
 	}
 
 }

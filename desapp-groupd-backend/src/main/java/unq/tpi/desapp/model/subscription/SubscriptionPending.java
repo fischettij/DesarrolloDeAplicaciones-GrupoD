@@ -4,6 +4,10 @@ import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.SubscriptionRequest;
 
 public class SubscriptionPending extends SubscriptionState {
+	
+	public SubscriptionPending() {
+	}
+
 
 	@Override
 	public void accepted(SubscriptionRequest subscriptionRequest, Route route) {

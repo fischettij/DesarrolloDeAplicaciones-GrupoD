@@ -9,6 +9,9 @@ public class VehicleManager extends Entity {
 
 	private List<Vehicle> vehicles;
 
+	public VehicleManager() {
+	}
+
 	public VehicleManager(List<Vehicle> vehicles) {
 		super();
 		this.vehicles = vehicles;
@@ -32,6 +35,10 @@ public class VehicleManager extends Entity {
 
 	public void remove(Vehicle vehicle) {
 		this.vehicles.remove(vehicle);
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 }

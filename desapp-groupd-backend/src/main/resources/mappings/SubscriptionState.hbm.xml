@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping default-cascade="save-update">
-	<class name="unq.tpi.desapp.model.subscription.SubscriptionState"
-		table="SUBSCRIPTION_STATES" polymorphism="implicit">
 
-		<cache usage="read-only" />
+<hibernate-mapping>
+	<class name="unq.tpi.desapp.model.subscription.SubscriptionState"
+		table="SUBSCRIPTION_STATES">
 
 		<id name="id" column="ID_SUBSCRIPTION_STATE">
-			<generator class="assigned" />
+			<generator class="identity" />
 		</id>
 
-		<discriminator insert="false" column="ID_SUBSCRIPTION_STATE" />
-
-		<property name="description" column="description" />
+		<discriminator column="DISCRIMINATOR" type="string" />
 
 		<subclass name="unq.tpi.desapp.model.subscription.SubscriptionAccepted"
-			discriminator-value="0" />
+			discriminator-value="A" />
 
 		<subclass name="unq.tpi.desapp.model.subscription.SubscriptionPending"
-			discriminator-value="1" />
+			discriminator-value="P" />
 
 	</class>
 </hibernate-mapping>

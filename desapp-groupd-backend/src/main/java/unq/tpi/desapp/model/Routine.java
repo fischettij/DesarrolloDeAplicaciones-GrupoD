@@ -9,6 +9,9 @@ public class Routine extends Entity {
 	private LocalDate startingDate;
 	private LocalDate endDate;
 	private List<DayOfWeek> daysOfWeek;
+	
+	public Routine() {
+	}
 
 	public Routine(LocalDate startingDate, LocalDate endDate, List<DayOfWeek> daysOfWeek) {
 		this.startingDate = startingDate;
@@ -26,6 +29,18 @@ public class Routine extends Entity {
 
 	public List<DayOfWeek> getDaysOfWeek() {
 		return daysOfWeek;
+	}
+
+	public void setStartingDate(LocalDate startingDate) {
+		this.startingDate = startingDate;
+	}
+
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setDaysOfWeek(List<DayOfWeek> daysOfWeek) {
+		this.daysOfWeek = daysOfWeek;
 	}
 
 }

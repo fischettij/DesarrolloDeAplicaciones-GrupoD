@@ -5,6 +5,8 @@ public class CommentedPoint extends Entity {
 	private User user;
 	private Boolean isNegative;
 	private String comment;
+	
+	public CommentedPoint(){}
 
 	public CommentedPoint(User someUser, Boolean isNegative, String someComment) {
 		this.user = someUser;
@@ -18,6 +20,22 @@ public class CommentedPoint extends Entity {
 
 	public String getComment() {
 		return comment;
+	}
+
+	public Boolean getIsNegative() {
+		return isNegative;
+	}
+
+	public void setIsNegative(Boolean isNegative) {
+		this.isNegative = isNegative;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public User getUser() {

@@ -7,6 +7,9 @@ public class Inscription extends Entity {
 	private Route route;
 	private InscriptionState inscriptionState;
 
+	public Inscription() {
+	}
+
 	public Inscription(Route route, InscriptionState inscriptionState) {
 		this.route = route;
 		this.inscriptionState = inscriptionState;
@@ -35,6 +38,10 @@ public class Inscription extends Entity {
 	public void setInscriptionState(InscriptionState inscriptionState) {
 		this.inscriptionState = inscriptionState;
 
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
 	}
 
 }

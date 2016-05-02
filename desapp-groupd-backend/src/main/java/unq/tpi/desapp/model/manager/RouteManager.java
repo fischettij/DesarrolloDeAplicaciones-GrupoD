@@ -8,6 +8,9 @@ import unq.tpi.desapp.model.Route;
 public class RouteManager extends Entity {
 
 	private List<Route> routes;
+	
+	public RouteManager() {
+	}
 
 	public RouteManager(List<Route> routes) {
 		super();
@@ -24,6 +27,10 @@ public class RouteManager extends Entity {
 
 	public void remove(Route route) {
 		this.routes.remove(route);
+	}
+
+	public void setRoutes(List<Route> routes) {
+		this.routes = routes;
 	}
 
 }

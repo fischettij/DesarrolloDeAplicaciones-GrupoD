@@ -3,6 +3,8 @@ package unq.tpi.desapp.model;
 public class DayOfWeek extends Entity {
 
 	private String day;
+	
+	public DayOfWeek(){}
 
 	public String getDay() {
 		return day;

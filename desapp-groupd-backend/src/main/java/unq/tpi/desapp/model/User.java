@@ -18,6 +18,9 @@ public class User extends Entity {
 	private ScoreManager scoreManager;
 	private CommentManager commentManager;
 
+	public User() {
+	}
+
 	public User(String name, VehicleManager vehicleManager, RouteManager routeManager,
 			InscriptionManager inscriptionManager, ScoreManager scoreManager, CommentManager commentManager) {
 		super();
@@ -95,6 +98,50 @@ public class User extends Entity {
 
 	public void addComment(Comment aComment) {
 		commentManager.add(aComment);
+	}
+
+	public VehicleManager getVehicleManager() {
+		return vehicleManager;
+	}
+
+	public void setVehicleManager(VehicleManager vehicleManager) {
+		this.vehicleManager = vehicleManager;
+	}
+
+	public RouteManager getRouteManager() {
+		return routeManager;
+	}
+
+	public void setRouteManager(RouteManager routeManager) {
+		this.routeManager = routeManager;
+	}
+
+	public InscriptionManager getInscriptionManager() {
+		return inscriptionManager;
+	}
+
+	public void setInscriptionManager(InscriptionManager inscriptionManager) {
+		this.inscriptionManager = inscriptionManager;
+	}
+
+	public ScoreManager getScoreManager() {
+		return scoreManager;
+	}
+
+	public void setScoreManager(ScoreManager scoreManager) {
+		this.scoreManager = scoreManager;
+	}
+
+	public CommentManager getCommentManager() {
+		return commentManager;
+	}
+
+	public void setCommentManager(CommentManager commentManager) {
+		this.commentManager = commentManager;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

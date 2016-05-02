@@ -9,6 +9,9 @@ import unq.tpi.desapp.model.Route;
 public class InscriptionManager extends Entity {
 
 	private List<Inscription> inscriptions;
+	
+	public InscriptionManager() {
+	}
 
 	public InscriptionManager(List<Inscription> inscriptions) {
 		super();
@@ -46,6 +49,10 @@ public class InscriptionManager extends Entity {
 		Inscription inscription = this.lookFor(route);
 		inscription.subscriptionRequestDenied();
 		this.remove(inscription);
+	}
+
+	public void setInscriptions(List<Inscription> inscriptions) {
+		this.inscriptions = inscriptions;
 	}
 
 }

@@ -4,12 +4,12 @@
 <hibernate-mapping default-cascade="save-update">
 	<class name="unq.tpi.desapp.model.manager.VehicleManager" table="VEHICLE_MANAGERS">
 
-		<id column="ID_VEHICLE_MANAGER" name="id" type="java.lang.Integer">
-			<generator class="identity" />
+		<id column="ID_VEHICLE_MANAGER" name="id" type="java.lang.Long">
+			<generator class="native" />
 		</id>
 
-		<list name="vehicles" table="VEHICLES"
-			inverse="false" cascade="all" lazy="true">
+		<list name="vehicles" table="VEHICLES" inverse="false" cascade="all"
+			lazy="true">
 			<key not-null="true">
 				<column name="ID_VEHICLE_MANAGER" not-null="true" />
 			</key>

@@ -4,21 +4,31 @@
 <hibernate-mapping default-cascade="save-update">
 	<class name="unq.tpi.desapp.model.User" table="USERS">
 
-		<id column="ID_USER" name="id" type="java.lang.Integer">
-			<generator class="identity" />
+		<id column="ID_USER" name="id" type="java.lang.Long">
+			<generator class="native" />
 		</id>
 
 		<property name="name" type="string" column="NAME" />
 
-		<property name="vehicleManager" column="ID_VEHICLE_MANAGER" type="unq.tpi.desapp.model.manager.VehicleManager" />
+		<many-to-one name="vehicleManager" column="ID_VEHICLE_MANAGER"
+			unique="true" class="unq.tpi.desapp.model.manager.VehicleManager"
+			not-null="true" />
 
-		<property name="routeManager" column="ID_ROUTE_CAMANGER" type="unq.tpi.desapp.model.manager.RouteManager" />
+		<many-to-one name="routeManager" column="ID_ROUTE_CAMANGER"
+			unique="true" class="unq.tpi.desapp.model.manager.RouteManager"
+			not-null="true" />
 
-		<property name="inscriptionManager" column="ID_INSCRIPTION_MANAGER" type="unq.tpi.desapp.model.manager.inscriptionManager" />
+		<many-to-one name="inscriptionManager" column="ID_INSCRIPTION_MANAGER"
+			unique="true" class="unq.tpi.desapp.model.manager.InscriptionManager"
+			not-null="true" />
 
-		<property name="scoreManager" column="ID_SCORE_MANAGER" type="unq.tpi.desapp.model.manager.ScoreManager" />
+		<many-to-one name="scoreManager" column="ID_SCORE_MANAGER"
+			unique="true" class="unq.tpi.desapp.model.manager.ScoreManager"
+			not-null="true" />
 
-		<property name="commentManager" column="ID_COMMENT_MANAGER" type="unq.tpi.desapp.model.manager.CommentManager" />	
+		<many-to-one name="commentManager" column="ID_COMMENT_MANAGER"
+			unique="true" class="unq.tpi.desapp.model.manager.CommentManager"
+			not-null="true" />
 
 	</class>
 </hibernate-mapping>

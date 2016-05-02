@@ -8,6 +8,9 @@ public class Route extends Entity {
 	private String endingPoint;
 	private Routine routine;
 	private List<SubscriptionRequest> subscriptionRequests;
+	
+	public Route() {
+	}
 
 	public Route(String startingPoint, String endingPoint, Routine routine,
 			List<SubscriptionRequest> subscriptionRequests) {
@@ -49,6 +52,22 @@ public class Route extends Entity {
 			subscriptionRequest.canceled(this);
 			this.subscriptionRequests.remove(subscriptionRequest);
 		}
+	}
+
+	public void setStartingPoint(String startingPoint) {
+		this.startingPoint = startingPoint;
+	}
+
+	public void setEndingPoint(String endingPoint) {
+		this.endingPoint = endingPoint;
+	}
+
+	public void setRoutine(Routine routine) {
+		this.routine = routine;
+	}
+
+	public void setSubscriptionRequests(List<SubscriptionRequest> subscriptionRequests) {
+		this.subscriptionRequests = subscriptionRequests;
 	}
 
 }

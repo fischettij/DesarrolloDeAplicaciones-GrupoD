@@ -7,18 +7,18 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	<!-- beans de spring -->
-<!-- 	<bean id="services.general" class="ar.edu.unq.services.GeneralService"> -->
-<!-- 		<property name="carService" ref="services.car" /> -->
-<!-- 		<property name="personService" ref="services.person" /> -->
-<!-- 	</bean> -->
+	<!-- <bean id="services.general" class="ar.edu.unq.services.GeneralService"> -->
+	<!-- <property name="carService" ref="services.car" /> -->
+	<!-- <property name="personService" ref="services.person" /> -->
+	<!-- </bean> -->
 
-<!-- 	<bean id="services.person" class="ar.edu.unq.services.PersonService"> -->
-<!-- 		<property name="repository" ref="persistence.personrepository" /> -->
-<!-- 	</bean> -->
+	<bean id="services.user" class="unq.tpi.desapp.services.UserService">
+		<property name="repository" ref="persistence.userrepository" />
+	</bean>
 
-<!-- 	<bean id="services.car" class="ar.edu.unq.services.CarService"> -->
-<!-- 		<property name="repository" ref="persistence.carrepository" /> -->
-<!-- 	</bean> -->
+	<!-- <bean id="services.car" class="ar.edu.unq.services.CarService"> -->
+	<!-- <property name="repository" ref="persistence.carrepository" /> -->
+	<!-- </bean> -->
 
 
 </beans>
