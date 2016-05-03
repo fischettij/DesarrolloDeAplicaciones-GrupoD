@@ -15,6 +15,10 @@
 	<bean id="services.user" class="unq.tpi.desapp.services.UserService">
 		<property name="repository" ref="persistence.userrepository" />
 	</bean>
+	
+	<bean id="services.Route" class="unq.tpi.desapp.services.RouteService">
+		<property name="repository" ref="persistence.userrepository" />
+	</bean>
 
 	<!-- <bean id="services.car" class="ar.edu.unq.services.CarService"> -->
 	<!-- <property name="repository" ref="persistence.carrepository" /> -->
