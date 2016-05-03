@@ -1,68 +1,41 @@
 package unq.tpi.desapp.userStoryTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.List;
 
-//import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.metadata.ClassMetadata;
-import org.junit.Before;
+import javax.swing.plaf.SliderUI;
+
 import org.junit.Test;
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
-import org.springframework.core.io.ClassPathResource;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import unq.tpi.desapp.builders.UserBuilder;
 import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.services.UserService;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration({"/META-INF/spring-persistence-context.xml", "/META-INF/spring-services-context.xml" })
 public class MappingGenericTestTest {
 
-	private XmlBeanFactory factory;
-
-	protected ClassMetadata classMapping;
-
-	private SessionFactory sessionFactory;
-
-	@Before
-	public void setUp() {
-		ClassPathResource resource = new ClassPathResource("/META-INF/spring-persistence-context.xml");
-		this.factory = new XmlBeanFactory(resource);
-		PropertyPlaceholderConfigurer ppc = (PropertyPlaceholderConfigurer) this.factory
-				.getBean("persistence.propertyConfigurer");
-		ppc.postProcessBeanFactory(this.factory);
-
-		this.sessionFactory = (SessionFactory) this.factory.getBean("persistence.sessionFactory");
-
-	}
+	@Autowired
+	private UserService userService;
 
 	@Test
-	public void mappingTest() {
+	public void mappingTest() throws InterruptedException {
 
 		User user = new UserBuilder().setName("Pepe").build();
 
-		Session session = this.sessionFactory.openSession();
+		userService.save(user);
 
-		session.save(user);
-
-		List<User> listOfSavedObjects =  session.createCriteria(User.class).list();
+		List<User> listOfSavedObjects = userService.retriveAll();
 		assertFalse(listOfSavedObjects.isEmpty());
 		assertEquals(listOfSavedObjects.size(), 1);
-		assertEquals(listOfSavedObjects.get(0), user);
+		assertEquals(listOfSavedObjects.get(0).getId(), (Long)1l);
 
-		session.close();
-
-	}
-
-	public XmlBeanFactory getFactory() {
-		return this.factory;
-	}
-
-	public void setFactory(final XmlBeanFactory factory) {
-		this.factory = factory;
 	}
 
 }
