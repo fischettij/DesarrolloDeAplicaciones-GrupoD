@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
+<hibernate-mapping default-cascade="save-update">
 	<class name="unq.tpi.desapp.model.Route" table="ROUTES">
 
 		<id column="ID_ROUTE" name="id" type="java.lang.Long">
@@ -12,8 +12,9 @@
 
 		<property name="endingPoint" type="string" column="ENDING_POINT" />
 
-		<property name="routine" type="unq.tpi.desapp.model.Routine"
-			column="ROUTINE" />
+		<many-to-one name="routine" column="ID_ROUTINE"
+					 unique="true" class="unq.tpi.desapp.model.Routine"
+					 not-null="true" />
 
 		<list name="subscriptionRequests" table="SUBSCRIPTION_REQUESTS"
 			inverse="false" cascade="all" lazy="true">

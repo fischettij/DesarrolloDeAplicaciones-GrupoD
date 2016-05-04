@@ -96,6 +96,10 @@
 	<bean id="persistence.userrepository" class="unq.tpi.desapp.repositories.UserRepository">
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
+
+	<bean id="persistence.routerepository" class="unq.tpi.desapp.repositories.RouteRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
 	<!-- <bean id="persistence.carrepository" class="ar.edu.unq.repositories.CarRepository"> -->
 	<!-- <property name="sessionFactory" ref="persistence.sessionFactory" /> -->
 	<!-- </bean> -->

@@ -16,8 +16,8 @@
 		<property name="repository" ref="persistence.userrepository" />
 	</bean>
 	
-	<bean id="services.Route" class="unq.tpi.desapp.services.RouteService">
-		<property name="repository" ref="persistence.userrepository" />
+	<bean id="services.route" class="unq.tpi.desapp.services.RouteService">
+		<property name="repository" ref="persistence.routerepository" />
 	</bean>
 
 	<!-- <bean id="services.car" class="ar.edu.unq.services.CarService"> -->

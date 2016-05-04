@@ -3,15 +3,21 @@ package unq.tpi.desapp.userStoryTest;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import unq.tpi.desapp.builders.RouteBuilder;
+import unq.tpi.desapp.builders.RoutineBuilder;
 import unq.tpi.desapp.builders.UserBuilder;
+import unq.tpi.desapp.model.DayOfWeek;
+import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.services.UserService;
 
@@ -34,6 +40,23 @@ public class MappingGenericTestTest {
 		assertEquals(listOfSavedObjects.size(), 1);
 		assertEquals(listOfSavedObjects.get(0).getId(), (Long) 1l);
 
+	}
+
+	@Test
+	public void addRoutToUser(){
+		Route route = new RouteBuilder()
+				.setStartingPoint("Calle 1")
+				.setEndingPoint("Calle2")
+				.setRoutine(
+						new RoutineBuilder().
+								setStatingDate(new LocalDate())
+								.setEndDate(new LocalDate())
+								.setDaysOfWeek(new ArrayList<DayOfWeek>() {{
+									add(new DayOfWeek("Lunes"));
+								}}).build()).build();
+		User user = new UserBuilder().setName("Pepe").build();
+		user.addRoute(route);
+		userService.save(user);
 	}
 
 }
