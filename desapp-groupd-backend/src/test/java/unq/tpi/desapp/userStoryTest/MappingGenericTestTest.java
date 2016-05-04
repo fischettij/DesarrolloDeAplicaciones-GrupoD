@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.joda.time.LocalDate;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +56,12 @@ public class MappingGenericTestTest {
 									add(new DayOfWeek("Lunes"));
 								}}).build()).build();
 		User user = new UserBuilder().setName("Pepe").build();
-		user.addRoute(route);
 		userService.save(user);
+		userService.addRouteToUser(user,route);
 	}
 
+	@After
+	public void tearDown(){
+		userService.retriveAll().stream().forEach(user -> userService.delete(user));
+	}
 }
