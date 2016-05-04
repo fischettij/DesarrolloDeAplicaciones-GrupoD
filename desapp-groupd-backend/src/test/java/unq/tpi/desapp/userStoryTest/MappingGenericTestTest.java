@@ -5,8 +5,6 @@ import static org.junit.Assert.assertFalse;
 
 import java.util.List;
 
-import javax.swing.plaf.SliderUI;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +16,14 @@ import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.services.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"/META-INF/spring-persistence-context.xml", "/META-INF/spring-services-context.xml" })
+@ContextConfiguration({ "/META-INF/spring-persistence-context.xml", "/META-INF/spring-services-context.xml" })
 public class MappingGenericTestTest {
 
 	@Autowired
 	private UserService userService;
 
 	@Test
-	public void mappingTest() throws InterruptedException {
+	public void mappingTest() {
 
 		User user = new UserBuilder().setName("Pepe").build();
 
@@ -34,7 +32,7 @@ public class MappingGenericTestTest {
 		List<User> listOfSavedObjects = userService.retriveAll();
 		assertFalse(listOfSavedObjects.isEmpty());
 		assertEquals(listOfSavedObjects.size(), 1);
-		assertEquals(listOfSavedObjects.get(0).getId(), (Long)1l);
+		assertEquals(listOfSavedObjects.get(0).getId(), (Long) 1l);
 
 	}
 
