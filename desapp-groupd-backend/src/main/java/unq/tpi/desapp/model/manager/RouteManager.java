@@ -5,7 +5,7 @@ import java.util.List;
 import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Route;
 
-public class RouteManager extends Entity {
+public class RouteManager extends Manager {
 
 	private List<Route> routes;
 	

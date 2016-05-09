@@ -6,7 +6,7 @@ import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Route;
 
-public class InscriptionManager extends Entity {
+public class InscriptionManager extends Manager {
 
 	private List<Inscription> inscriptions;
 	

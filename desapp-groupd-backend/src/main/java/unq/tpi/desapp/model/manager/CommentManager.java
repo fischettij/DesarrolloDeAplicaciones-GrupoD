@@ -5,7 +5,7 @@ import java.util.List;
 import unq.tpi.desapp.model.Comment;
 import unq.tpi.desapp.model.Entity;
 
-public class CommentManager extends Entity {
+public class CommentManager extends Manager {
 
 	private List<Comment> comments;
 	

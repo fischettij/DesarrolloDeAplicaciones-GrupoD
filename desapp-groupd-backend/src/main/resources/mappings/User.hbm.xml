@@ -10,25 +10,14 @@
 
 		<property name="name" type="string" column="NAME" />
 
-		<many-to-one name="vehicleManager" column="ID_VEHICLE_MANAGER"
-			unique="true" class="unq.tpi.desapp.model.manager.VehicleManager"
-			not-null="true" />
-
-		<many-to-one name="routeManager" column="ID_ROUTE_CAMANGER"
-			unique="true" class="unq.tpi.desapp.model.manager.RouteManager"
-			not-null="true" />
-
-		<many-to-one name="inscriptionManager" column="ID_INSCRIPTION_MANAGER"
-			unique="true" class="unq.tpi.desapp.model.manager.InscriptionManager"
-			not-null="true" />
-
-		<many-to-one name="scoreManager" column="ID_SCORE_MANAGER"
-			unique="true" class="unq.tpi.desapp.model.manager.ScoreManager"
-			not-null="true" />
-
-		<many-to-one name="commentManager" column="ID_COMMENT_MANAGER"
-			unique="true" class="unq.tpi.desapp.model.manager.CommentManager"
-			not-null="true" />
+		<list name="managers" table="MANAGERS" inverse="false" cascade="all"
+			lazy="true">
+			<key not-null="true">
+				<column name="ID_USER" not-null="true" />
+			</key>
+			<list-index column="indx" />
+			<one-to-many class="unq.tpi.desapp.model.manager.Manager" />
+		</list>
 
 	</class>
 </hibernate-mapping>

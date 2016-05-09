@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-cascade="save-update">
+	<class name="unq.tpi.desapp.model.manager.Manager" table="MANAGERS">
+
+		<id column="ID_MANAGER" name="id" type="java.lang.Long">
+			<generator class="identity" />
+		</id>
+
+		<discriminator column="MANAGER_TYPE" type="string" />
+
+		<subclass name="unq.tpi.desapp.model.manager.CommentManager"
+			discriminator-value="COMMENT_MANAGER">
+
+			<list name="comments" table="COMMENTS" cascade="all" lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.Comment" />
+			</list>
+
+		</subclass>
+
+		<subclass name="unq.tpi.desapp.model.manager.InscriptionManager"
+			discriminator-value="INSCRIPTION_MANAGER">
+
+			<list name="inscriptions" table="INSCRPTIONS" inverse="false"
+				cascade="all" lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.Inscription" />
+			</list>
+
+		</subclass>
+
+		<subclass name="unq.tpi.desapp.model.manager.RouteManager"
+			discriminator-value="ROUTE_MANAGER">
+
+			<list name="routes" table="ROUTES" inverse="false" cascade="all"
+				lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.Route" />
+			</list>
+
+		</subclass>
+
+
+		<subclass name="unq.tpi.desapp.model.manager.VehicleManager"
+			discriminator-value="VEHICLE_MANAGER">
+
+			<list name="vehicles" table="VEHICLES" inverse="false" cascade="all"
+				lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.Vehicle" />
+			</list>
+
+		</subclass>
+
+		<subclass name="unq.tpi.desapp.model.manager.ScoreManager"
+			discriminator-value="SCORE_MANAGER">
+
+			<property name="score" type="java.lang.Integer" column="SCORE" />
+
+			<list name="commentedPoints" table="COMMENTED_POINTS" inverse="false"
+				cascade="all" lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.CommentedPoint" />
+			</list>
+
+			<property name="amountOfNegativeComments" type="java.lang.Integer"
+				column="AMOUNT_OF_NEGATIVE_COMMENTS" />
+
+		</subclass>
+
+	</class>
+</hibernate-mapping>

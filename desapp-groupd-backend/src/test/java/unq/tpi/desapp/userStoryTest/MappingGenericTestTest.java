@@ -32,7 +32,7 @@ public class MappingGenericTestTest {
 	@Test
 	public void mappingTest() {
 
-		User user = new UserBuilder().setName("Pepe").build();
+		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
 
 		userService.save(user);
 
@@ -44,24 +44,22 @@ public class MappingGenericTestTest {
 	}
 
 	@Test
-	public void addRoutToUser(){
-		Route route = new RouteBuilder()
-				.setStartingPoint("Calle 1")
-				.setEndingPoint("Calle2")
-				.setRoutine(
-						new RoutineBuilder().
-								setStatingDate(new LocalDate())
-								.setEndDate(new LocalDate())
-								.setDaysOfWeek(new ArrayList<DayOfWeek>() {{
-									add(new DayOfWeek("Lunes"));
-								}}).build()).build();
-		User user = new UserBuilder().setName("Pepe").build();
+	public void addRoutToUser() {
+		Route route = new RouteBuilder().setStartingPoint("Calle 1").setEndingPoint("Calle2")
+				.setRoutine(new RoutineBuilder().setStatingDate(new LocalDate()).setEndDate(new LocalDate())
+						.setDaysOfWeek(new ArrayList<DayOfWeek>() {
+							{
+								add(new DayOfWeek("Lunes"));
+							}
+						}).build())
+				.build();
+		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
 		userService.save(user);
-		userService.addRouteToUser(user,route);
+		userService.addRouteToUser(user, route);
 	}
 
-	@After
-	public void tearDown(){
-		userService.retriveAll().stream().forEach(user -> userService.delete(user));
-	}
+//	@After
+//	public void tearDown() {
+//		userService.retriveAll().stream().forEach(user -> userService.delete(user));
+//	}
 }

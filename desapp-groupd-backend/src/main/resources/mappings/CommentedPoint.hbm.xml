@@ -2,9 +2,9 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
                                    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="unq.tpi.desapp.model.CommentedPoint" table="COMMENTEDPOINTS">
+	<class name="unq.tpi.desapp.model.CommentedPoint" table="COMMENTED_POINTS">
 
-		<id column="ID_COMMENTEDPOINT" name="id" type="java.lang.Long">
+		<id column="ID_COMMENTED_POINT" name="id" type="java.lang.Long">
 			<generator class="identity" />
 		</id>
 

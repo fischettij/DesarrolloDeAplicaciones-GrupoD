@@ -5,7 +5,7 @@ import java.util.List;
 import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.Vehicle;
 
-public class VehicleManager extends Entity {
+public class VehicleManager extends Manager {
 
 	private List<Vehicle> vehicles;
 

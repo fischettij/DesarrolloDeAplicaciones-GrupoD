@@ -6,19 +6,19 @@ import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.User;
 
-public class ScoreManager extends Entity {
+public class ScoreManager extends Manager {
 
 	private Integer score;
-	private List<CommentedPoint> comments;
+	private List<CommentedPoint> commentedPoints;
 	private Integer amountOfNegativeComments;
-	
+
 	public ScoreManager() {
 	}
 
 	public ScoreManager(Integer score, List<CommentedPoint> comments, Integer amountOfNegativeComments) {
 		super();
 		this.score = score;
-		this.comments = comments;
+		this.commentedPoints = comments;
 		this.amountOfNegativeComments = amountOfNegativeComments;
 	}
 
@@ -32,12 +32,12 @@ public class ScoreManager extends Entity {
 			} else {
 				this.score += 500;
 			}
-			this.comments.add(commentedPoint);
+			this.commentedPoints.add(commentedPoint);
 		}
 	}
 
 	private Boolean includesUser(CommentedPoint commentedPoint) {
-		return this.comments.stream().anyMatch(comment -> comment.getUser() == commentedPoint.getUser());
+		return this.commentedPoints.stream().anyMatch(comment -> comment.getUser() == commentedPoint.getUser());
 	}
 
 	private void executePendingComments() {
@@ -48,7 +48,7 @@ public class ScoreManager extends Entity {
 	}
 
 	private CommentedPoint lookFor(User user) {
-		return this.comments.stream().filter(comment -> comment.getUser() == user).findFirst().get();
+		return this.commentedPoints.stream().filter(comment -> comment.getUser() == user).findFirst().get();
 	}
 
 	private void replaceComment(CommentedPoint commentedPoint) {
@@ -62,16 +62,12 @@ public class ScoreManager extends Entity {
 		} else {
 			score -= 500;
 		}
-		this.comments.remove(comment);
+		this.commentedPoints.remove(comment);
 		this.add(commentedPoint);
 	}
 
 	public Integer getScore() {
 		return score;
-	}
-
-	public List<CommentedPoint> getComments() {
-		return comments;
 	}
 
 	public Integer getAmountOfNegativeComments() {
@@ -86,8 +82,12 @@ public class ScoreManager extends Entity {
 		this.score = score;
 	}
 
-	public void setComments(List<CommentedPoint> comments) {
-		this.comments = comments;
+	public List<CommentedPoint> getCommentedPoints() {
+		return commentedPoints;
+	}
+
+	public void setCommentedPoints(List<CommentedPoint> commentedPoints) {
+		this.commentedPoints = commentedPoints;
 	}
 
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.SubscriptionRequest;
 import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.model.manager.InscriptionManager;
 
 public class SubscriptionAcceptedTest {
 
@@ -27,15 +28,19 @@ public class SubscriptionAcceptedTest {
 
 	@Test
 	public void testCanceled() {
-		SubscriptionRequest mockSubscriptionRequest = mock(SubscriptionRequest.class);
 		User mockUser = mock(User.class);
+		InscriptionManager mockManager = mock(InscriptionManager.class);
+		SubscriptionRequest mockSubscriptionRequest = mock(SubscriptionRequest.class);
+
 		when(mockSubscriptionRequest.getCandidate()).thenReturn(mockUser);
+		when(mockUser.managerImplementing(InscriptionManager.class)).thenReturn(mockManager);
 		Route mockRoute = mock(Route.class);
 
 		SubscriptionAccepted subscriptionAccepted = new SubscriptionAccepted();
 
 		subscriptionAccepted.canceled(mockSubscriptionRequest, mockRoute);
 
-		verify(mockUser).subscriptionRequestDenied(mockRoute);
+		verify(mockUser).managerImplementing(InscriptionManager.class);
+		verify(mockManager).requestDenied(mockRoute);
 	}
 }
