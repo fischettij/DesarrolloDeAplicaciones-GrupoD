@@ -13,20 +13,20 @@ import unq.tpi.desapp.services.UserService;
 public class UserRest {
 
 	private UserService userService;
-	
+
 	public UserService getUserService() {
 		return userService;
 	}
-	
+
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	
+
 	@GET
 	@Path("/all")
 	@Produces("application/json")
 	public List<User> getUsers() {
 		return getUserService().retriveAll();
 	}
-	
+
 }
