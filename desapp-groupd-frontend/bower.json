@@ -12,7 +12,8 @@
     "angular-touch": "^1.4.0"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.0"
+    "angular-mocks": "^1.4.0",
+    "admin-lte": "2.3.3"
   },
   "appPath": "app",
   "moduleName": "desappGroupdFrontendApp",

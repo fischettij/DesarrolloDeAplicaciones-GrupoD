@@ -88,4 +88,12 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+
+  /*Index page background */
+  .indexPage{
+    background: url('../images/index_background.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: white;
+  }
 }
