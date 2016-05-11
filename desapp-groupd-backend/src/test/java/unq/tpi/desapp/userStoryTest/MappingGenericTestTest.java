@@ -58,8 +58,8 @@ public class MappingGenericTestTest {
 		userService.addRouteToUser(user, route);
 	}
 
-//	@After
-//	public void tearDown() {
-//		userService.retriveAll().stream().forEach(user -> userService.delete(user));
-//	}
+	@After
+	public void tearDown() {
+		userService.retriveAll().stream().forEach(user -> userService.delete(user));
+	}
 }

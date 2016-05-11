@@ -24,5 +24,4 @@
 	<!-- <property name="repository" ref="persistence.carrepository" /> -->
 	<!-- </bean> -->
 
-
 </beans>
