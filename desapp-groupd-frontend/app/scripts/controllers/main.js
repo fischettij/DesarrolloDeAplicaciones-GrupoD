@@ -15,3 +15,9 @@ angular.module('desappGroupdFrontendApp')
       'Karma'
     ];
   });
+
+var contentApp = angular.module('contentApp', []);
+
+contentApp.controller('currentUserCtrl', ['$scope', function($scope) {
+  $scope.userInformation = {'name': Jhon};
+}]);

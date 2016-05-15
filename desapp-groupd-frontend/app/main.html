@@ -13,17 +13,16 @@
   
     <ng-include src="'views/header.html'"></ng-include>
 
-    <aside class="main-sidebar"></aside>
+    <ng-include src="'views/sidebar.html'"></ng-include>
 
-    <div class="content-wrapper"></div>
+    <ng-include src="'views/profile-content.html'"></ng-include>
 
     <footer class="main-footer"></footer>
 
     <aside class="control-sidebar control-sidebardark"></aside>
 
   </div>
-  <!-- AdminLTE App -->
-  <script src="bower_components/admin-lte/dist/js/app.min.js"></script>
+
 
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 
@@ -31,7 +30,6 @@
 
   <!-- My JS -->
   <script type="text/javascript" src="scripts/app.js"></script>
-  <script type="text/javascript" src="scripts/controller/loginRegisterCtrl.js"></script>
   <!-- End -->
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
@@ -44,6 +42,8 @@
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
   <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- AdminLTE App -->
+  <script src="bower_components/admin-lte/dist/js/app.min.js"></script>
   <!-- endbower -->
   <!-- css -->
   <link rel="stylesheet" href="styles/main.css">
