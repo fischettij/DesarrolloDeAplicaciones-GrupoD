@@ -1,0 +1,49 @@
+<div ng-app="subiQueTeLlevoApp" ng-controller="UserController">
+<div class="content-wrapper" style="min-height: 901px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Dashboard
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Profile</a></li>
+        <li class="active">Dashboard</li>
+      </ol>
+    </section>
+
+    <section class="content">
+    	<div class="row">        
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{info.myScore}}</h3>
+
+              <p>Mi Puntuación</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-star-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">Puntuaciones <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{myRoutes.length}}</h3>
+
+              <p>Mis Rutas</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-flag-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">Rutas <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+    	</div>
+    </section>
+</div>
+</div>
