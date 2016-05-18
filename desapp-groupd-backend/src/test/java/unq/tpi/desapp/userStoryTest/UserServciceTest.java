@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.joda.time.LocalDate;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import unq.tpi.desapp.services.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/META-INF/spring-persistence-context.xml", "/META-INF/spring-services-context.xml" })
-public class MappingGenericTestTest {
+public class UserServciceTest {
 
 	@Autowired
 	private UserService userService;
@@ -56,6 +57,11 @@ public class MappingGenericTestTest {
 		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
 		userService.save(user);
 		userService.addRouteToUser(user, route);
+	}
+
+	@Before
+	public void setUp() {
+		userService.retriveAll().stream().forEach(user -> userService.delete(user));
 	}
 
 	@After

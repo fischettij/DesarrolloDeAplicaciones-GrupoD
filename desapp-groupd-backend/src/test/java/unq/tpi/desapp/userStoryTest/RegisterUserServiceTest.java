@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import unq.tpi.desapp.builders.LoginUserBuild;
-import unq.tpi.desapp.builders.RegisterUserBuild;
-import unq.tpi.desapp.builders.UserBuilder;
-import unq.tpi.desapp.model.RegisterUser;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
@@ -59,6 +57,11 @@ public class RegisterUserServiceTest {
 		LoginUser loginUser = new LoginUserBuild().setEmail("lala@lala.com").setPassword("supersecreto").build();
 		User userLogin = registerUserService.login(loginUser);
 
+	}
+
+	@Before
+	public void setUp() {
+		registerUserService.retriveAll().stream().forEach(user -> registerUserService.delete(user));
 	}
 
 	@After
