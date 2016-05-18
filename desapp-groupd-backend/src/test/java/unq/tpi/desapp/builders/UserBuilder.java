@@ -34,15 +34,24 @@ public class UserBuilder {
 	public User build() {
 		return new User(name, managers);
 	}
-	
-	public UserBuilder addAllManagers(){
+
+	public UserBuilder addAllManagers() {
 		this.addManager(new VehicleManagerBuilder().build());
 		this.addManager(new CommentManagerBuilder().build());
 		this.addManager(new RouteManagerBuilder().build());
 		this.addManager(new InscriptionManagerBuilder().build());
 		this.addManager(new ScoreManagerBuilder().build());
 		return this;
-		
+
+	}
+
+	public UserBuilder setStandarManagers() {
+		this.addManager(new VehicleManagerBuilder().build());
+		this.addManager(new CommentManagerBuilder().build());
+		this.addManager(new RouteManagerBuilder().build());
+		this.addManager(new InscriptionManagerBuilder().build());
+		this.addManager(new ScoreManagerBuilder().build());
+		return this;
 	}
 
 }

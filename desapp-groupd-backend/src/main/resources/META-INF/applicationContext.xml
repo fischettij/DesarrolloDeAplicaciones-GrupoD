@@ -47,6 +47,12 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 		<property name="userService" ref="services.user" />
 	</bean>
 
-	
+	<bean id="loginRest" class="unq.tpi.desapp.rest.LoginRest">
+		<property name="registerUserService" ref="services.register" />
+	</bean>
+
+	<bean id="registerRest" class="unq.tpi.desapp.rest.RegisterRest">
+		<property name="registerUserService" ref="services.register" />
+	</bean>
 
 </beans>

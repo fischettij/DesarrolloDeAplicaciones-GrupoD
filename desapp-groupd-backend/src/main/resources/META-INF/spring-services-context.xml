@@ -20,6 +20,11 @@
 		<property name="repository" ref="persistence.routerepository" />
 	</bean>
 
+	<bean id="services.register" class="unq.tpi.desapp.services.RegisterUserService">
+		<property name="repository" ref="persistence.registerUserRepository" />
+	</bean>
+
+
 	<!-- <bean id="services.car" class="ar.edu.unq.services.CarService"> -->
 	<!-- <property name="repository" ref="persistence.carrepository" /> -->
 	<!-- </bean> -->
