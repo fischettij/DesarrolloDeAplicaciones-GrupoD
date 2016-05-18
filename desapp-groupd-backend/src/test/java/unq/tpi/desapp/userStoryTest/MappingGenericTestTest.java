@@ -39,7 +39,7 @@ public class MappingGenericTestTest {
 		List<User> listOfSavedObjects = userService.retriveAll();
 		assertFalse(listOfSavedObjects.isEmpty());
 		assertEquals(listOfSavedObjects.size(), 1);
-		assertEquals(listOfSavedObjects.get(0).getId(), (Long) 1l);
+		assertEquals(listOfSavedObjects.get(0).getName(), "Pepe");
 
 	}
 
