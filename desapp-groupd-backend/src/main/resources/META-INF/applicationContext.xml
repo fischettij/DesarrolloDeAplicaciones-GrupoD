@@ -29,6 +29,8 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 	<jaxrs:server id="post"  > 
 		<jaxrs:serviceBeans>
 			<ref bean="userRest" />
+			<ref bean="loginRest" />
+			<ref bean="registerRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
