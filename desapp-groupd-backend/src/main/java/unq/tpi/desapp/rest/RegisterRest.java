@@ -23,7 +23,7 @@ public class RegisterRest {
 	}
 
 	@POST
-	@Path("/register")
+	@Path("/newuser")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public void register(LoginUser loginUser) {

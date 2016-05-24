@@ -11,7 +11,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>3.0.5.RELEASE</spring.version>
-		<jetty.version>9.3.9.v20160517</jetty.version>
+		<jetty.version>7.4.2.v20110526</jetty.version>
 		<cxf.version>2.3.5</cxf.version>
 		<jackson.version>1.8.2</jackson.version>
 	</properties>
