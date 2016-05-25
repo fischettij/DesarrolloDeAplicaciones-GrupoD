@@ -3,7 +3,6 @@ package unq.tpi.desapp.builders;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.DateTimeConstants;
 import org.joda.time.LocalDate;
 
 import unq.tpi.desapp.model.DayOfWeek;

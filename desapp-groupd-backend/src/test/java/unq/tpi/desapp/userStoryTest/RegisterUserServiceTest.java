@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import unq.tpi.desapp.builders.LoginUserBuild;
+import unq.tpi.desapp.builders.LoginUserBuilder;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
@@ -26,7 +26,7 @@ public class RegisterUserServiceTest {
 	@Test
 	public void mappingTest() {
 
-		LoginUser loginUser = new LoginUserBuild().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
+		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
 				.build();
 
 		registerUserService.register(loginUser);
@@ -40,7 +40,7 @@ public class RegisterUserServiceTest {
 	@Test(expected = RuntimeException.class)
 	public void loginWithOutUser() {
 
-		LoginUser loginUser = new LoginUserBuild().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
+		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
 				.build();
 
 		registerUserService.register(loginUser);
@@ -54,7 +54,7 @@ public class RegisterUserServiceTest {
 
 		assertTrue(registerUserService.retriveAll().isEmpty());
 
-		LoginUser loginUser = new LoginUserBuild().setEmail("lala@lala.com").setPassword("supersecreto").build();
+		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").build();
 		User userLogin = registerUserService.login(loginUser);
 
 	}

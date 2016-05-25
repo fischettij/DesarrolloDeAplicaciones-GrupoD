@@ -2,11 +2,14 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
-import unq.tpi.desapp.model.Entity;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import unq.tpi.desapp.model.Vehicle;
 
 public class VehicleManager extends Manager {
-
+	
+	@JsonIgnore
 	private List<Vehicle> vehicles;
 
 	public VehicleManager() {
@@ -17,6 +20,7 @@ public class VehicleManager extends Manager {
 		this.vehicles = vehicles;
 	}
 
+	@JsonIgnore
 	public List<Vehicle> getVehicles() {
 		return vehicles;
 	}
@@ -37,8 +41,13 @@ public class VehicleManager extends Manager {
 		this.vehicles.remove(vehicle);
 	}
 
+	@JsonProperty
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
+	}
+	
+	public String getManager() {
+		return "VehicleManager";
 	}
 
 }

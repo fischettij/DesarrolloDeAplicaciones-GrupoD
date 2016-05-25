@@ -2,12 +2,15 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
-import unq.tpi.desapp.model.Entity;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Route;
 
 public class InscriptionManager extends Manager {
 
+	@JsonIgnore
 	private List<Inscription> inscriptions;
 	
 	public InscriptionManager() {
@@ -18,6 +21,7 @@ public class InscriptionManager extends Manager {
 		this.inscriptions = inscriptions;
 	}
 
+	@JsonIgnore
 	public List<Inscription> getInscriptions() {
 		return inscriptions;
 	}
@@ -51,8 +55,14 @@ public class InscriptionManager extends Manager {
 		this.remove(inscription);
 	}
 
+	@JsonProperty
 	public void setInscriptions(List<Inscription> inscriptions) {
 		this.inscriptions = inscriptions;
 	}
+	
+	public String getManager() {
+		return "InscriptionManager";
+	}
+
 
 }

@@ -8,4 +8,5 @@ public abstract class Manager extends Entity {
 		return this.getClass().equals(managerClass);
 	}
 
+	public abstract String getManager();
 }
