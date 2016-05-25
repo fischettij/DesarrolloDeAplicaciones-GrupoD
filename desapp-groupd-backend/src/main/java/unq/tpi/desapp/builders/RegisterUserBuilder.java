@@ -3,23 +3,29 @@ package unq.tpi.desapp.builders;
 import unq.tpi.desapp.model.RegisterUser;
 import unq.tpi.desapp.model.User;
 
-public class RegisterUserBuild {
+public class RegisterUserBuilder {
 
 	private String email;
 	private String password;
 	private User user;
 
-	public RegisterUserBuild setEmail(String email) {
+	public RegisterUserBuilder(){
+		email = "user@gmail.com";
+		password = "nicePassword";
+		user = new UserBuilder().build();
+	}
+	
+	public RegisterUserBuilder setEmail(String email) {
 		this.email = email;
 		return this;
 	}
 
-	public RegisterUserBuild setPassword(String password) {
+	public RegisterUserBuilder setPassword(String password) {
 		this.password = password;
 		return this;
 	}
 
-	public RegisterUserBuild setUser(User user) {
+	public RegisterUserBuilder setUser(User user) {
 		this.user = user;
 		return this;
 	}

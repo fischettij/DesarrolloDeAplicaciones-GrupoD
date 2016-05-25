@@ -11,7 +11,7 @@
 		<property name="name" type="string" column="NAME" />
 
 		<list name="managers" table="MANAGERS" inverse="false" cascade="all"
-			lazy="true">
+			lazy="false">
 			<key not-null="true">
 				<column name="ID_USER" not-null="true" />
 			</key>

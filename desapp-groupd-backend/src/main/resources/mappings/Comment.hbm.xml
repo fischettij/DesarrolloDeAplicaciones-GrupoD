@@ -7,8 +7,10 @@
 		<id column="ID_COMMENT" name="id" type="java.lang.Long">
 			<generator class="identity" />
 		</id>
-
-		<property name="user" column="ID_USER" type="unq.tpi.desapp.model.User" />
+		
+		<many-to-one name="user" column="ID_USER"
+					 unique="true" class="unq.tpi.desapp.model.User"
+					 not-null="true" />
 
 		<property name="message" type="string" column="MESSAGE" />
 

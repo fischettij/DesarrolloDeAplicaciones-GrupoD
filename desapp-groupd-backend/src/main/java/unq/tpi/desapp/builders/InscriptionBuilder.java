@@ -11,7 +11,7 @@ public class InscriptionBuilder {
 	private InscriptionState inscriptionState;
 
 	public InscriptionBuilder() {
-		route = null;
+		route = new RouteBuilder().build();
 		inscriptionState = new InscriptionPending();
 	}
 

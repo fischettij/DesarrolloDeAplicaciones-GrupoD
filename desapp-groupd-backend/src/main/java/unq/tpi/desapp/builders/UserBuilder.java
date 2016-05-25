@@ -12,7 +12,7 @@ public class UserBuilder {
 	private List<Manager> managers;
 
 	public UserBuilder() {
-		name = "";
+		name = "UsuarioBuilder";
 		managers = new ArrayList<Manager>();
 	}
 

@@ -2,11 +2,14 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
-import unq.tpi.desapp.model.Entity;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import unq.tpi.desapp.model.Route;
 
 public class RouteManager extends Manager {
 
+	@JsonIgnore
 	private List<Route> routes;
 	
 	public RouteManager() {
@@ -17,6 +20,7 @@ public class RouteManager extends Manager {
 		this.routes = routes;
 	}
 
+	@JsonIgnore
 	public List<Route> getRoutes() {
 		return routes;
 	}
@@ -29,8 +33,13 @@ public class RouteManager extends Manager {
 		this.routes.remove(route);
 	}
 
+	@JsonProperty
 	public void setRoutes(List<Route> routes) {
 		this.routes = routes;
+	}
+	
+	public String getManager() {
+		return "RouteManager";
 	}
 
 }

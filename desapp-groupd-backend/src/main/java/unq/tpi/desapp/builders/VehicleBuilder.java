@@ -9,9 +9,9 @@ public class VehicleBuilder {
 	private Integer maxNumberPassangers;
 
 	public VehicleBuilder() {
-		registrationNumber = "";
-		model = "";
-		maxNumberPassangers = 0;
+		registrationNumber = "ABC-105";
+		model = "Porsche Carrera GT";
+		maxNumberPassangers = 2;
 	}
 
 	public VehicleBuilder setRegistrationNumber(String registrationNumber) {

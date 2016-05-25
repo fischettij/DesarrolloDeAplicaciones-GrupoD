@@ -15,8 +15,8 @@ public class RouteBuilder {
 	private List<SubscriptionRequest> subscriptionRequests;
 
 	public RouteBuilder() {
-		startPoint = "";
-		endPoint = "";
+		startPoint = "Roque Sáenz Peña 352";
+		endPoint = "Roque Sáenz Peña 150";
 		routine = new RoutineBuilder().build();
 		subscriptionRequests = new ArrayList<SubscriptionRequest>();
 	}

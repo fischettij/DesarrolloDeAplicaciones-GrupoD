@@ -9,9 +9,10 @@
 		</id>
 
 		<many-to-one name="route" column="ID_ROUTE" cascade="all" />
-
-		<property name="inscriptionState" column="INSCRIPTION_STATE"
-			type="unq.tpi.desapp.model.inscription.InscriptionState" />
+		
+		<many-to-one name="inscriptionState" column="INSCRIPTION_STATE"
+					 unique="true" class="unq.tpi.desapp.model.inscription.InscriptionState"
+					 not-null="true" />
 
 	</class>
 </hibernate-mapping>

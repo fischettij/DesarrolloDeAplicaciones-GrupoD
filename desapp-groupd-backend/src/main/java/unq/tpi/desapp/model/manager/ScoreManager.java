@@ -2,13 +2,16 @@ package unq.tpi.desapp.model.manager;
 
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 import unq.tpi.desapp.model.CommentedPoint;
-import unq.tpi.desapp.model.Entity;
 import unq.tpi.desapp.model.User;
 
 public class ScoreManager extends Manager {
 
 	private Integer score;
+	@JsonIgnore
 	private List<CommentedPoint> commentedPoints;
 	private Integer amountOfNegativeComments;
 
@@ -82,12 +85,18 @@ public class ScoreManager extends Manager {
 		this.score = score;
 	}
 
+	@JsonIgnore
 	public List<CommentedPoint> getCommentedPoints() {
 		return commentedPoints;
 	}
 
+	@JsonProperty
 	public void setCommentedPoints(List<CommentedPoint> commentedPoints) {
 		this.commentedPoints = commentedPoints;
+	}
+	
+	public String getManager() {
+		return "ScoreManager";
 	}
 
 }

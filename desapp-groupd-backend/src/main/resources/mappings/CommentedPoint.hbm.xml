@@ -7,8 +7,10 @@
 		<id column="ID_COMMENTED_POINT" name="id" type="java.lang.Long">
 			<generator class="identity" />
 		</id>
-
-		<property name="user" column="ID_USER" type="unq.tpi.desapp.model.User" />
+		
+		<many-to-one name="user" column="ID_USER"
+					 unique="true" class="unq.tpi.desapp.model.User"
+					 not-null="true" />
 
 		<property name="isNegative" type="boolean" column="IS_NEGATIVE" />
 

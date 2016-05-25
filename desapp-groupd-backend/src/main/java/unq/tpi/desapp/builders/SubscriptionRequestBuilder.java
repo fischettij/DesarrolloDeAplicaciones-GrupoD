@@ -14,8 +14,8 @@ public class SubscriptionRequestBuilder {
 
 	public SubscriptionRequestBuilder() {
 		candidate = new UserBuilder().build();
-		mapPoint = "";
-		message = "";
+		mapPoint = "Roque Sáenz Peña 352";
+		message = "Roque Sáenz Peña 150";
 		subscriptionState = new SubscriptionPending();
 	}
 

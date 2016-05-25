@@ -13,8 +13,10 @@
 		<property name="mapPoint" type="string" column="MAP_POINT" />		
 
 		<property name="message" type="string" column="MESSAGE" />
-
-		<property name="subscriptionState" column="ID_SUBSCRIPTION_STATE" type="unq.tpi.desapp.model.subscription.SubscriptionState" />		
+		
+		<many-to-one name="subscriptionState" column="ID_SUBSCRIPTION_STATE"
+					 unique="true" class="unq.tpi.desapp.model.subscription.SubscriptionState"
+					 not-null="true" />
 
 	</class>
 </hibernate-mapping>
