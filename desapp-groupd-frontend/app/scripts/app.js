@@ -8,72 +8,70 @@
  *
  * Main module of the application.
  */
-var desappGroupdFrontendApp =
-  angular
-    .module('desappGroupdFrontendApp', [
+var desappGroupdFrontendApp = angular.module('desappGroupdFrontendApp', [
       'ngAnimate',
       'ngCookies',
       'ngResource',
       'ngRoute',
       'ngSanitize',
-      'ngTouch'
-    ])
+      'ngTouch',
+      'pascalprecht.translate'
+    ]);
 
-desappGroupdFrontendApp.controller('UserController', function ($scope, $http) {
-    $scope.info = {'name': 'jhon',
-                    'myScore': 8};
+desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvider) {
+  
+  $translateProvider.useSanitizeValueStrategy(null);
 
+  $translateProvider.translations('es', {
+    LOGIN_DESCRIPTION: 'Iniciar sesión para empezar',
+    PASSWORD: 'Contraseña',
+    EMAIL: 'Correo',
+    FULL_NAME: 'Nombre Completo',
+    SIGN_IN_GOOGLE: 'Entra con Google+',
+    SIGN_IN:'Entrar',
+    REGISTER_DESCRIPTION: 'Registrar nuevo usuario',
+    REGISTER: 'Registrar',
+    REGISTER_ERROR: 'Usuario en uso',
+    REGISTER_SUCCESS: 'Cuenta creada!',
+    LOGIN_ERROR: 'Usuario o Contraseña incorrectos'
+  });
 
+  $translateProvider.translations('en', {
+    LOGINDESCRIPTION: 'Sign in to start your session',
+    PASSWORD: 'Password',
+    EMAIL: 'Email',
+    FULL_NAME: 'Full Name',
+    SIGN_IN_GOOGLE: 'Sign in using Google+',
+    SIGN_IN:'Sign In',
+    REGISTER_DESCRIPTION: 'Register a new membership',
+    REGISTER: 'Register',
+    REGISTER_ERROR: 'There were problems creating your account',
+    REGISTER_SUCCESS: 'Created successfully!',
+    LOGIN_ERROR: 'Invalid login or password.'
+  });
+  
+  $translateProvider.preferredLanguage('es');
+}]);
 
-    $scope.myRoutes = [{'startingPoint': 'Berzategui',
-                        'endingPoint': 'Quilmes',
-                        'routine': { 'startingDate': '15/05/2016',
-                                    'endDate': '15/06/2015',
-                                    'daysOfWeek': ['Lunes','Martes']}},
-                        { 'startingPoint': 'Quilmes',
-                          'endingPoint' : 'Plaza de mayo',
-                          'routine' : { 'startingDate': '18/05/2016',
-                                        'endDate': '9/06/2015',
-                                        'daysOfWeek': ['Vieres','Sabados']}}];
-
-   
-});
-
-desappGroupdFrontendApp.controller('login_register_ctrl', [ '$http', '$scope', '$window',
+desappGroupdFrontendApp.controller('main_ctrl', [ '$http', '$scope', '$window',
       '$locale', function($http, $scope, $window, $locale) {
 
         $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
-        $scope.language = [];
-
-        $scope.init = function() {
-          if (navigator.language.slice(0, 2) == "es") {
-            $http.get('/spanishJson').success(function(result) {
-              $scope.language = result.data;
-            });
-          } else {
-            $http.get('/englishJson').success(function(result) {
-              $scope.language = result.data;
-            });
-          }
-        };
-
 
         // Register
 
-        $scope.showRegisterEvent = false;
-        $scope.eventRegiste = "";
+        $scope.showERegisterError = false;
+        $scope.showERegisterSuccess = false;
 
         $scope.register = function(user) {
           $http.post( $scope.baseUrl + '/register/newuser', {
             name : user.name,
             email : user.email,
             password : user.password
-          }).success(function(result) {
-            $scope.showRegisterEvent = true;
-            $scope.eventRegister = result;
-          }).error(function(result) {
-            $scope.showRegisterEvent = true;
-            $scope.eventRegister = result;
+          }).success(function() {
+            $scope.showERegisterSuccess = true;
+          }).error(function() {
+            $scope.showERegisterError = true;
           })
         };
 
@@ -82,9 +80,10 @@ desappGroupdFrontendApp.controller('login_register_ctrl', [ '$http', '$scope', '
         $scope.showLoginError = false;
 
         $scope.login = function(user) {
-          $http.post('/login', {
+          $http.post( $scope.baseUrl + '/login/connect', {
             email : user.email,
-            password : user.password
+            password : user.password,
+            name : ""
           }).success(function() {
             $scope.goToMainManu();
           }).error(function() {
@@ -93,7 +92,7 @@ desappGroupdFrontendApp.controller('login_register_ctrl', [ '$http', '$scope', '
         };
 
         $scope.goToMainManu = function() {
-          $window.location.href = '/goToMainMenu';
+          
         }
 
       } ]);

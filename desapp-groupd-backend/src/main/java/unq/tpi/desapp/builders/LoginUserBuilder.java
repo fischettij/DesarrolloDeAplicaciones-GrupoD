@@ -11,7 +11,7 @@ public class LoginUserBuilder {
 	public LoginUserBuilder(){
 		email = "user@gmail.com";
 		password = "nicePassword";
-		name = "user";
+		name = "name";
 	}
 	
 	public LoginUserBuilder setEmail(String email) {

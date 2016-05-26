@@ -9,21 +9,22 @@
 	<!-- Angular -->
 	</head>
 
-	<body ng-app="desappGroupdFrontendApp" class="indexPage">
+	<body ng-app="desappGroupdFrontendApp" class="indexPage" ng-controller="main_ctrl">
+
 		<div class="container-fluid"d>
 			<!-- Left -->
-			<div class="col-sm-8 col-md-8">
+			<div class="col-sm-12 col-md-8">
 				<ng-include src="'views/index/descriptionPanel.html'"></ng-include>
 			</div>
 			<!-- Right -->
-			<div class="col-sm-3 col-md-3">
+			<div class="col-sm-12 col-md-4">
 				<div class="row">
-					<div class="col-sm-12 col-md-12">
+					<div>
 						<ng-include src="'views/index/loginForm.html'"></ng-include>						
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12 col-md-12">
+					<div>
 						<ng-include src="'views/index/registerForm.html'"></ng-include>
 					</div>
 				</div>
@@ -32,20 +33,15 @@
 		</div>
 
 	<!-- AdminLTE App -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
 	<script src="bower_components/admin-lte/dist/js/app.min.js"></script>
-
 	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-
 	<link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
-
 	<!-- My JS -->
 	<script type="text/javascript" src="scripts/app.js"></script>
-	<script type="text/javascript" src="scripts/controller/loginRegisterCtrl.js"></script>
 	<!-- End -->
 	<!-- build:js(.) scripts/vendor.js -->
-	<!-- bower:js -->
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/angular/angular.js"></script>
+	<!-- bower:js -->	
 	<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
 	<script src="bower_components/angular-animate/angular-animate.js"></script>
 	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
@@ -53,6 +49,7 @@
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 	<script src="bower_components/angular-touch/angular-touch.js"></script>
+	<script src="bower_components/angular-translate/angular-translate.js"></script>
 	<!-- endbower -->
 	<!-- css -->
 	<link rel="stylesheet" href="styles/main.css">
@@ -71,8 +68,6 @@
 
 	<!-- build:js({.tmp,app}) scripts/scripts.js -->
 	 <script src="scripts/app.js"></script>
-	 <script src="scripts/controllers/main.js"></script>
-	 <script src="scripts/controllers/about.js"></script>
 	 <!-- endbuild -->
 
 	 </body>

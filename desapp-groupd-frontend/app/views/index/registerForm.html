@@ -1,37 +1,41 @@
-<div class="register-box-body" ng-controller="login_register_ctrl">
-    <p class="login-box-msg">Register a new membership</p>
+<div class="login-box">
+  <div class="login-box-body">
+    <p class="login-box-msg">{{ "REGISTER_DESCRIPTION" | translate }}</p>
+
+    <div class="alert alert-danger alert-dismissible" ng-show="showERegisterError === true;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p><i class="icon fa fa-ban"></i>{{ "REGISTER_ERROR" | translate}}</p>
+    </div>
+
+    <div class="alert alert-success alert-dismissible" ng-show="showERegisterSuccess === true;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <p><i class="icon fa fa-check"></i>{{ "REGISTER_SUCCESS" | translate}}</p>
+    </div>
 
     <form>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Full name" type="text" ng-model="registerUser.name">
+        <input class="form-control" placeholder="{{ 'FULL_NAME' | translate }}" type="text" ng-model="registerUser.name">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" type="email" ng-model="registerUser.email">
+        <input class="form-control" placeholder="{{ 'EMAIL' | translate }}" type="email" ng-model="registerUser.email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Password" type="password" ng-model="registerUser.password">
+        <input class="form-control" placeholder="{{ 'PASSWORD' | translate }}" type="password" ng-model="registerUser.password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Retype password" type="password">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-      </div>
+
       <div class="row">
-        <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label class="">
-              <div aria-disabled="false" aria-checked="false" style="position: relative;" class="icheckbox_square-blue"><input style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" type="checkbox"><ins style="position: absolute; top: -20%; left: -20%; display: block; width: 140%; height: 140%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div> I agree to the <a href="#">terms</a>
-            </label>
-          </div>
+        <div class="col-sm-8">
         </div>
         <!-- /.col -->
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="register(registerUser)">Register</button>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-primary btn-block btn-flat" ng-click="register(registerUser)">{{ "REGISTER" | translate }}</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
   </div>
+</div>

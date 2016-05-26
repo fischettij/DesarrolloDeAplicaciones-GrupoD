@@ -15,14 +15,14 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 			if (registerUser.is(loginUser))
 				return registerUser.getUser();
 		}
-		throw new RuntimeException("No se encontro usuario");
-	}
+		throw new RuntimeException("User doesn't exists");
+	}	
 
 	@Transactional
 	public void register(LoginUser loginUser) {
 		for (RegisterUser user : this.retriveAll()) {
 			if (user.is(loginUser))
-				throw new RuntimeException("No existe el usuario");
+				throw new RuntimeException("User already exists");
 		}
 		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
 				new UserBuilder().setName(loginUser.getName()).setStandarManagers().build());
