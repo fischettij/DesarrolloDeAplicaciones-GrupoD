@@ -2,7 +2,7 @@
 
 angular.module('desappGroupdFrontendApp')
   .controller('user_ctrl', [ '$http', '$scope', '$window', '$cookies',
-      '$locale', function($http, $scope, $window, $cookies, $locale) {
+      '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
 
       	 $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
       	 $scope.user = {};
@@ -50,13 +50,20 @@ angular.module('desappGroupdFrontendApp')
                               return 'fa fa-star-o';
                               break;
                         case 'AdminManager':
-                              return 'fa fa-comments';
+                              return 'fa fa-user-plus';
                               break;
                         default:
                               return 'fa fa-warning';
                   }
             };
 
+            $scope.getContainer = function(){
+                 return 'views/' + $scope.activeManager +'.html';
+            };
+
+            $scope.getScore = function(){
+                   return $filter('lookForManager')('ScoreManager', $scope.user.managers).score;                  
+            };
 
       } ]);
       

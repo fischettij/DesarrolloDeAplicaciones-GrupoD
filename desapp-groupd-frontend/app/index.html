@@ -1,75 +1,74 @@
 <!DOCTYPE html>
 
-<html>
-	<head>
+<html ng-app="desappGroupdFrontendApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SubiQueTeLLEVO</title>
+    </head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>SubiQueTeLLEVO</title>
-	</head>
+    <body class="indexPage" ng-controller="main_ctrl">
 
-	<body ng-app="desappGroupdFrontendApp" class="indexPage" ng-controller="main_ctrl">
+        <div class="container-fluid"d>
+            <!-- Left -->
+            <div class="col-sm-12 col-md-8">
+                <ng-include src="'views/index/descriptionPanel.html'"></ng-include>
+            </div>
+            <!-- Right -->
+            <div class="col-sm-12 col-md-4">
+                <div class="row">
+                    <div>
+                        <ng-include src="'views/index/loginForm.html'"></ng-include>						
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div>
+                        <ng-include src="'views/index/registerForm.html'"></ng-include>
+                    </div>
+                </div>
+            </div>
 
-		<div class="container-fluid"d>
-			<!-- Left -->
-			<div class="col-sm-12 col-md-8">
-				<ng-include src="'views/index/descriptionPanel.html'"></ng-include>
-			</div>
-			<!-- Right -->
-			<div class="col-sm-12 col-md-4">
-				<div class="row">
-					<div>
-						<ng-include src="'views/index/loginForm.html'"></ng-include>						
-					</div>
-				</div>
-				<div class="row">
-					<div>
-						<ng-include src="'views/index/registerForm.html'"></ng-include>
-					</div>
-				</div>
-			</div>
+        </div>
 
-		</div>
+        <!-- AdminLTE App -->
+        <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/admin-lte/dist/js/app.min.js"></script>
+        <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
+        <!-- My JS -->
+        <script type="text/javascript" src="scripts/app.js"></script>
+        <!-- End -->
+        <!-- build:js(.) scripts/vendor.js -->
+        <!-- bower:js -->  
+        <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+        <script src="bower_components/angular-translate/angular-translate.min.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+        <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+        <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+        <script src="bower_components/angular-route/angular-route.min.js"></script>
+        <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+        <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+        <!-- endbower -->
+        <!-- css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- Theme style --> 
+        <link rel="stylesheet" href="bower_components/admin-lte/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
+        <!-- end Theme style --> 
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <!-- endbuild -->
 
-	<!-- AdminLTE App -->
-	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/admin-lte/dist/js/app.min.js"></script>
-	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-	<link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
-	<!-- My JS -->
-	<script type="text/javascript" src="scripts/app.js"></script>
-	<!-- End -->
-	<!-- build:js(.) scripts/vendor.js -->
-	<!-- bower:js -->
-	
-	<script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
-	<script src="bower_components/angular-translate/angular-translate.js"></script>
-	<script src="bower_components/angular-animate/angular-animate.js"></script>
-	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-	<script src="bower_components/angular-resource/angular-resource.js"></script>
-	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-	<script src="bower_components/angular-touch/angular-touch.js"></script>
-	<!-- endbower -->
-	<!-- css -->
-	<link rel="stylesheet" href="styles/main.css">
-	<!-- Theme style --> 
-	<link rel="stylesheet" href="bower_components/admin-lte/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	<link rel="stylesheet" href="bower_components/admin-lte/dist/css/AdminLTE.min.css">
-	<link rel="stylesheet" href="bower_components/admin-lte/dist/css/skins/skin-blue.min.css">
-	<!-- end Theme style --> 
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	  <![endif]-->
-	<!-- endbuild -->
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/loginRegisterCtrl.js"></script>
+        <!-- endbuild -->
 
-	<!-- build:js({.tmp,app}) scripts/scripts.js -->
-	 <script src="scripts/app.js"></script>
-	 <script src="scripts/controllers/loginRegisterCtrl.js"></script>
-	 <!-- endbuild -->
-
-	 </body>
+    </body>
 </html>
