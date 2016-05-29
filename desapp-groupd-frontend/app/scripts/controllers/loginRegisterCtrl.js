@@ -1,62 +1,47 @@
-(function() {
-	var app = angular.module('desappGroupdFrontendApp');
+'use strict';
 
-	app.controller('login_register_ctrl', [ '$http', '$scope', '$window',
-			'$locale', function($http, $scope, $window, $locale) {
+angular.module('desappGroupdFrontendApp')
+  .controller('main_ctrl', [ '$http', '$scope', '$window', '$cookies',
+      '$locale', function($http, $scope, $window, $cookies, $locale) {
 
-				$scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest/";
-				$scope.language = [];
+        $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
 
-				$scope.init = function() {
-					if (navigator.language.slice(0, 2) == "es") {
-						$http.get('/spanishJson').success(function(result) {
-							$scope.language = result.data;
-						});
-					} else {
-						$http.get('/englishJson').success(function(result) {
-							$scope.language = result.data;
-						});
-					}
-				};
+        // Register
 
+        $scope.showERegisterError = false;
+        $scope.showERegisterSuccess = false;
 
-				// Register
+        $scope.register = function(user) {
+          $http.post( $scope.baseUrl + '/register/newuser', {
+            name : user.name,
+            email : user.email,
+            password : user.password
+          }).success(function() {
+            $scope.showERegisterSuccess = true;
+          }).error(function() {
+            $scope.showERegisterError = true;
+          })
+        };
 
-				$scope.showRegisterEvent = false;
-				$scope.eventRegiste = "";
+        // Login
 
-				$scope.register = function(user) {
-					$http.post( $scope.baseUrl + '/register/register', {
-						username : user.username,
-						email : user.email,
-						password : user.password
-					}).success(function(result) {
-						$scope.showRegisterEvent = true;
-						$scope.eventRegister = result;
-					}).error(function(result) {
-						$scope.showRegisterEvent = true;
-						$scope.eventRegister = result;
-					})
-				};
+        $scope.showLoginError = false;
 
-				// Login
+        $scope.login = function(user) {
+          $http.post( $scope.baseUrl + '/login/connect', {
+            email : user.email,
+            password : user.password,
+            name : ""
+          }).success(function(result) {
+            $cookies.put('user',result.id);
+            $scope.goToMain();
+          }).error(function() {
+            $scope.showLoginError = true;
+          })
+        };
 
-				$scope.showLoginError = false;
+        $scope.goToMain = function() {
+          $window.location.href = '/main.html';
+        }
 
-				$scope.login = function(user) {
-					$http.post('/login', {
-						email : user.email,
-						password : user.password
-					}).success(function() {
-						$scope.goToMainManu();
-					}).error(function() {
-						$scope.showLoginError = true;
-					})
-				};
-
-				$scope.goToMainManu = function() {
-					$window.location.href = '/goToMainMenu';
-				}
-
-			} ]);
-})();
+      } ]);

@@ -7,6 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
@@ -32,7 +33,7 @@ public class LoginRest {
 		try {
 			User user = getRegisterUserService().login(loginUser);
 			return Response.ok(user).build();
-		} catch (Exception e) {
+		} catch (NotFoundException e) {
 			return Response.serverError().build();
 		}
 	}

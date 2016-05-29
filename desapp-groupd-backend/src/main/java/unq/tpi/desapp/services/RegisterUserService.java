@@ -3,6 +3,7 @@ package unq.tpi.desapp.services;
 import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.UserBuilder;
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.RegisterUser;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.request.LoginUser;
@@ -10,12 +11,12 @@ import unq.tpi.desapp.model.request.LoginUser;
 public class RegisterUserService extends GenericService<RegisterUser> {
 
 	@Transactional
-	public User login(LoginUser loginUser) {
+	public User login(LoginUser loginUser) throws NotFoundException {
 		for (RegisterUser registerUser : this.retriveAll()) {
 			if (registerUser.is(loginUser))
 				return registerUser.getUser();
 		}
-		throw new RuntimeException("User doesn't exists");
+		throw new NotFoundException("User doesn't exists");
 	}	
 
 	@Transactional

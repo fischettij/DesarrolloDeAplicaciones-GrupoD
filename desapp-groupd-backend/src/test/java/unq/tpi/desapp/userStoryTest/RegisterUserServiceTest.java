@@ -12,6 +12,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import unq.tpi.desapp.builders.LoginUserBuilder;
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
@@ -24,10 +25,10 @@ public class RegisterUserServiceTest {
 	private RegisterUserService registerUserService;
 
 	@Test
-	public void mappingTest() {
+	public void mappingTest() throws NotFoundException {
 
-		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
-				.build();
+		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto")
+				.setName("Pepe").build();
 
 		registerUserService.register(loginUser);
 		assertEquals(registerUserService.retriveAll().size(), 1);
@@ -38,10 +39,10 @@ public class RegisterUserServiceTest {
 	}
 
 	@Test(expected = RuntimeException.class)
-	public void loginWithOutUser() {
+	public void registerTwoTimesTheSameUser() {
 
-		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").setName("Pepe")
-				.build();
+		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto")
+				.setName("Pepe").build();
 
 		registerUserService.register(loginUser);
 		assertEquals(registerUserService.retriveAll().size(), 1);
@@ -49,8 +50,8 @@ public class RegisterUserServiceTest {
 
 	}
 
-	@Test(expected = RuntimeException.class)
-	public void registerTwoTimesTheSameUser() {
+	@Test(expected = NotFoundException.class)
+	public void loginWithOutUser() throws NotFoundException {
 
 		assertTrue(registerUserService.retriveAll().isEmpty());
 
