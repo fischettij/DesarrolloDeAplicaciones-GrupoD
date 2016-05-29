@@ -33,7 +33,13 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     REGISTER: 'Registrar',
     REGISTER_ERROR: 'Usuario en uso',
     REGISTER_SUCCESS: 'Cuenta creada!',
-    LOGIN_ERROR: 'Usuario o Contraseña incorrectos'
+    LOGIN_ERROR: 'Usuario o Contraseña incorrectos',
+    Dashboard: 'Pizarra',
+    VehicleManager: 'Vehiculos',
+    CommentManager: 'Comentarios',
+    RouteManager: 'Rutas',
+    InscriptionManager: 'Inscripciones',
+    ScoreManager: 'Puntaje'
   });
 
   $translateProvider.translations('en', {
@@ -47,7 +53,13 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     REGISTER: 'Register',
     REGISTER_ERROR: 'There were problems creating your account',
     REGISTER_SUCCESS: 'Created successfully!',
-    LOGIN_ERROR: 'Invalid login or password.'
+    LOGIN_ERROR: 'Invalid login or password.',
+    Dashboard: 'Dashboard',
+    VehicleManager: 'Vehicles',
+    CommentManager: 'Comments',
+    RouteManager: 'Routes',
+    InscriptionManager: 'Inscriptions',
+    ScoreManager: 'Score'
   });
   
   $translateProvider.preferredLanguage('es');

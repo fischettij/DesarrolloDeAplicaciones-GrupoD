@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import unq.tpi.desapp.model.User;
@@ -27,6 +28,13 @@ public class UserRest {
 	@Produces("application/json")
 	public List<User> getUsers() {
 		return getUserService().retriveAll();
+	}
+	
+	@GET
+	@Path("/{id}")
+	@Produces("application/json")
+	public User getUser(@PathParam("id") final Long id) {
+		return getUserService().getUser(id);
 	}
 
 }

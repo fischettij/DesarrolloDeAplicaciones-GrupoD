@@ -11,22 +11,15 @@
 		</div>	
 
 		<ul class="sidebar-menu">
-			<li class="header">MENU</li>
-			<li class="active"><a href="#">
+			<li class="header">{{ "MENU" | translate }}</li>
+			<li ng-class="{'active': handling('dashboard')}"><a ng-click="goTo('dashboard')">
 				<i class="fa fa-dashboard"></i>
-				<span>Dashboard</span></a>
+				<span>{{ "Dashboard" | translate }}</span></a>
 			</li>
-			<li><a href="#">
-				<i class="fa fa-user"></i>
-				<span>Perfil</span>
-			</a></li>
-			<li><a href="#">
-				<i class="fa fa-car"></i>
-				<span>Rutas</span>
-			</a></li>
-			<li><a href="#">
-				<i class="fa fa-users"></i>
-				<span>Usuarios</span>
+			<li ng-repeat="manager in managers()" ng-class="{'active': handling(manager)}">
+				<a ng-click="goTo(manager)">
+				<i class={{iconFor(manager.manager)}}></i>
+				<span>{{ manager.manager | translate }}</span>
 			</a></li>
 		</ul>
 

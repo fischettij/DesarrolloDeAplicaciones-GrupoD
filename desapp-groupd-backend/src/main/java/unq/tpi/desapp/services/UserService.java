@@ -13,4 +13,9 @@ public class UserService extends GenericService<User> {
         user.managerImplementing(RouteManager.class).add(route);
         this.update(user);
     }
+    
+    @Transactional
+	public User getUser(Long id) {
+		return this.getRepository().findById(id);
+	}
 }
