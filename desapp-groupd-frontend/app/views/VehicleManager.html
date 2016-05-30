@@ -1,0 +1,91 @@
+<div class="content-wrapper" style="min-height: 901px;" ng-controller="vehicle_ctrl">
+
+  <section class="content">
+
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 alert alert-danger alert-dismissible" ng-show="showVehicleError === true;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <p><i class="icon fa fa-ban"></i>{{ "VEHICLE_ERROR" | translate}}</p>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10 alert alert-success alert-dismissible" ng-show="showVehicleSuccess === true;">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+          <p><i class="icon fa fa-check"></i>{{ "VEHICLE_SUCCESS" | translate}}</p>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="box box-success">
+          <div class="box-header with-border">
+            <h3 class="box-title">{{"ACTIONS" | translate }}</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <div class="box-body" style="display: block;">
+            <div class="col-sm-3 pull-right">
+              <button type="button" class="btn btn-block btn-primary ng-binding" data-toggle="modal" data-target="#modalNewVehicle">{{ "ADD_VEHICLE" | translate }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="modalNewVehicle" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{ "ADD_VEHICLE" | translate }}</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="vehicleModel" class="col-sm-2 control-label">{{ "MODEL" | translate}}</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="vehicleModel"
+                ng-model="newVehicle.model">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vehicleMaxNumberPassanger" class="col-sm-2 control-label">{{ "MAX_NUMBER_PASSANGER" | translate}}</label>
+            <div class="col-sm-10">
+              <input type="number" name="quantity" min="1" class="form-control" id="vehicleMaxNumberPassanger"
+                ng-model="newVehicle.maxNumberPassanger">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="vehicleRegistrationNumber" class="col-sm-2 control-label">{{ "REGISTRATION_NUMBER" | translate}}</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="vehicleRegistrationNumber"
+                ng-model="newVehicle.registrationNumber">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-default" data-dismiss="modal">{{"CANCEL" | translate}}</button>
+          <button type="submit" class="btn btn-info pull-right"
+            ng-click="createVehicle(newVehicle)"  data-dismiss="modal">{{"ACCEPT" | translate}}
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</div>

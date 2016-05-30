@@ -18,6 +18,16 @@ var desappGroupdFrontendApp = angular.module('desappGroupdFrontendApp', [
       'pascalprecht.translate'
     ]);
 
+desappGroupdFrontendApp.filter('lookForManager',function(){
+  return function(manager, managers){
+    for (var i = 0; i < managers.length; i++) {
+            if (managers[i].manager == manager) {
+                return managers[i];
+            }
+        }
+  }
+})
+
 desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvider) {
   
   $translateProvider.useSanitizeValueStrategy(null);
@@ -34,12 +44,24 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     REGISTER_ERROR: 'Usuario en uso',
     REGISTER_SUCCESS: 'Cuenta creada!',
     LOGIN_ERROR: 'Usuario o Contraseña incorrectos',
+    MENU: "Menu",
+    SIGN_OUT: "Desloguearse",
+    PERSONAL_SCORE: "Mi Puntuación",
     Dashboard: 'Pizarra',
     VehicleManager: 'Vehiculos',
     CommentManager: 'Comentarios',
     RouteManager: 'Rutas',
     InscriptionManager: 'Inscripciones',
-    ScoreManager: 'Puntaje'
+    ScoreManager: 'Puntaje',
+    ACTIONS: 'Acciones',
+    ADD_VEHICLE: 'Agregar Vehiculo',
+    MODEL: 'Modelo',
+    MAX_NUMBER_PASSANGER: 'Maximo de pasajeros',
+    REGISTRATION_NUMBER: 'Patente',
+    CANCEL: 'Cancelar',
+    ACCEPT: 'Aceptar',
+    VEHICLE_ERROR: 'El Vehiculo ya se encuentra registrado',
+    VEHICLE_SUCCESS: 'El Vehiculo se agrego correctamente'
   });
 
   $translateProvider.translations('en', {
@@ -54,6 +76,9 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     REGISTER_ERROR: 'There were problems creating your account',
     REGISTER_SUCCESS: 'Created successfully!',
     LOGIN_ERROR: 'Invalid login or password.',
+    MENU: "Menu",
+    SIGN_OUT: "Sign Out",
+    PERSONAL_SCORE: "My Score",
     Dashboard: 'Dashboard',
     VehicleManager: 'Vehicles',
     CommentManager: 'Comments',
