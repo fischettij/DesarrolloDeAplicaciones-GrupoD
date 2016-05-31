@@ -16,6 +16,11 @@ angular.module('desappGroupdFrontendApp')
       		}) 
       	};
 
+            $scope.signOut = function(){
+                  $cookies.remove('user')
+                  $window.location.href='/'
+            }
+
             $scope.init();
 
             $scope.activeManager = 'dashboard';
