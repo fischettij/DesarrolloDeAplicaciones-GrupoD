@@ -30,6 +30,10 @@ angular.module('desappGroupdFrontendApp')
             })
         };
 
+        $scope.vehicless = function(){
+          $scope.vehicles(1);
+          return $scope.listOfVehicles;
+        };
 
       } ]);
       

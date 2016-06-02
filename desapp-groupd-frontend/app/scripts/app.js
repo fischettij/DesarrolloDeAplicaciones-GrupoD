@@ -61,7 +61,8 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     CANCEL: 'Cancelar',
     ACCEPT: 'Aceptar',
     VEHICLE_ERROR: 'El Vehiculo ya se encuentra registrado',
-    VEHICLE_SUCCESS: 'El Vehiculo se agrego correctamente'
+    VEHICLE_SUCCESS: 'El Vehiculo se agrego correctamente',
+    VEHICLES: 'Vehiculos'
   });
 
   $translateProvider.translations('en', {

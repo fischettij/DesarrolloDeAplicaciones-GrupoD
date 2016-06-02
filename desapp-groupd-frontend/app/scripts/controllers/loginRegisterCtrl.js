@@ -10,6 +10,7 @@ angular.module('desappGroupdFrontendApp')
 
         $scope.showERegisterError = false;
         $scope.showERegisterSuccess = false;
+        $scope.registerUser = {};
 
         $scope.register = function(user) {
           $http.post( $scope.baseUrl + '/register/newuser', {
@@ -18,10 +19,15 @@ angular.module('desappGroupdFrontendApp')
             password : user.password
           }).success(function() {
             $scope.showERegisterSuccess = true;
+            $scope.clearRegisterUserForm();
           }).error(function() {
             $scope.showERegisterError = true;
           })
         };
+
+        $scope.clearRegisterUserForm = function() {
+          $scope.registerUser = {};
+        }
 
         // Login
 
