@@ -1,18 +1,18 @@
 <div class="dataTables_wrapper form-inline dt-bootstrap">
-<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
-	<thead>
-		<tr role="row">
-		  <th colspan="1" rowspan="1" tabindex="0">{{ "MODEL" | translate }}</th>
-		  <th colspan="1" rowspan="1" tabindex="0">{{ "REGISTRATION_NUMBER" | translate }}</th>
-		  <th colspan="1" rowspan="1" tabindex="0">{{ "MAX_NUMBER_PASSANGER" | translate }}</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr ng-repeat="vehicle in vehicless()">
+	<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+		<thead>
+			<tr role="row">
+				<th colspan="1" rowspan="1" tabindex="0">{{ "MODEL" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "REGISTRATION_NUMBER" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "MAX_NUMBER_PASSANGER" | translate }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="vehicle in getVehicles()">
 				<td>{{ vehicle.model }}</td>
 				<td>{{ vehicle.registrationNumber }}</td>
 				<td>{{ vehicle.maxNumberPassangers }}</td>
-		</tr>
-	</tbody>
-</table>
+			</tr>
+		</tbody>
+	</table>
 </div>

@@ -7,17 +7,17 @@
  * # MainCtrl
  * Controller of the desappGroupdFrontendApp
  */
-angular.module('desappGroupdFrontendApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+ angular.module('desappGroupdFrontendApp')
+ .controller('MainCtrl', function () {
+ 	this.awesomeThings = [
+ 	'HTML5 Boilerplate',
+ 	'AngularJS',
+ 	'Karma'
+ 	];
+ });
 
-var contentApp = angular.module('contentApp', []);
+ var contentApp = angular.module('contentApp', []);
 
-contentApp.controller('currentUserCtrl', ['$scope', function($scope) {
-  $scope.userInformation = {'name': Jhon};
-}]);
+ contentApp.controller('currentUserCtrl', ['$scope', function($scope) {
+ 	$scope.userInformation = {'name': Jhon};
+ }]);

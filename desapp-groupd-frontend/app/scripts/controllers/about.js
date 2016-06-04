@@ -7,11 +7,11 @@
  * # AboutCtrl
  * Controller of the desappGroupdFrontendApp
  */
-angular.module('desappGroupdFrontendApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+ angular.module('desappGroupdFrontendApp')
+ .controller('AboutCtrl', function () {
+ 	this.awesomeThings = [
+ 	'HTML5 Boilerplate',
+ 	'AngularJS',
+ 	'Karma'
+ 	];
+ });

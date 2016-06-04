@@ -8,27 +8,27 @@
  *
  * Main module of the application.
  */
-var desappGroupdFrontendApp = angular.module('desappGroupdFrontendApp', [
-      'ngAnimate',
-      'ngCookies',
-      'ngResource',
-      'ngRoute',
-      'ngSanitize',
-      'ngTouch',
-      'pascalprecht.translate'
-    ]);
+ var desappGroupdFrontendApp = angular.module('desappGroupdFrontendApp', [
+  'ngAnimate',
+  'ngCookies',
+  'ngResource',
+  'ngRoute',
+  'ngSanitize',
+  'ngTouch',
+  'pascalprecht.translate'
+  ]);
 
-desappGroupdFrontendApp.filter('lookForManager',function(){
+ desappGroupdFrontendApp.filter('lookForManager',function(){
   return function(manager, managers){
     for (var i = 0; i < managers.length; i++) {
-            if (managers[i].manager == manager) {
-                return managers[i];
-            }
-        }
+      if (managers[i].manager == manager) {
+        return managers[i];
+      }
+    }
   }
 })
 
-desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvider) {
+ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvider) {
   
   $translateProvider.useSanitizeValueStrategy(null);
 
@@ -65,28 +65,28 @@ desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvid
     VEHICLES: 'Vehiculos'
   });
 
-  $translateProvider.translations('en', {
-    LOGINDESCRIPTION: 'Sign in to start your session',
-    PASSWORD: 'Password',
-    EMAIL: 'Email',
-    FULL_NAME: 'Full Name',
-    SIGN_IN_GOOGLE: 'Sign in using Google+',
-    SIGN_IN:'Sign In',
-    REGISTER_DESCRIPTION: 'Register a new membership',
-    REGISTER: 'Register',
-    REGISTER_ERROR: 'There were problems creating your account',
-    REGISTER_SUCCESS: 'Created successfully!',
-    LOGIN_ERROR: 'Invalid login or password.',
-    MENU: "Menu",
-    SIGN_OUT: "Sign Out",
-    PERSONAL_SCORE: "My Score",
-    Dashboard: 'Dashboard',
-    VehicleManager: 'Vehicles',
-    CommentManager: 'Comments',
-    RouteManager: 'Routes',
-    InscriptionManager: 'Inscriptions',
-    ScoreManager: 'Score'
-  });
-  
-  $translateProvider.preferredLanguage('es');
+$translateProvider.translations('en', {
+  LOGINDESCRIPTION: 'Sign in to start your session',
+  PASSWORD: 'Password',
+  EMAIL: 'Email',
+  FULL_NAME: 'Full Name',
+  SIGN_IN_GOOGLE: 'Sign in using Google+',
+  SIGN_IN:'Sign In',
+  REGISTER_DESCRIPTION: 'Register a new membership',
+  REGISTER: 'Register',
+  REGISTER_ERROR: 'There were problems creating your account',
+  REGISTER_SUCCESS: 'Created successfully!',
+  LOGIN_ERROR: 'Invalid login or password.',
+  MENU: "Menu",
+  SIGN_OUT: "Sign Out",
+  PERSONAL_SCORE: "My Score",
+  Dashboard: 'Dashboard',
+  VehicleManager: 'Vehicles',
+  CommentManager: 'Comments',
+  RouteManager: 'Routes',
+  InscriptionManager: 'Inscriptions',
+  ScoreManager: 'Score'
+});
+
+$translateProvider.preferredLanguage('es');
 }]);

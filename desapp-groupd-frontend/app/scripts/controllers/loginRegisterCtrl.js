@@ -1,10 +1,10 @@
 'use strict';
 
 angular.module('desappGroupdFrontendApp')
-  .controller('main_ctrl', [ '$http', '$scope', '$window', '$cookies',
-      '$locale', function($http, $scope, $window, $cookies, $locale) {
+.controller('main_ctrl', [ '$http', '$scope', '$window', '$cookies',
+  '$locale', function($http, $scope, $window, $cookies, $locale) {
 
-        $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
+    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
 
         // Register
 

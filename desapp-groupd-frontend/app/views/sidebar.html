@@ -3,11 +3,11 @@
 
 		<div class="user-panel">
 			<div class="pull-left image">
-		        <img src="images/yeoman.png" class="img-circle" alt="User Image">
-		        </div>
-		        <div class="pull-left info">
-		          <p>{{user.name}}</p>
-		    </div>
+				<img src="images/yeoman.png" class="img-circle" alt="User Image">
+			</div>
+			<div class="pull-left info">
+				<p>{{user.name}}</p>
+			</div>
 		</div>	
 
 		<ul class="sidebar-menu">
@@ -18,10 +18,10 @@
 			</li>
 			<li ng-repeat="manager in managers()" ng-class="{'active': handling(manager.manager)}">
 				<a ng-click="goTo(manager.manager)">
-				<i class={{iconFor(manager.manager)}}></i>
-				<span>{{ manager.manager | translate }}</span>
-			</a></li>
-		</ul>
+					<i class={{iconFor(manager.manager)}}></i>
+					<span>{{ manager.manager | translate }}</span>
+				</a></li>
+			</ul>
 
-	</section>
-</aside>
+		</section>
+	</aside>
