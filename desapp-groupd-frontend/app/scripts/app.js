@@ -62,7 +62,12 @@
     ACCEPT: 'Aceptar',
     VEHICLE_ERROR: 'El Vehiculo ya se encuentra registrado',
     VEHICLE_SUCCESS: 'El Vehiculo se agrego correctamente',
-    VEHICLES: 'Vehiculos'
+    VEHICLES: 'Vehiculos',
+    ROUTE_ERROR: 'La ruta ya se encuentra registrada',
+    ROUTE_SUCCESS: 'La ruta se agrego correctamente',
+    MY_ROUTES: 'Mis Rutas',
+    ADD_ROUTE: 'Agregar Ruta',
+    
   });
 
 $translateProvider.translations('en', {

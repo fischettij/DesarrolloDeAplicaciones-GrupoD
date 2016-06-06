@@ -25,11 +25,10 @@ angular.module('desappGroupdFrontendApp')
         registrationNumber : newVehicle.registrationNumber
       }).success(function() {
         $scope.showVehicleSuccess = true;
+        $scope.vehicles(1);
       }).error(function() {
         $scope.showVehicleError = true;
       })
-
-      $scope.vehicles(1);
     };
 
     $scope.getVehicles = function(){

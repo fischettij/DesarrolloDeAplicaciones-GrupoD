@@ -30,7 +30,7 @@
   <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
   <link href='https://fonts.googleapis.com/css?family=Oregano' rel='stylesheet' type='text/css'>
   <!-- My JS -->
-  <script type="text/javascript" src="scripts/app.js"></script>
+  
   <!-- End -->
   <!-- build:js(.) scripts/vendor.js -->
   <!-- bower:js -->
@@ -59,11 +59,16 @@
     <![endif]-->
     <!-- endbuild -->
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0ALwgKvq08E80EU4XBSqGFnSUWjVBXPY"
+  type="text/javascript"></script>
+
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
+<script src="scripts/app.js"></script>      
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/vehicleCtrl.js"></script>
+    <script src="scripts/controllers/routeCtrl.js"></script>
     <!-- endbuild -->
+
 
   </body>
   </html>
