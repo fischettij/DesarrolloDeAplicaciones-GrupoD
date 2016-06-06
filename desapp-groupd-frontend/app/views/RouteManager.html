@@ -97,18 +97,21 @@
           <div class="row">
             <div class="col-sm-12 col-md-6">
               <div class="form-group">
-                <label for="vehicleModel" class="col-sm-2 control-label">{{ "MODEL" | translate}}</label>
+                <label for="routeStartingPoint" class="col-sm-2 control-label">{{ "STARTING_POINT" | translate}}</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="vehicleModel"
-                  ng-model="newVehicle.model">
+                  <input type="text" class="form-control" id="routeStartingPoint"
+                  ng-model="newRoute.startingPoint">
                 </div>
               </div>
               <div class="form-group">
-                <label for="vehicleMaxNumberPassanger" class="col-sm-2 control-label">{{ "MAX_NUMBER_PASSANGER" | translate}}</label>
+                <label for="routeEndingPoint" class="col-sm-2 control-label">{{ "ENDING_POINT" | translate}}</label>
                 <div class="col-sm-10">
-                  <input type="number" name="quantity" min="1" class="form-control" id="vehicleMaxNumberPassanger"
-                  ng-model="newVehicle.maxNumberPassanger">
+                  <input type="text" class="form-control" id="routeEndingPoint"
+                  ng-model="newRoute.endingPoint">
                 </div>
+              </div>
+              <div>
+                <button class="btn btn-block" ng-click="calculateAndDisplayRoute(newRoute.startingPoint, newRoute.endingPoint)">{{ "SHOW_ROUTE" | translate }}</button>
               </div>
               <div class="form-group">
                 <label for="vehicleRegistrationNumber" class="col-sm-2 control-label">{{ "REGISTRATION_NUMBER" | translate}}</label>
