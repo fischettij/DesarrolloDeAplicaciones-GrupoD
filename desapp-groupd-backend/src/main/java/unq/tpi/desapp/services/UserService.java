@@ -14,7 +14,8 @@ import unq.tpi.desapp.model.manager.VehicleManager;
 public class UserService extends GenericService<User> {
 
 	@Transactional
-	public void addRouteToUser(User user, Route route) {
+	public void addRouteToUser(Long id, Route route) {
+		User user = this.getRepository().findById(id);
 		user.managerImplementing(RouteManager.class).add(route);
 		this.update(user);
 	}

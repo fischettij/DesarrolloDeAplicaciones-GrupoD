@@ -6,7 +6,6 @@ import static org.junit.Assert.assertFalse;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,9 +17,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import unq.tpi.desapp.builders.RouteBuilder;
 import unq.tpi.desapp.builders.RoutineBuilder;
 import unq.tpi.desapp.builders.UserBuilder;
+import unq.tpi.desapp.builders.VehicleBuilder;
 import unq.tpi.desapp.model.DayOfWeek;
 import unq.tpi.desapp.model.Route;
+import unq.tpi.desapp.model.Routine;
 import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.services.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,18 +47,30 @@ public class UserServciceTest {
 	}
 
 	@Test
-	public void addRoutToUser() {
-		Route route = new RouteBuilder().setStartingPoint("Calle 1").setEndingPoint("Calle2")
-				.setRoutine(new RoutineBuilder().setStatingDate(new LocalDate()).setEndDate(new LocalDate())
-						.setDaysOfWeek(new ArrayList<DayOfWeek>() {
-							{
-								add(new DayOfWeek("Lunes"));
-							}
-						}).build())
-				.build();
+	public void addRoutToUser() throws Exception {
+		Vehicle vehicle = new VehicleBuilder().build();
 		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
+		
 		userService.save(user);
-		userService.addRouteToUser(user, route);
+		user = userService.getRepository().findAll().get(0);
+		userService.addNewVehicle(user.getId(), vehicle);
+		
+		vehicle = userService.getVehicles(user.getId(), 1, 15).get(0);
+		
+		Routine routine = new RoutineBuilder().setDaysOfWeek(new ArrayList<DayOfWeek>() {
+			{
+				add(new DayOfWeek("Lunes"));
+			}
+		}).build();
+		
+		Route route = new RouteBuilder()
+				.setStartingPoint("Calle 1")
+				.setEndingPoint("Calle2")
+				.setVehicle(vehicle)
+				.setRoutine(routine)
+				.build();
+		
+		userService.addRouteToUser(user.getId(), route);
 	}
 
 	@Before

@@ -9,18 +9,20 @@ public class Route extends Entity {
 
 	private String startingPoint;
 	private String endingPoint;
+	private Vehicle vehicle;
 	private Routine routine;
 	@JsonIgnore
 	private List<SubscriptionRequest> subscriptionRequests;
-	
+
 	public Route() {
 	}
 
-	public Route(String startingPoint, String endingPoint, Routine routine,
+	public Route(String startingPoint, String endingPoint, Vehicle vehicle, Routine routine,
 			List<SubscriptionRequest> subscriptionRequests) {
 		super();
 		this.startingPoint = startingPoint;
 		this.endingPoint = endingPoint;
+		this.vehicle = vehicle;
 		this.routine = routine;
 		this.subscriptionRequests = subscriptionRequests;
 	}
@@ -70,10 +72,18 @@ public class Route extends Entity {
 	public void setRoutine(Routine routine) {
 		this.routine = routine;
 	}
-	
+
 	@JsonProperty
 	public void setSubscriptionRequests(List<SubscriptionRequest> subscriptionRequests) {
 		this.subscriptionRequests = subscriptionRequests;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 }
