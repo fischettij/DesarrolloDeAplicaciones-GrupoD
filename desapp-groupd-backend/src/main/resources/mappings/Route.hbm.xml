@@ -14,7 +14,7 @@
 
 		<many-to-one name="routine" column="ID_ROUTINE"
 					 unique="true" class="unq.tpi.desapp.model.Routine"
-					 not-null="true" />
+					 not-null="true" lazy="false" />
 
 		<list name="subscriptionRequests" table="SUBSCRIPTION_REQUESTS"
 			inverse="false" cascade="all" lazy="true">

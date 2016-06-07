@@ -57,22 +57,21 @@ $scope.myRoutes = function(page){
 };
 
 $scope.createRoute = function(newRoute){
-  console.log(newRoute);
-  // $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
-  //   startingPoint: newRoute.startingPoint,
-  //   endingPoint: newRoute.endingPoint,
-  //   routine: {
-  //     startingDate: newRoute.startingDate,
-  //     endDate: newRoute.endDate,
-  //     daysOfWeek: newRoute.daysOfWeek,
-  //   },
-  //   subscriptionRequests: []
-  // }).success(function() {
-  //   $scope.showRouteSuccess = true;
-  //   $scope.routes(1)
-  // }).error(function() {
-  //   $scope.showRouteError = true;
-  // })
+  $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
+    startingPoint: newRoute.startingPoint,
+    endingPoint: newRoute.endingPoint,
+    routine: {
+      startingDate: Date.parse(newRoute.startingDate),
+      endDate: Date.parse(newRoute.endingDate),
+      daysOfWeek: newRoute.routeDaysOfWeek,
+    },
+    subscriptionRequests: []
+  }).success(function() {
+    $scope.showRouteSuccess = true;
+    $scope.routes(1)
+  }).error(function() {
+    $scope.showRouteError = true;
+  })
 };
 
 $scope.getMyRoutes = function(){

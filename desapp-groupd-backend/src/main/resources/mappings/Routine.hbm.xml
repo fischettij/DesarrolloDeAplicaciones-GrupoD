@@ -15,7 +15,7 @@
 			type="org.joda.time.contrib.hibernate.PersistentLocalDate" column="END_DATE" />
 
 		<list name="daysOfWeek" table="DAYS_OF_WEEK" inverse="false"
-			cascade="all" lazy="true">
+			cascade="all" lazy="false">
 			<key not-null="true">
 				<column name="ID_ROUTINE" not-null="true" />
 			</key>

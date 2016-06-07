@@ -29,11 +29,24 @@ public class UserService extends GenericService<User> {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Vehicle>(user.managerImplementing(VehicleManager.class).getVehicles());
 	}
-	
+
 	@Transactional
 	public void addNewVehicle(Long id, Vehicle vehicle) throws Exception {
 		User user = this.getRepository().findById(id);
 		user.managerImplementing(VehicleManager.class).add(vehicle);
 		this.update(user);
+	}
+
+	@Transactional
+	public void addNewRoute(Long id, Route route) {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(RouteManager.class).add(route);
+		this.update(user);
+	}
+
+	@Transactional
+	public List<Route> getRoutes(Long id, Integer page, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
 	}
 }

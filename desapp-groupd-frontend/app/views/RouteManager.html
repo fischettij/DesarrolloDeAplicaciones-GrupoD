@@ -80,6 +80,7 @@
 
 
 
+
   <!-- Modal -->
 
   <div class="modal fade bs-example-modal-lg" id="modalNewRoute" tabindex="-1" role="dialog">
@@ -110,51 +111,62 @@
                   ng-model="newRoute.endingPoint">
                 </div>
               </div>
-              <div class="form-group">
-                <button class="btn btn-block btn-primary" ng-click="calculateAndDisplayRoute(newRoute.startingPoint, newRoute.endingPoint)">{{ "SHOW_ROUTE" | translate }}</button>
+              <div style="margin-bottom: 15px;">
+                <button class="btn btn-block btn-flat btn-primary" ng-click="calculateAndDisplayRoute(newRoute.startingPoint, newRoute.endingPoint)">{{ "SHOW_ROUTE" | translate }}</button>
               </div>
               <div class="form-group">
                 <label for="routeStartingDate" class="col-sm-2 control-label">{{ "STARTING_DATE" | translate}}</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="routeStartingDate"
-                  ng-model="newRoute.startingDate">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" ng-model="newRoute.startingDate">
                 </div>
               </div>
               <div class="form-group">
                 <label for="routeEndingDate" class="col-sm-2 control-label">{{ "ENDING_DATE" | translate}}</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="routeEndingDate"
-                  ng-model="newRoute.endingDate">
+                  <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" ng-model="newRoute.endingDate">
                 </div>
               </div>
               <div class="form-group">
                 <label for="routeEndingDate" class="col-sm-2 control-label">{{ "DAYS_OF_WEEK" | translate}}</label>
                 <div class="col-sm-10">
                   <label ng-repeat="day in daysOfWeek">
-                  <input type="checkbox" checklist-model="newRoute.routeDaysOfWeek" checklist-value="day"> {{ day | translate }}&nbsp;&nbsp;
+                    <input type="checkbox" checklist-model="newRoute.routeDaysOfWeek" checklist-value="day"> {{ day | translate }}&nbsp;&nbsp;
                   </label>
                 </div>
               </div>
-              </div>
-              <!-- col-1 -->
-              <div class="col-sm-12 col-md-6">
-                <div class="pad">
-                  <div id="mapRegisterRoute" style="height: 325px;"></div>
-                </div>    
-              </div>
             </div>
-            <div class="modal-footer">
-              <button type="submit" class="btn btn-default" data-dismiss="modal">{{"CANCEL" | translate}}</button>
-              <button type="submit" class="btn btn-info pull-right"
-              ng-click="createRoute(newRoute)"  data-dismiss="modal">{{"ACCEPT" | translate}}
-            </button>
+            <!-- col-1 -->
+            <div class="col-sm-12 col-md-6">
+              <div class="pad">
+                <div id="mapRegisterRoute" style="height: 325px;"></div>
+              </div>    
+            </div>
           </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-default" data-dismiss="modal">{{"CANCEL" | translate}}</button>
+            <button type="submit" class="btn btn-info pull-right"
+            ng-click="createRoute(newRoute)"  data-dismiss="modal">{{"ACCEPT" | translate}}
+          </button>
+        </div>
 
-        </form>
-      </div>
-
+      </form>
     </div>
+
   </div>
 </div>
+</div>
 
 </div>
+
+<script>
+  $(function () {
+
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+    //Datemask2 mm/dd/yyyy
+    $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+  });
+</script>

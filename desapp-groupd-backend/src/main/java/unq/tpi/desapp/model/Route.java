@@ -2,11 +2,15 @@ package unq.tpi.desapp.model;
 
 import java.util.List;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class Route extends Entity {
 
 	private String startingPoint;
 	private String endingPoint;
 	private Routine routine;
+	@JsonIgnore
 	private List<SubscriptionRequest> subscriptionRequests;
 	
 	public Route() {
@@ -33,6 +37,7 @@ public class Route extends Entity {
 		return routine;
 	}
 
+	@JsonIgnore
 	public List<SubscriptionRequest> getSubscriptionRequests() {
 		return subscriptionRequests;
 	}
@@ -65,7 +70,8 @@ public class Route extends Entity {
 	public void setRoutine(Routine routine) {
 		this.routine = routine;
 	}
-
+	
+	@JsonProperty
 	public void setSubscriptionRequests(List<SubscriptionRequest> subscriptionRequests) {
 		this.subscriptionRequests = subscriptionRequests;
 	}

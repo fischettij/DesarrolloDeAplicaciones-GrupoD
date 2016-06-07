@@ -79,7 +79,8 @@
     Jueves:'Jueves',
     Viernes:'Viernes',
     Sabado: 'Sabado',
-    Domingo: 'Domingo'
+    Domingo: 'Domingo',
+    SHOW_ROUTE: 'Ver ruta'
   });
 
 $translateProvider.translations('en', {
