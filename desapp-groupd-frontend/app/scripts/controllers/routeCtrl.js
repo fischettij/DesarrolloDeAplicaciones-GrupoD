@@ -10,6 +10,8 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.showRouteSuccess = false;
     $scope.showRouteError = false;
+
+    $scope.daysOfWeek = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 //// Start Google maps
 
   //Create a map and center it on Argentina.
@@ -55,21 +57,22 @@ $scope.myRoutes = function(page){
 };
 
 $scope.createRoute = function(newRoute){
-  $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
-    startingPoint: newRoute.startingPoint,
-    endingPoint: newRoute.endingPoint,
-    routine: {
-      startingDate: newRoute.startingDate,
-      endDate: newRoute.endDate,
-      daysOfWeek: newRoute.daysOfWeek,
-    },
-    subscriptionRequests: []
-  }).success(function() {
-    $scope.showRouteSuccess = true;
-    $scope.routes(1)
-  }).error(function() {
-    $scope.showRouteError = true;
-  })
+  console.log(newRoute);
+  // $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
+  //   startingPoint: newRoute.startingPoint,
+  //   endingPoint: newRoute.endingPoint,
+  //   routine: {
+  //     startingDate: newRoute.startingDate,
+  //     endDate: newRoute.endDate,
+  //     daysOfWeek: newRoute.daysOfWeek,
+  //   },
+  //   subscriptionRequests: []
+  // }).success(function() {
+  //   $scope.showRouteSuccess = true;
+  //   $scope.routes(1)
+  // }).error(function() {
+  //   $scope.showRouteError = true;
+  // })
 };
 
 $scope.getMyRoutes = function(){

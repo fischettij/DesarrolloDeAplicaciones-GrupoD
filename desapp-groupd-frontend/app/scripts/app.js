@@ -15,7 +15,8 @@
   'ngRoute',
   'ngSanitize',
   'ngTouch',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'checklist-model'
   ]);
 
  desappGroupdFrontendApp.filter('lookForManager',function(){
@@ -67,7 +68,18 @@
     ROUTE_SUCCESS: 'La ruta se agrego correctamente',
     MY_ROUTES: 'Mis Rutas',
     ADD_ROUTE: 'Agregar Ruta',
-    
+    STARTING_POINT:'Desde' ,
+    ENDING_POINT:'Hasta',
+    STARTING_DATE: 'Desde',
+    ENDING_DATE: 'Hasta',
+    DAYS_OF_WEEK: 'Días',
+    Lunes: 'Lunes',
+    Martes: 'Martes',
+    Miercoles: 'Miercoles',
+    Jueves:'Jueves',
+    Viernes:'Viernes',
+    Sabado: 'Sabado',
+    Domingo: 'Domingo'
   });
 
 $translateProvider.translations('en', {

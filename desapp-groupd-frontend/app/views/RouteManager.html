@@ -110,35 +110,51 @@
                   ng-model="newRoute.endingPoint">
                 </div>
               </div>
-              <div>
-                <button class="btn btn-block" ng-click="calculateAndDisplayRoute(newRoute.startingPoint, newRoute.endingPoint)">{{ "SHOW_ROUTE" | translate }}</button>
+              <div class="form-group">
+                <button class="btn btn-block btn-primary" ng-click="calculateAndDisplayRoute(newRoute.startingPoint, newRoute.endingPoint)">{{ "SHOW_ROUTE" | translate }}</button>
               </div>
               <div class="form-group">
-                <label for="vehicleRegistrationNumber" class="col-sm-2 control-label">{{ "REGISTRATION_NUMBER" | translate}}</label>
+                <label for="routeStartingDate" class="col-sm-2 control-label">{{ "STARTING_DATE" | translate}}</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control" id="vehicleRegistrationNumber"
-                  ng-model="newVehicle.registrationNumber">
+                  <input type="text" class="form-control" id="routeStartingDate"
+                  ng-model="newRoute.startingDate">
                 </div>
               </div>
+              <div class="form-group">
+                <label for="routeEndingDate" class="col-sm-2 control-label">{{ "ENDING_DATE" | translate}}</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="routeEndingDate"
+                  ng-model="newRoute.endingDate">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="routeEndingDate" class="col-sm-2 control-label">{{ "DAYS_OF_WEEK" | translate}}</label>
+                <div class="col-sm-10">
+                  <label ng-repeat="day in daysOfWeek">
+                  <input type="checkbox" checklist-model="newRoute.routeDaysOfWeek" checklist-value="day"> {{ day | translate }}&nbsp;&nbsp;
+                  </label>
+                </div>
+              </div>
+              </div>
+              <!-- col-1 -->
+              <div class="col-sm-12 col-md-6">
+                <div class="pad">
+                  <div id="mapRegisterRoute" style="height: 325px;"></div>
+                </div>    
+              </div>
             </div>
-            <div class="col-sm-12 col-md-6">
-              <div class="pad">
-                <div id="mapRegisterRoute" style="height: 325px;"></div>
-              </div>    
-            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-default" data-dismiss="modal">{{"CANCEL" | translate}}</button>
+              <button type="submit" class="btn btn-info pull-right"
+              ng-click="createRoute(newRoute)"  data-dismiss="modal">{{"ACCEPT" | translate}}
+            </button>
           </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-default" data-dismiss="modal">{{"CANCEL" | translate}}</button>
-            <button type="submit" class="btn btn-info pull-right"
-            ng-click="createVehicle(newVehicle)"  data-dismiss="modal">{{"ACCEPT" | translate}}
-          </button>
-        </div>
 
-      </form>
+        </form>
+      </div>
+
     </div>
-
   </div>
-</div>
 </div>
 
 </div>
