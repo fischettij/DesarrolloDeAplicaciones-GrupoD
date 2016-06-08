@@ -48,7 +48,8 @@ public class UserService implements Serializable  {
 	}
 	
 	@Transactional
-	public void addRouteToUser(User user, Route route) {
+	public void addRouteToUser(Long id, Route route) {
+		User user = this.getRepository().findById(id);
 		user.managerImplementing(RouteManager.class).add(route);
 		this.update(user);
 	}
@@ -63,7 +64,7 @@ public class UserService implements Serializable  {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Vehicle>(user.managerImplementing(VehicleManager.class).getVehicles());
 	}
-	
+
 	@Transactional
 	public void addNewVehicle(Long id, Vehicle vehicle) throws Exception {
 		User user = this.getRepository().findById(id);
@@ -75,5 +76,17 @@ public class UserService implements Serializable  {
 	public 	List<User> getUsersLike(String userName){
 		return this.getRepository().getUsersLike(userName);
 	}
-	
+
+	@Transactional
+	public void addNewRoute(Long id, Route route) {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(RouteManager.class).add(route);
+		this.update(user);
+	}
+
+	@Transactional
+	public List<Route> getRoutes(Long id, Integer page, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
+	}
 }

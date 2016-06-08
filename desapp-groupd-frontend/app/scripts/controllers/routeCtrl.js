@@ -10,6 +10,8 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.showRouteSuccess = false;
     $scope.showRouteError = false;
+
+    $scope.daysOfWeek = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 //// Start Google maps
 
   //Create a map and center it on Argentina.
@@ -23,16 +25,17 @@ angular.module('desappGroupdFrontendApp')
   $scope.directionsDisplay = new google.maps.DirectionsRenderer({mapRegisterRoute: $scope.mapRegisterRoute});
   $scope.stepDisplay = new google.maps.InfoWindow;
 
-  $scope.calculateAndDisplayRoute = function(route) {
+  $scope.calculateAndDisplayRoute = function(startingPoint, endingPoint) {
     // First, remove any existing markers from the map.
     for (var i = 0; i < $scope.markerArray.length; i++) {
       $scope.markerArray[i].setMap(null);
     };
     $scope.directionsService.route({
-      origin: route.starts,
-      destination: route.ends,
+      origin: startingPoint,
+      destination: endingPoint,
       travelMode: google.maps.TravelMode.DRIVING}, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
+          $scope.directionsDisplay.setMap($scope.mapRegisterRoute);
           $scope.directionsDisplay.setDirections(response);
         } else {
           window.alert('Directions request failed due to ' + status);
@@ -40,10 +43,10 @@ angular.module('desappGroupdFrontendApp')
       });       
   };
 
-  $scope.showMap = function(){
-    $scope.mapRegisterRoute
-  }
-
+  $("#modalNewRoute").on('shown.bs.modal', function () {
+    google.maps.event.trigger($scope.mapRegisterRoute, 'resize');
+    $scope.mapRegisterRoute.setCenter({lat: -34.603684, lng: -58.3815591});
+  });
 
 ///// End - Google Maps
 
@@ -58,9 +61,9 @@ $scope.createRoute = function(newRoute){
     startingPoint: newRoute.startingPoint,
     endingPoint: newRoute.endingPoint,
     routine: {
-      startingDate: newRoute.startingDate,
-      endDate: newRoute.endDate,
-      daysOfWeek: newRoute.daysOfWeek,
+      startingDate: Date.parse(newRoute.startingDate),
+      endDate: Date.parse(newRoute.endingDate),
+      daysOfWeek: newRoute.routeDaysOfWeek,
     },
     subscriptionRequests: []
   }).success(function() {

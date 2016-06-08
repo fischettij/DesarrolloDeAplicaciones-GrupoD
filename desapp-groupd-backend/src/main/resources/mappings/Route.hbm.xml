@@ -12,9 +12,11 @@
 
 		<property name="endingPoint" type="string" column="ENDING_POINT" />
 
-		<many-to-one name="routine" column="ID_ROUTINE"
-					 unique="true" class="unq.tpi.desapp.model.Routine"
-					 not-null="true" />
+		<many-to-one name="routine" column="ID_ROUTINE" unique="true"
+			class="unq.tpi.desapp.model.Routine" not-null="true" lazy="false" />
+
+		<many-to-one name="vehicle" column="ID_VEHICLE" unique="true"
+			class="unq.tpi.desapp.model.Vehicle" not-null="false" lazy="false" />
 
 		<list name="subscriptionRequests" table="SUBSCRIPTION_REQUESTS"
 			inverse="false" cascade="all" lazy="true">

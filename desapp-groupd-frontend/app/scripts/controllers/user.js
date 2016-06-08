@@ -4,7 +4,7 @@ angular.module('desappGroupdFrontendApp')
 .controller('user_ctrl', [ '$http', '$scope', '$window', '$cookies',
   '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
 
-    $scope.baseUrl = "http://0.0.0.0:8080/desapp-groupd-backend/rest";
+    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
     $scope.user = {};
     $scope.searchUserContent = '';
     $scope.foundUsers = [];
