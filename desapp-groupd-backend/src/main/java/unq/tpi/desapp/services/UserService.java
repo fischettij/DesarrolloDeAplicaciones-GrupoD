@@ -1,5 +1,6 @@
 package unq.tpi.desapp.services;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +11,42 @@ import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
+import unq.tpi.desapp.repositories.UserRepository;
 
-public class UserService extends GenericService<User> {
+public class UserService implements Serializable  {
 
+	private static final long serialVersionUID = -1374589536025018037L;
+
+	private UserRepository repository;
+
+	public UserRepository getRepository() {
+		return this.repository;
+	}
+
+	public void setRepository(final UserRepository repository) {
+		this.repository = repository;
+	}
+
+	@Transactional
+	public void delete(final User object) {
+		this.getRepository().delete(object);
+	}
+
+	@Transactional(readOnly = true)
+	public List<User> retriveAll() {
+		return this.getRepository().findAll();
+	}
+
+	@Transactional
+	public void save(final User object) {
+		this.getRepository().save(object);
+	}
+
+	@Transactional
+	public void update(final User object) {
+		this.getRepository().update(object);
+	}
+	
 	@Transactional
 	public void addRouteToUser(User user, Route route) {
 		user.managerImplementing(RouteManager.class).add(route);
@@ -36,4 +70,10 @@ public class UserService extends GenericService<User> {
 		user.managerImplementing(VehicleManager.class).add(vehicle);
 		this.update(user);
 	}
+	
+	@Transactional
+	public 	List<User> getUsersLike(String userName){
+		return this.getRepository().getUsersLike(userName);
+	}
+	
 }

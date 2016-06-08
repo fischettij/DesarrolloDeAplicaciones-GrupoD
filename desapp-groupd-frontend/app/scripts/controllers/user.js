@@ -6,6 +6,8 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.baseUrl = "http://0.0.0.0:8080/desapp-groupd-backend/rest";
     $scope.user = {};
+    $scope.searchUserContent = '';
+    $scope.foundUsers = [];
 
     $scope.init = function(){
       var userID = $cookies.get('user');
@@ -69,5 +71,21 @@ angular.module('desappGroupdFrontendApp')
  $scope.getScore = function(){
    return $filter('lookForManager')('ScoreManager', $scope.user.managers).score;                  
  };
+
+ $scope.searchUser = function(serchName){
+  $scope.searchUserContent = '';
+  $scope.findUsersLike(serchName);
+  $scope.goTo('searchUser');
+ };
+
+  $scope.findUsersLike = function(userName){
+       $http.get($scope.baseUrl + '/users/like/' + userName).success(function(userList){
+        $scope.foundUsers = userList;
+        console.log(userList);
+      }).error(function(){
+        $window.location.href = '/404.html';
+      }) 
+    };
+
 
 } ]);

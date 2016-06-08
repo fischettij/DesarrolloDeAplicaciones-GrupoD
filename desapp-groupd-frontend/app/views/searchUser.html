@@ -1,0 +1,30 @@
+<div class="content-wrapper" style="min-height: 901px;">
+	<section class="content-header">
+	  <h1>
+	    Usuarios
+	  </h1>
+	</section>
+	<section class="content">
+		<div class="row">
+			<div class="col-md-3" ng-repeat="user in foundUsers">
+				<!-- Profile Image -->
+				<div class="box box-primary">
+				  <div class="box-body box-profile">
+				  	<img class="profile-user-img img-responsive img-circle" src="images/yeoman.png" alt="User profile picture"">
+
+				<h3 class="profile-username text-center">
+					<button ng-click="goToUser(user)" type="button" class="btn btn-link">
+	            {{user.name}}
+					</button>
+				</h3>
+
+				<ul class="list-group list-group-unbordered">
+					<li class="list-group-item">
+						<a href="#" class="btn btn-primary btn-block"><b>{{ "SEND_MESSAGE" | translate }} </b></a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+	</section>
+</div>

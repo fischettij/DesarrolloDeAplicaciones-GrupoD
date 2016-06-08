@@ -67,6 +67,7 @@
     ROUTE_SUCCESS: 'La ruta se agrego correctamente',
     MY_ROUTES: 'Mis Rutas',
     ADD_ROUTE: 'Agregar Ruta',
+    SEND_MESSAGE: 'Enviar Mensaje'
     
   });
 
@@ -90,7 +91,8 @@ $translateProvider.translations('en', {
   CommentManager: 'Comments',
   RouteManager: 'Routes',
   InscriptionManager: 'Inscriptions',
-  ScoreManager: 'Score'
+  ScoreManager: 'Score',
+  SEND_MESSAGE: 'Send Message'
 });
 
 $translateProvider.preferredLanguage('es');

@@ -61,5 +61,12 @@ public class UserRest {
 			return Response.serverError().build();
 		}
 	}
+	
+	@GET
+	@Path("/like/{userName}")
+	@Produces("application/json")
+	public List<User> getUsersLike(@PathParam("userName") final String userName) {
+		return getUserService().getUsersLike(userName);
+	}
 
 }
