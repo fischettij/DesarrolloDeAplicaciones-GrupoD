@@ -41,6 +41,7 @@ public class UserBuilder {
 		this.addManager(new RouteManagerBuilder().build());
 		this.addManager(new InscriptionManagerBuilder().build());
 		this.addManager(new ScoreManagerBuilder().build());
+		this.addManager(new ProductManagerBuilder().build());
 		return this;
 
 	}

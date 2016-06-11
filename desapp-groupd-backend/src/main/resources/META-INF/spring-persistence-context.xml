@@ -105,6 +105,10 @@
 		<property name="sessionFactory" ref="persistence.sessionFactory" />
 	</bean>
 	
+	<bean id="persistence.productRepository" class="unq.tpi.desapp.repositories.ProductRepository">
+		<property name="sessionFactory" ref="persistence.sessionFactory" />
+	</bean>
+	
 	<!-- <bean id="persistence.carrepository" class="ar.edu.unq.repositories.CarRepository"> -->
 	<!-- <property name="sessionFactory" ref="persistence.sessionFactory" /> -->
 	<!-- </bean> -->

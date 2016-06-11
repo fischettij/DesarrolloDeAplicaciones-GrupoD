@@ -59,6 +59,9 @@ angular.module('desappGroupdFrontendApp')
       case 'AdminManager':
       return 'fa fa-user-plus';
       break;
+      case 'ProductManager':
+      return 'fa fa-television';
+      break;
       default:
       return 'fa fa-warning';
     }

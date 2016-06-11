@@ -26,7 +26,7 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 				throw new RuntimeException("User already exists");
 		}
 		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
-				new UserBuilder().setName(loginUser.getName()).setStandarManagers().build());
+				new UserBuilder().setName(loginUser.getName()).addAllManagers().build());
 		this.save(registerUser);
 
 	}

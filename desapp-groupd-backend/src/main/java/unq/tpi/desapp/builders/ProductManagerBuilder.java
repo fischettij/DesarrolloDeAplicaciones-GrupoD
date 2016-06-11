@@ -13,6 +13,10 @@ public class ProductManagerBuilder {
 	public ProductManagerBuilder(){		
 	}
 	
+	public void setProducts(List<Product> products){
+		this.products = products;
+	}
+	
 	public ProductManager build(){
 		return new ProductManager(products);
 	}

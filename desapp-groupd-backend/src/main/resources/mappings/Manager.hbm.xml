@@ -84,6 +84,20 @@
 				column="AMOUNT_OF_NEGATIVE_COMMENTS" />
 
 		</subclass>
+		
+		<subclass name="unq.tpi.desapp.model.manager.ProductManager"
+			discriminator-value="PRODUCT_MANAGER">
+
+			<list name="products" table="PRODUCTS" inverse="false" cascade="all"
+				lazy="true">
+				<key not-null="true">
+					<column name="ID_MANAGER" not-null="true" />
+				</key>
+				<list-index column="indx" />
+				<one-to-many class="unq.tpi.desapp.model.Product" />
+			</list>
+
+		</subclass>
 
 	</class>
 </hibernate-mapping>

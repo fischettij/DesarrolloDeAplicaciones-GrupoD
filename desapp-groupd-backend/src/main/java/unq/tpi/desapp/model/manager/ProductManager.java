@@ -17,6 +17,10 @@ public class ProductManager extends Manager {
 		this.products = someProducts;
 	}
 	
+	public void setProducts(List<Product> products){
+		this.products = products;
+	}
+	
 	public List<Product> getProducts(){
 		return products;
 	}

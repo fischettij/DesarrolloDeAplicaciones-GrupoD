@@ -31,6 +31,7 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 			<ref bean="userRest" />
 			<ref bean="loginRest" />
 			<ref bean="registerRest" />
+			<ref bean="productRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:extensionMappings>
 			<entry key="json" value="application/json" />
@@ -55,6 +56,10 @@ http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd">
 
 	<bean id="registerRest" class="unq.tpi.desapp.rest.RegisterRest">
 		<property name="registerUserService" ref="services.register" />
+	</bean>
+	
+	<bean id="productRest" class="unq.tpi.desapp.rest.ProductRest">
+		<property name="productService" ref="services.product" />
 	</bean>
 
 </beans>
