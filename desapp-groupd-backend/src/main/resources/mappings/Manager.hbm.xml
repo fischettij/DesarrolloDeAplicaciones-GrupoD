@@ -89,7 +89,7 @@
 			discriminator-value="PRODUCT_MANAGER">
 
 			<list name="products" table="PRODUCTS" inverse="false" cascade="all"
-				lazy="true">
+				lazy="false">
 				<key not-null="true">
 					<column name="ID_MANAGER" not-null="true" />
 				</key>

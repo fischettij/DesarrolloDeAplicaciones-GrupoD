@@ -28,7 +28,6 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
 				new UserBuilder().setName(loginUser.getName()).addAllManagers().build());
 		this.save(registerUser);
-
 	}
 
 }
