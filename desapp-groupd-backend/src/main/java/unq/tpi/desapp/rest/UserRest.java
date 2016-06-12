@@ -15,6 +15,7 @@ import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.services.UserService;
 
 @Path("/users")
@@ -75,11 +76,11 @@ public class UserRest {
 
 	@POST
 	@Path("/{id}/newroute")
-	@Produces("application/json")
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addRoute(@PathParam("id") final Long id, Route route) {
+	public Response addRoute(@PathParam("id") final Long id, RequestRoute requestRoute) {
 		try {
-			getUserService().addNewRoute(id, route);
+			getUserService().addNewRoute(id, requestRoute);
 			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.serverError().build();

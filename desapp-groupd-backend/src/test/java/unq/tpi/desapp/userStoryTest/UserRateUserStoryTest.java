@@ -10,7 +10,6 @@ import unq.tpi.desapp.builders.ScoreManagerBuilder;
 import unq.tpi.desapp.builders.UserBuilder;
 import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.User;
-import unq.tpi.desapp.model.manager.CommentManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 
 public class UserRateUserStoryTest {

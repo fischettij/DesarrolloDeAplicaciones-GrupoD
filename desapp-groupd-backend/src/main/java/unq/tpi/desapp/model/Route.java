@@ -1,47 +1,39 @@
 package unq.tpi.desapp.model;
 
 import java.util.List;
+import java.util.Set;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class Route extends Entity {
 
-	private String startingPoint;
-	private String endingPoint;
+	private static final long serialVersionUID = -3346088172414233280L;
+
+	private Double startLatitud;
+	private Double startLongitud;
+	private Double endLatitud;
+	private Double endLongitud;
 	private Vehicle vehicle;
-	private Routine routine;
+	private User owner;
+	private Set<DaysOfWeekEnum> daysOfWeek;
 	@JsonIgnore
 	private List<SubscriptionRequest> subscriptionRequests;
 
 	public Route() {
 	}
 
-	public Route(String startingPoint, String endingPoint, Vehicle vehicle, Routine routine,
-			List<SubscriptionRequest> subscriptionRequests) {
+	public Route(Double startLatitud, Double startLongitud, Double endLatitud, Double endLongitud, Vehicle vehicle,
+			User owner, Set<DaysOfWeekEnum> daysOfWeek, List<SubscriptionRequest> subscriptionRequests) {
 		super();
-		this.startingPoint = startingPoint;
-		this.endingPoint = endingPoint;
+		this.startLatitud = startLatitud;
+		this.startLongitud = startLongitud;
+		this.endLatitud = endLatitud;
+		this.endLongitud = endLongitud;
 		this.vehicle = vehicle;
-		this.routine = routine;
+		this.owner = owner;
+		this.daysOfWeek = daysOfWeek;
 		this.subscriptionRequests = subscriptionRequests;
-	}
-
-	public String getEndingPoint() {
-		return endingPoint;
-	}
-
-	public String getStartingPoint() {
-		return startingPoint;
-	}
-
-	public Routine getRoutine() {
-		return routine;
-	}
-
-	@JsonIgnore
-	public List<SubscriptionRequest> getSubscriptionRequests() {
-		return subscriptionRequests;
 	}
 
 	public void addSubscriptionRequest(SubscriptionRequest subscriptionRequest) {
@@ -61,21 +53,46 @@ public class Route extends Entity {
 		}
 	}
 
-	public void setStartingPoint(String startingPoint) {
-		this.startingPoint = startingPoint;
-	}
-
-	public void setEndingPoint(String endingPoint) {
-		this.endingPoint = endingPoint;
-	}
-
-	public void setRoutine(Routine routine) {
-		this.routine = routine;
+	@JsonIgnore
+	public List<SubscriptionRequest> getSubscriptionRequests() {
+		return subscriptionRequests;
 	}
 
 	@JsonProperty
 	public void setSubscriptionRequests(List<SubscriptionRequest> subscriptionRequests) {
 		this.subscriptionRequests = subscriptionRequests;
+	}
+
+	public Double getStartLatitud() {
+		return startLatitud;
+	}
+
+	public void setStartLatitud(Double startLatitud) {
+		this.startLatitud = startLatitud;
+	}
+
+	public Double getStartLongitud() {
+		return startLongitud;
+	}
+
+	public void setStartLongitud(Double startLongitud) {
+		this.startLongitud = startLongitud;
+	}
+
+	public Double getEndLatitud() {
+		return endLatitud;
+	}
+
+	public void setEndLatitud(Double endLatitud) {
+		this.endLatitud = endLatitud;
+	}
+
+	public Double getEndLongitud() {
+		return endLongitud;
+	}
+
+	public void setEndLongitud(Double endLongitud) {
+		this.endLongitud = endLongitud;
 	}
 
 	public Vehicle getVehicle() {
@@ -84,6 +101,22 @@ public class Route extends Entity {
 
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public Set<DaysOfWeekEnum> getDaysOfWeek() {
+		return daysOfWeek;
+	}
+
+	public void setDaysOfWeek(Set<DaysOfWeekEnum> daysOfWeek) {
+		this.daysOfWeek = daysOfWeek;
 	}
 
 }

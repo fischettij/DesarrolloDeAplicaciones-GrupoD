@@ -8,15 +8,25 @@
 			<generator class="identity" />
 		</id>
 
-		<property name="startingPoint" type="string" column="STARTING_POINT" />
+		<property name="startLatitud" type="java.lang.Double" column="START_LATITUD" />
 
-		<property name="endingPoint" type="string" column="ENDING_POINT" />
+		<property name="startLongitud" type="java.lang.Double"
+			column="START_LONGITUD" />
 
-		<many-to-one name="routine" column="ID_ROUTINE" unique="true"
-			class="unq.tpi.desapp.model.Routine" not-null="true" lazy="false" />
+		<property name="endLatitud" type="java.lang.Double" column="END_LATITUD" />
 
-		<many-to-one name="vehicle" column="ID_VEHICLE" unique="true"
+		<property name="endLongitud" type="java.lang.Double" column="END_LONGITUD" />
+
+		<many-to-one name="owner" column="ID_OWNER" unique="false"
+			class="unq.tpi.desapp.model.User" not-null="false" lazy="false" />
+
+		<many-to-one name="vehicle" column="ID_VEHICLE" unique="false"
 			class="unq.tpi.desapp.model.Vehicle" not-null="false" lazy="false" />
+
+		<set name="daysOfWeek" table="DAYS_OF_WEEK">
+			<key column="id" not-null="true" />
+			<element column="action" type="unq.tpi.desapp.model.DaysOfWeekEnum" />
+		</set>
 
 		<list name="subscriptionRequests" table="SUBSCRIPTION_REQUESTS"
 			inverse="false" cascade="all" lazy="true">

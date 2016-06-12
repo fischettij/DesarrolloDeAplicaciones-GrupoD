@@ -9,25 +9,31 @@ import static org.mockito.Mockito.verify;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.RouteBuilder;
-import unq.tpi.desapp.model.Route;
-import unq.tpi.desapp.model.SubscriptionRequest;
 
 public class RouteTest {
 
 	@Test
 	public void testAccessing() {
-		Routine mockRoutine = mock(Routine.class);
+		Set<DaysOfWeekEnum> mockDaysOfTheWeek= mock(Set.class);
 
-		Route route = new RouteBuilder().setStartingPoint("Avenida Mitre 400").setEndingPoint("Alberdi 30")
-				.setRoutine(mockRoutine).build();
+		Route route = new RouteBuilder()
+				.setStartLatitud(1d)
+				.setStartLongitud(1d)
+				.setEndLatitud(2d)
+				.setEndLongitud(2d)
+				.setDaysOfWeek(mockDaysOfTheWeek)
+				.build();
 
-		assertEquals(route.getStartingPoint(), "Avenida Mitre 400");
-		assertEquals(route.getEndingPoint(), "Alberdi 30");
-		assertEquals(route.getRoutine(), mockRoutine);
+		assertEquals(route.getStartLatitud(),1d,0);
+		assertEquals(route.getStartLongitud(), 1d,0);
+		assertEquals(route.getEndLatitud(),2d,0);
+		assertEquals(route.getEndLongitud(), 2d,0);
+		assertEquals(route.getDaysOfWeek(), mockDaysOfTheWeek);
 		assertTrue(route.getSubscriptionRequests().isEmpty());
 	}
 
@@ -36,9 +42,8 @@ public class RouteTest {
 		SubscriptionRequest mockSubscriptionRequest = mock(SubscriptionRequest.class);
 
 		Route route = new RouteBuilder().build();
-
+		assertTrue(route.getSubscriptionRequests().isEmpty());
 		route.addSubscriptionRequest(mockSubscriptionRequest);
-
 		assertFalse(route.getSubscriptionRequests().isEmpty());
 		assertEquals(route.getSubscriptionRequests().size(), 1);
 	}

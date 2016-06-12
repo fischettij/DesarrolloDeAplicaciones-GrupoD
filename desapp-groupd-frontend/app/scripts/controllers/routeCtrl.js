@@ -11,8 +11,10 @@ angular.module('desappGroupdFrontendApp')
     $scope.showRouteSuccess = false;
     $scope.showRouteError = false;
 
-    $scope.daysOfWeek = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
-//// Start Google maps
+    $scope.daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+
+    $scope.vehicles = [];
+  //// Start Google maps
 
   //Create a map and center it on Argentina.
   $scope.mapRegisterRoute = new google.maps.Map(
@@ -24,6 +26,12 @@ angular.module('desappGroupdFrontendApp')
   $scope.directionsService = new google.maps.DirectionsService;
   $scope.directionsDisplay = new google.maps.DirectionsRenderer({mapRegisterRoute: $scope.mapRegisterRoute});
   $scope.stepDisplay = new google.maps.InfoWindow;
+  $scope.geocoder = new google.maps.Geocoder();
+
+  $scope.startLocationLat = 0;
+  $scope.startLocationLng = 0;
+  $scope.endLocationLat = 0;
+  $scope.endLocationLng = 0;
 
   $scope.calculateAndDisplayRoute = function(startingPoint, endingPoint) {
     // First, remove any existing markers from the map.
@@ -37,6 +45,10 @@ angular.module('desappGroupdFrontendApp')
         if (status === google.maps.DirectionsStatus.OK) {
           $scope.directionsDisplay.setMap($scope.mapRegisterRoute);
           $scope.directionsDisplay.setDirections(response);
+          $scope.startLocationLat = response.routes[0].legs[0].start_location.lat();
+          $scope.startLocationLng = response.routes[0].legs[0].start_location.lng();
+          $scope.endLocationLat = response.routes[0].legs[0].end_location.lat();
+          $scope.endLocationLng = response.routes[0].legs[0].end_location.lng();
         } else {
           window.alert('Directions request failed due to ' + status);
         }
@@ -47,6 +59,17 @@ angular.module('desappGroupdFrontendApp')
     google.maps.event.trigger($scope.mapRegisterRoute, 'resize');
     $scope.mapRegisterRoute.setCenter({lat: -34.603684, lng: -58.3815591});
   });
+  // ------------------------------------------
+
+  $scope.mapForLookingRoutes = new google.maps.Map(
+    document.getElementById('mapForLookingRoutes'), {
+      zoom: 4,
+      center: {lat: -34.603684, lng: -58.3815591}}); 
+
+  $scope.markerArray2 = [];
+  $scope.directionsService2 = new google.maps.DirectionsService;
+  $scope.directionsDisplay2 = new google.maps.DirectionsRenderer({mapForLookingRoutes: $scope.mapForLookingRoutes});
+  $scope.stepDisplay2 = new google.maps.InfoWindow;
 
 ///// End - Google Maps
 
@@ -58,14 +81,12 @@ $scope.myRoutes = function(page){
 
 $scope.createRoute = function(newRoute){
   $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
-    startingPoint: newRoute.startingPoint,
-    endingPoint: newRoute.endingPoint,
-    routine: {
-      startingDate: Date.parse(newRoute.startingDate),
-      endDate: Date.parse(newRoute.endingDate),
-      daysOfWeek: newRoute.routeDaysOfWeek,
-    },
-    subscriptionRequests: []
+    startLatitud: $scope.startLocationLat,
+    startLongitud: $scope.startLocationLng,
+    endLatitud: $scope.endLocationLat, 
+    endLongitud: $scope.endLocationLng,
+    daysOfWeek: newRoute.routeDaysOfWeek,
+    idVehicle: newRoute.idVehicle,
   }).success(function() {
     $scope.showRouteSuccess = true;
     $scope.routes(1)
@@ -75,13 +96,24 @@ $scope.createRoute = function(newRoute){
 };
 
 $scope.getMyRoutes = function(){
-  return $scope.listOfMyRoutes;
+  return $scope.listOfRoutes;
 };
 
-$scope.initRoute = function(){
-      //$scope.myRoutes(1);
-    };
+$scope.myVehicles = function(){
+  return $scope.vehicles;
+};
 
-    $scope.initRoute();
+$scope.getVehicles = function(){
+  $http.get( $scope.baseUrl + '/users/' + $scope.user + '/vehicles/1').success(function(result){
+    $scope.vehicles = result;
+  });
+};
+
+
+$scope.initRoute = function(){
+  $scope.myRoutes(1);
+};
+
+$scope.initRoute();
 
   } ]);

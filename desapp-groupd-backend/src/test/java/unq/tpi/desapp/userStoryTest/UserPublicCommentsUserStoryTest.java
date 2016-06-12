@@ -2,6 +2,7 @@ package unq.tpi.desapp.userStoryTest;
 
 import static org.junit.Assert.*;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.CommentManagerBuilder;
@@ -25,12 +26,12 @@ public class UserPublicCommentsUserStoryTest {
 
 		assertEquals(someUser.managerImplementing(CommentManager.class).getComments().size(), 0);
 
-		Comment anotherUserComment = new Comment(anotherUser, "you have a good car");
+		Comment anotherUserComment = new Comment(anotherUser, "you have a good car", new DateTime());
 		someUser.managerImplementing(CommentManager.class).add(anotherUserComment);
 		assertEquals(someUser.managerImplementing(CommentManager.class).getComments().size(), 1);
 		assertTrue(someUser.managerImplementing(CommentManager.class).getComments().contains(anotherUserComment));
 
-		Comment thirdUserComment = new Comment(thirdUser, "you have a good car");
+		Comment thirdUserComment = new Comment(thirdUser, "you have a good car",new DateTime());
 		someUser.managerImplementing(CommentManager.class).add(thirdUserComment);
 		assertEquals(someUser.managerImplementing(CommentManager.class).getComments().size(), 2);
 		assertTrue(someUser.managerImplementing(CommentManager.class).getComments().contains(thirdUserComment));

@@ -8,7 +8,9 @@ import org.codehaus.jackson.annotate.JsonProperty;
 import unq.tpi.desapp.model.Vehicle;
 
 public class VehicleManager extends Manager {
-	
+
+	private static final long serialVersionUID = -7030874564566090755L;
+
 	@JsonIgnore
 	private List<Vehicle> vehicles;
 
@@ -45,9 +47,13 @@ public class VehicleManager extends Manager {
 	public void setVehicles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
 	}
-	
+
 	public String getManager() {
 		return "VehicleManager";
+	}
+
+	public Vehicle find(Long idVehicle) {
+		return this.vehicles.stream().filter(aVehicle -> aVehicle.getId() == idVehicle).findFirst().get();
 	}
 
 }

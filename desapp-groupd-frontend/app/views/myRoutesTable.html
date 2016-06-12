@@ -1,0 +1,24 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+	<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+		<thead>
+			<tr role="row">
+				<th colspan="1" rowspan="1" tabindex="0">{{ "STARTING_DATE" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "ENDING_DATE" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "STARTING_POINT" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "ENDING_POINT" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "VEHICLE" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "DAYS_OF_WEEK" | translate }}</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="route in getMyRoutes()">
+				<td>{{ route.routine.startingDate }}</td>
+				<td>{{ route.routine.endDate }}</td>
+				<td>{{ route.startingPoint }}</td>
+				<td>{{ route.endingPoint }}</td>
+				<td>{{ route.vehicle.registrationNumber }} - {{ route.vehicle.model }}</td>
+				<td>{{ route.routine.daysOfWeek }}</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

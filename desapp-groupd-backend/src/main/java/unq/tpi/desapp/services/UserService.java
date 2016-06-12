@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import unq.tpi.desapp.builders.RouteBuilder;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
@@ -13,9 +14,10 @@ import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
+import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.repositories.UserRepository;
 
-public class UserService implements Serializable  {
+public class UserService implements Serializable {
 
 	private static final long serialVersionUID = -1374589536025018037L;
 
@@ -48,7 +50,7 @@ public class UserService implements Serializable  {
 	public void update(final User object) {
 		this.getRepository().update(object);
 	}
-	
+
 	@Transactional
 	public void addRouteToUser(Long id, Route route) {
 		User user = this.getRepository().findById(id);
@@ -80,15 +82,17 @@ public class UserService implements Serializable  {
 		user.managerImplementing(ProductManager.class).add(product);
 		this.update(user);
 	}
-	
+
 	@Transactional
-	public 	List<User> getUsersLike(String userName){
+	public List<User> getUsersLike(String userName) {
 		return this.getRepository().getUsersLike(userName);
 	}
 
 	@Transactional
-	public void addNewRoute(Long id, Route route) {
+	public void addNewRoute(Long id, RequestRoute requestRoute) {
 		User user = this.getRepository().findById(id);
+		Vehicle vehicle = user.managerImplementing(VehicleManager.class).find(requestRoute.getIdVehicle());
+		Route route = new RouteBuilder().buildWith(requestRoute, vehicle, user);
 		user.managerImplementing(RouteManager.class).add(route);
 		this.update(user);
 	}
@@ -98,11 +102,11 @@ public class UserService implements Serializable  {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
 	}
-	
+
 	@Transactional
 	public List<Product> getProducts(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Product>(user.managerImplementing(ProductManager.class).getProducts());
 	}
-	
+
 }
