@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.repositories.UserRepository;
@@ -71,6 +73,13 @@ public class UserService implements Serializable  {
 		user.managerImplementing(VehicleManager.class).add(vehicle);
 		this.update(user);
 	}
+
+	@Transactional
+	public void addNewProduct(Long id, Product product) throws Exception {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(ProductManager.class).add(product);
+		this.update(user);
+	}
 	
 	@Transactional
 	public 	List<User> getUsersLike(String userName){
@@ -89,4 +98,11 @@ public class UserService implements Serializable  {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
 	}
+	
+	@Transactional
+	public List<Product> getProducts(Long id, Integer page, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<Product>(user.managerImplementing(ProductManager.class).getProducts());
+	}
+	
 }

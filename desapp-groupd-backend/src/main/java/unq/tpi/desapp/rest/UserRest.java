@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
@@ -63,6 +64,8 @@ public class UserRest {
 		}
 	}
 	
+
+	
 	@GET
 	@Path("/like/{userName}")
 	@Produces("application/json")
@@ -90,4 +93,23 @@ public class UserRest {
 		return getUserService().getRoutes(id, page, 20);
 	}
 
+	@POST
+	@Path("/{id}/newproduct")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addProduct(@PathParam("id") final Long id, Product product) {
+		try {
+			getUserService().addNewProduct(id, product);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+
+	@GET
+	@Path("/{id}/products/{page}")
+	@Produces("application/json")
+	public List<Product> getProducts(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		return getUserService().getProducts(id, page, 20);
+	}
 }

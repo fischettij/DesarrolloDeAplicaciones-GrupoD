@@ -14,6 +14,9 @@ public class Product extends Entity {
 		if (amount < 1) throw new RuntimeException("Tiene que ser necesario al menos un punto");
 	}
 	
+	public Product(){		
+	}
+	
 	public Product(String description, Integer requiredPoints, Integer stock){
 		this.assertRequiredPointsAmountMustBeStrictlyPositive(requiredPoints);
 		this.assertStockAmountCantBeBelowZero(stock);		
