@@ -5,6 +5,7 @@
 				<th colspan="1" rowspan="1" tabindex="0">{{ "DESCRIPTION" | translate }}</th>
 				<th colspan="1" rowspan="1" tabindex="0">{{ "REQUIRED_POINTS" | translate }}</th>
 				<th colspan="1" rowspan="1" tabindex="0">{{ "STOCK" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0"> {{ "ACTIONS" | translate }}
 			</tr>
 		</thead>
 		<tbody>
@@ -12,6 +13,9 @@
 				<td>{{ product.description }}</td>
 				<td>{{ product.requiredPoints }}</td>
 				<td>{{ product.stock }}</td>
+				<td>
+					<button type="submit" class="btn btn-danger btn-xs pull-right fa fa-remove " ng-click="removeProduct(product)">
+				</td>
 			</tr>
 		</tbody>
 	</table>

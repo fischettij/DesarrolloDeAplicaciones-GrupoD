@@ -87,7 +87,9 @@
     DESCRIPTION: 'Descripción',
     REQUIRED_POINTS: 'Puntos requeridos',
     STOCK: 'Stock',
-    PRODUCTS: 'Productos'
+    PRODUCTS: 'Productos',
+    ACTION_SUCCESS: 'Acción completada',
+    ACTION_ERROR: 'Fallo la acción '
   });
 
 $translateProvider.translations('en', {

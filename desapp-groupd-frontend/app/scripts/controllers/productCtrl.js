@@ -23,6 +23,21 @@ angular.module('desappGroupdFrontendApp')
         stock : newProduct.stock
       }).success(function() {
         $scope.showProductSuccess = true;
+        $scope.products(1);
+      }).error(function() {
+        $scope.showProductError = true;
+      })
+    };
+
+    $scope.removeProduct = function(product){
+      $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/removeproduct', {
+        id : product.id,
+        description : product.description,
+        requiredPoints : product.requiredPoints,
+        stock : product.stock
+      }).success(function() {
+        $scope.showProductSuccess = true;
+        $scope.products(1);
       }).error(function() {
         $scope.showProductError = true;
       })
