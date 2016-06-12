@@ -11,6 +11,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
@@ -57,6 +58,19 @@ public class UserRest {
 	public Response addVehicle(@PathParam("id") final Long id, Vehicle vehicle) {
 		try {
 			getUserService().addNewVehicle(id, vehicle);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+	
+	@POST
+	@Path("/{id}/newproduct")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addProduct(@PathParam("id") final Long id, Product product) {
+		try {
+			getUserService().addNewProduct(id, product);
 			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.serverError().build();

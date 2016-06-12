@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.repositories.UserRepository;
@@ -69,6 +71,13 @@ public class UserService implements Serializable  {
 	public void addNewVehicle(Long id, Vehicle vehicle) throws Exception {
 		User user = this.getRepository().findById(id);
 		user.managerImplementing(VehicleManager.class).add(vehicle);
+		this.update(user);
+	}
+
+	@Transactional
+	public void addNewProduct(Long id, Product product) throws Exception {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(ProductManager.class).add(product);
 		this.update(user);
 	}
 	

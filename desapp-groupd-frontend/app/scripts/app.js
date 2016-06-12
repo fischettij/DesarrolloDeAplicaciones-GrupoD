@@ -81,7 +81,12 @@
     Viernes:'Viernes',
     Sabado: 'Sabado',
     Domingo: 'Domingo',
-    SHOW_ROUTE: 'Ver ruta'
+    SHOW_ROUTE: 'Ver ruta',
+    ProductManager: 'Productos',
+    ADD_PRODUCT: 'Agregar Producto',
+    DESCRIPTION: 'Descripción',
+    REQUIRED_POINTS: 'Puntos requeridos',
+    STOCK: 'Stock'
   });
 
 $translateProvider.translations('en', {
@@ -105,7 +110,12 @@ $translateProvider.translations('en', {
   RouteManager: 'Routes',
   InscriptionManager: 'Inscriptions',
   ScoreManager: 'Score',
-  SEND_MESSAGE: 'Send Message'
+  SEND_MESSAGE: 'Send Message',
+  ProductManager: 'Products',
+  ADD_PRODUCT: 'Add Product',
+  DESCRIPTION: 'Description',
+  REQUIRED_POINTS: 'Required points',
+  STOCK: 'Stock'
 });
 
 $translateProvider.preferredLanguage('es');
