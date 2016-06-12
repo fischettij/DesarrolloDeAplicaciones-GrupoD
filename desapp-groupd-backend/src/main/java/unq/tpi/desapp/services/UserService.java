@@ -98,4 +98,11 @@ public class UserService implements Serializable  {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
 	}
+	
+	@Transactional
+	public List<Product> getProducts(Long id, Integer page, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<Product>(user.managerImplementing(ProductManager.class).getProducts());
+	}
+	
 }

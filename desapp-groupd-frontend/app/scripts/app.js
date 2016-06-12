@@ -86,7 +86,8 @@
     ADD_PRODUCT: 'Agregar Producto',
     DESCRIPTION: 'Descripción',
     REQUIRED_POINTS: 'Puntos requeridos',
-    STOCK: 'Stock'
+    STOCK: 'Stock',
+    PRODUCTS: 'Productos'
   });
 
 $translateProvider.translations('en', {
@@ -115,7 +116,8 @@ $translateProvider.translations('en', {
   ADD_PRODUCT: 'Add Product',
   DESCRIPTION: 'Description',
   REQUIRED_POINTS: 'Required points',
-  STOCK: 'Stock'
+  STOCK: 'Stock',
+  PRODUCTS: 'Products'
 });
 
 $translateProvider.preferredLanguage('es');

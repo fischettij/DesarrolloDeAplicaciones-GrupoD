@@ -64,18 +64,7 @@ public class UserRest {
 		}
 	}
 	
-	@POST
-	@Path("/{id}/newproduct")
-	@Produces("application/json")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addProduct(@PathParam("id") final Long id, Product product) {
-		try {
-			getUserService().addNewProduct(id, product);
-			return Response.ok().build();
-		} catch (Exception e) {
-			return Response.serverError().build();
-		}
-	}
+
 	
 	@GET
 	@Path("/like/{userName}")
@@ -104,4 +93,23 @@ public class UserRest {
 		return getUserService().getRoutes(id, page, 20);
 	}
 
+	@POST
+	@Path("/{id}/newproduct")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response addProduct(@PathParam("id") final Long id, Product product) {
+		try {
+			getUserService().addNewProduct(id, product);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+
+	@GET
+	@Path("/{id}/products/{page}")
+	@Produces("application/json")
+	public List<Product> getProducts(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		return getUserService().getProducts(id, page, 20);
+	}
 }
