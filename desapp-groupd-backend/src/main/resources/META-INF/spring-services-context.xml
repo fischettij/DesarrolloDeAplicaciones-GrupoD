@@ -27,6 +27,7 @@
 	<bean id="services.product" class="unq.tpi.desapp.services.ProductService">
 		<property name="repository" ref="persistence.productRepository" />
 	</bean>
+		
 
 
 	<!-- <bean id="services.car" class="ar.edu.unq.services.CarService"> -->

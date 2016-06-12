@@ -18,9 +18,9 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 	}
 
 	public List<Route> lookForRoutes(RequestRoute requestRoute) {
-		String hql = "SELECT r " + "FORM " + this.getDomainClass().getName() + " r "
-				+ "join r.daysOfWeek daysOfWeek WHERE daysOfWeek IN " + this.getDays(requestRoute)
-				+ "AND r.starLatitud <= :routeStartingLatitud + " + this.getDistance()
+		String hql = "SELECT r " + "FROM " + this.getDomainClass().getName() + " r "
+				+ "JOIN r.daysOfWeek days WHERE days IN (:setOfEnum)"
+				+ "AND r.startLatitud <= :routeStartingLatitud + " + this.getDistance()
 				+ "AND r.startLatitud >= :routeStartingLatitud - " + this.getDistance()
 				+ "AND r.startLongitud <= :routeStartingLongitud + " + this.getDistance()
 				+ "AND r.startLongitud >= :routeStartingLongitud - " + this.getDistance()
@@ -30,11 +30,11 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 				+ "AND r.endLongitud >= :routeEndingLongitud - " + this.getDistance();
 
 		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
-
-		query.setParameter("routeStartingLatitud", "%" + requestRoute.getStartLatitud() + "%");
-		query.setParameter("routeStartingLatitud", "%" + requestRoute.getStartLongitud() + "%");
-		query.setParameter("routeStartingLatitud", "%" + requestRoute.getEndLatitud() + "%");
-		query.setParameter("routeStartingLatitud", "%" + requestRoute.getEndLongitud() + "%");
+		query.setParameterList("setOfEnum", requestRoute.getDaysOfWeek());
+		query.setParameter("routeStartingLatitud", requestRoute.getStartLatitud());
+		query.setParameter("routeStartingLongitud", requestRoute.getStartLongitud());
+		query.setParameter("routeEndingLatitud", requestRoute.getEndLatitud());
+		query.setParameter("routeEndingLongitud",requestRoute.getEndLongitud());
 
 		@SuppressWarnings("unchecked")
 		List<Route> foundRoute = query.list();
@@ -46,13 +46,13 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 	private String getDays(RequestRoute requestRoute) {
 		String ret = "(";
 		for (DaysOfWeekEnum daysOfWeekEnum : requestRoute.getDaysOfWeek()) {
-			ret = ret + "\"" + daysOfWeekEnum + "\"";
+			ret = ret + "'" + daysOfWeekEnum + "'";
 		}
 		return ret + ")";
 	}
 
-	private String getDistance() {
-		return "0.08";
+	private Double getDistance() {
+		return 0.08;
 	}
 
 }

@@ -87,7 +87,10 @@
     DESCRIPTION: 'Descripción',
     REQUIRED_POINTS: 'Puntos requeridos',
     STOCK: 'Stock',
-    PRODUCTS: 'Productos'
+    PRODUCTS: 'Productos',
+    VEHICLE: 'Vehiculo',
+    LOOK: 'Buscar',
+    SEARCH_ROUTE: 'Buscar Ruta'
   });
 
 $translateProvider.translations('en', {

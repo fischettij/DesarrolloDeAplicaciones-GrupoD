@@ -6,6 +6,8 @@ import unq.tpi.desapp.model.DaysOfWeekEnum;
 
 public class RequestRoute {
 
+	private String startPoint;
+	private String endPoint;
 	private Double startLatitud;
 	private Double startLongitud;
 	private Double endLatitud;
@@ -17,15 +19,33 @@ public class RequestRoute {
 		super();
 	}
 
-	public RequestRoute(Double startLatitud, Double startLongitud, Double endLatitud, Double endLongitud,
-			Long idVehicle, Set<DaysOfWeekEnum> daysOfWeek) {
+	public RequestRoute(String startPoint, String endPoint, Double startLatitud, Double startLongitud,
+			Double endLatitud, Double endLongitud, Long idVehicle, Set<DaysOfWeekEnum> daysOfWeek) {
 		super();
+		this.startPoint = startPoint;
+		this.endPoint = endPoint;
 		this.startLatitud = startLatitud;
 		this.startLongitud = startLongitud;
 		this.endLatitud = endLatitud;
 		this.endLongitud = endLongitud;
 		this.idVehicle = idVehicle;
 		this.daysOfWeek = daysOfWeek;
+	}
+
+	public String getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(String startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public String getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
 	}
 
 	public Double getStartLatitud() {

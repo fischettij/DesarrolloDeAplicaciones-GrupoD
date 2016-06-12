@@ -2,9 +2,9 @@ package unq.tpi.desapp.rest;
 
 import java.util.List;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import unq.tpi.desapp.model.Route;
@@ -24,10 +24,11 @@ public class RouteRest {
 		this.routeService = routeService;
 	}
 
-	@GET
-	@Path("/lookFor/{requestRoute}")
+	@POST
+	@Path("/lookfor")
 	@Produces("application/json")
-	public List<Route> lookForRoutes(@PathParam("requestRoute") final RequestRoute requestRoute) {
+	@Consumes("application/json")
+	public List<Route> lookForRoutes(RequestRoute requestRoute) {
 		return getRouteService().lookForRoutes(requestRoute);
 	}
 

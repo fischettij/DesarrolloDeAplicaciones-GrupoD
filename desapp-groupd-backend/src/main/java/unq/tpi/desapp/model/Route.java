@@ -10,6 +10,8 @@ public class Route extends Entity {
 
 	private static final long serialVersionUID = -3346088172414233280L;
 
+	private String startPoint;
+	private String endPoint;
 	private Double startLatitud;
 	private Double startLongitud;
 	private Double endLatitud;
@@ -23,9 +25,12 @@ public class Route extends Entity {
 	public Route() {
 	}
 
-	public Route(Double startLatitud, Double startLongitud, Double endLatitud, Double endLongitud, Vehicle vehicle,
-			User owner, Set<DaysOfWeekEnum> daysOfWeek, List<SubscriptionRequest> subscriptionRequests) {
+	public Route(String startPoint, String endPoint, Double startLatitud, Double startLongitud, Double endLatitud,
+			Double endLongitud, Vehicle vehicle, User owner, Set<DaysOfWeekEnum> daysOfWeek,
+			List<SubscriptionRequest> subscriptionRequests) {
 		super();
+		this.setStartPoint(startPoint);
+		this.setEndPoint(endPoint);
 		this.startLatitud = startLatitud;
 		this.startLongitud = startLongitud;
 		this.endLatitud = endLatitud;
@@ -117,6 +122,22 @@ public class Route extends Entity {
 
 	public void setDaysOfWeek(Set<DaysOfWeekEnum> daysOfWeek) {
 		this.daysOfWeek = daysOfWeek;
+	}
+
+	public String getStartPoint() {
+		return startPoint;
+	}
+
+	public void setStartPoint(String startPoint) {
+		this.startPoint = startPoint;
+	}
+
+	public String getEndPoint() {
+		return endPoint;
+	}
+
+	public void setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
 	}
 
 }

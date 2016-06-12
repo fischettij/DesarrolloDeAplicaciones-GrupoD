@@ -7,6 +7,10 @@
 		<id column="ID_ROUTE" name="id" type="java.lang.Long">
 			<generator class="identity" />
 		</id>
+		
+		<property name="startPoint" type="string" column="START_POINT" />
+		
+		<property name="endPoint" type="string" column="END_POINT" />
 
 		<property name="startLatitud" type="java.lang.Double" column="START_LATITUD" />
 
@@ -23,7 +27,7 @@
 		<many-to-one name="vehicle" column="ID_VEHICLE" unique="false"
 			class="unq.tpi.desapp.model.Vehicle" not-null="false" lazy="false" />
 
-		<set name="daysOfWeek" table="DAYS_OF_WEEK">
+		<set name="daysOfWeek" table="DAYS_OF_WEEK" lazy="false">
 			<key column="id" not-null="true" />
 			<element column="action" type="unq.tpi.desapp.model.DaysOfWeekEnum" />
 		</set>

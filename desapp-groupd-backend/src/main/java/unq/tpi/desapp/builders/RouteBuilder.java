@@ -14,6 +14,8 @@ import unq.tpi.desapp.model.request.RequestRoute;
 
 public class RouteBuilder {
 
+	private String startPoint;
+	private String endPoint;
 	private Double startLatitud;
 	private Double startLongitud;
 	private Double endLatitud;
@@ -24,6 +26,8 @@ public class RouteBuilder {
 	private List<SubscriptionRequest> subscriptionRequests;
 
 	public RouteBuilder() {
+		startPoint = "Martin Rodriguez 632";
+		endPoint = "Tacuari 202";
 		startLatitud = -34.726121;
 		startLongitud = -58.279362;
 		endLatitud = -34.610811;
@@ -36,8 +40,8 @@ public class RouteBuilder {
 	}
 
 	public Route build() {
-		return new Route(startLatitud, startLongitud, endLatitud, endLongitud, vehicle, owner, daysOfWeek,
-				subscriptionRequests);
+		return new Route(startPoint, endPoint, startLatitud, startLongitud, endLatitud, endLongitud, vehicle, owner,
+				daysOfWeek, subscriptionRequests);
 	}
 
 	public RouteBuilder setDaysOfWeek(Set<DaysOfWeekEnum> daysOfWeekEnum) {
@@ -80,9 +84,20 @@ public class RouteBuilder {
 		return this;
 	}
 
+	public RouteBuilder setStartPoint(String startPoint) {
+		this.startPoint = startPoint;
+		return this;
+	}
+
+	public RouteBuilder setEndPoint(String endPoint) {
+		this.endPoint = endPoint;
+		return this;
+	}
+
 	public Route buildWith(RequestRoute requestRoute, Vehicle vehicle2, User user) {
-		return new Route(requestRoute.getStartLatitud(), requestRoute.getStartLongitud(), requestRoute.getEndLatitud(),
-				requestRoute.getEndLongitud(), vehicle2, user, requestRoute.getDaysOfWeek(), subscriptionRequests);
+		return new Route(requestRoute.getStartPoint(), requestRoute.getEndPoint(), requestRoute.getStartLatitud(),
+				requestRoute.getStartLongitud(), requestRoute.getEndLatitud(), requestRoute.getEndLongitud(), vehicle2,
+				user, requestRoute.getDaysOfWeek(), subscriptionRequests);
 	}
 
 }

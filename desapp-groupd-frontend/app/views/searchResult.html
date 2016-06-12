@@ -6,13 +6,15 @@
 				<th colspan="1" rowspan="1" tabindex="0">{{ "ENDING_POINT" | translate }}</th>
 				<th colspan="1" rowspan="1" tabindex="0">{{ "VEHICLE" | translate }}</th>
 				<th colspan="1" rowspan="1" tabindex="0">{{ "DAYS_OF_WEEK" | translate }}</th>				
+				<th colspan="1" rowspan="1" tabindex="0">{{ "ACTIONS" | translate }}</th>
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="route in getMyRoutes()">
+			<tr ng-repeat="route in getSearchResult()">
 				<td>{{ route.startPoint }}</td>
 				<td>{{ route.endPoint }}</td>
 				<td>{{ route.vehicle.registrationNumber }} - {{ route.vehicle.model }}</td>
+				<td><span ng-repeat="day in route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
 				<td><span ng-repeat="day in route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
 			</tr>
 		</tbody>
