@@ -16,11 +16,9 @@ public class SubscriptionRequestTest {
 		SubscriptionState mockSubscriptionState = mock(SubscriptionState.class);
 
 		SubscriptionRequest subscriptionRequest = new SubscriptionRequestBuilder().setCandidate(mockUser)
-				.setMapPoint("Alberdi 30").setMessage("hola").setSubscriptionState(mockSubscriptionState).build();
+				.setSubscriptionState(mockSubscriptionState).build();
 
 		assertEquals(subscriptionRequest.getCandidate(), mockUser);
-		assertEquals(subscriptionRequest.getMessage(), "hola");
-		assertEquals(subscriptionRequest.getMapPoint(), "Alberdi 30");
 		assertEquals(subscriptionRequest.getSubscriptionState(), mockSubscriptionState);
 	}
 

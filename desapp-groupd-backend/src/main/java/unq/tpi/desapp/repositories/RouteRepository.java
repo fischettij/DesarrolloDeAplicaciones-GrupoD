@@ -1,6 +1,8 @@
 package unq.tpi.desapp.repositories;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 
@@ -17,7 +19,7 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 		return Route.class;
 	}
 
-	public List<Route> lookForRoutes(RequestRoute requestRoute) {
+	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
 		String hql = "SELECT r " + "FROM " + this.getDomainClass().getName() + " r "
 				+ "JOIN r.daysOfWeek days WHERE days IN (:setOfEnum)"
 				+ "AND r.startLatitud <= :routeStartingLatitud + " + this.getDistance()
@@ -39,7 +41,7 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 		@SuppressWarnings("unchecked")
 		List<Route> foundRoute = query.list();
 
-		return foundRoute;
+		return new HashSet<Route>(foundRoute);
 
 	}
 

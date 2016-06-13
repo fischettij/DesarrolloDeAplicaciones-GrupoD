@@ -90,7 +90,8 @@
     PRODUCTS: 'Productos',
     VEHICLE: 'Vehiculo',
     LOOK: 'Buscar',
-    SEARCH_ROUTE: 'Buscar Ruta'
+    SEARCH_ROUTE: 'Buscar Ruta',
+    CLOSE: 'Cerrar'
   });
 
 $translateProvider.translations('en', {

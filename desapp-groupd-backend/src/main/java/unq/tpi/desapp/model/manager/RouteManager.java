@@ -9,9 +9,11 @@ import unq.tpi.desapp.model.Route;
 
 public class RouteManager extends Manager {
 
+	private static final long serialVersionUID = 5717094686794873317L;
+
 	@JsonIgnore
 	private List<Route> routes;
-	
+
 	public RouteManager() {
 	}
 
@@ -37,9 +39,13 @@ public class RouteManager extends Manager {
 	public void setRoutes(List<Route> routes) {
 		this.routes = routes;
 	}
-	
+
 	public String getManager() {
 		return "RouteManager";
+	}
+
+	public Route find(Long id) {
+		return this.getRoutes().stream().filter(route -> route.getId() == id).findFirst().get();
 	}
 
 }

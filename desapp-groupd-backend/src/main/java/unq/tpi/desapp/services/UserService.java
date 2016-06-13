@@ -7,14 +7,19 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.RouteBuilder;
+import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
+import unq.tpi.desapp.model.SubscriptionRequest;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.inscription.InscriptionPending;
+import unq.tpi.desapp.model.manager.InscriptionManager;
 import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.model.request.RequestRoute;
+import unq.tpi.desapp.model.subscription.SubscriptionPending;
 import unq.tpi.desapp.repositories.UserRepository;
 
 public class UserService implements Serializable {
@@ -107,6 +112,17 @@ public class UserService implements Serializable {
 	public List<Product> getProducts(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
 		return new ArrayList<Product>(user.managerImplementing(ProductManager.class).getProducts());
+	}
+
+	@Transactional
+	public void subscribeToRoute(Long id, Route route) throws Exception {
+		User user = this.getRepository().findById(id);
+		User routeOwner = this.getRepository().findById(route.getOwner().getId());
+		Route realRoute = routeOwner.managerImplementing(RouteManager.class).find(route.getId());
+		user.managerImplementing(InscriptionManager.class).add(new Inscription(realRoute, new InscriptionPending()));
+		realRoute.addSubscriptionRequest(new SubscriptionRequest(user, new SubscriptionPending()));
+		this.update(user);
+		this.update(routeOwner);
 	}
 
 }

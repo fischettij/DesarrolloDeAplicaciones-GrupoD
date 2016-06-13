@@ -23,9 +23,15 @@ angular.module('desappGroupdFrontendApp')
       zoom: 4,
       center: {lat: -34.603684, lng: -58.3815591}});
 
+  $scope.mapSearchRoute = new google.maps.Map(
+    document.getElementById('mapSearchRoute'), {
+      zoom: 4,
+      center: {lat: -34.603684, lng: -58.3815591}});
+
   $scope.markerArray = [];
   $scope.directionsService = new google.maps.DirectionsService;
   $scope.directionsDisplay = new google.maps.DirectionsRenderer({mapRegisterRoute: $scope.mapRegisterRoute});
+  $scope.directionsDisplayForSearch = new google.maps.DirectionsRenderer({mapSearchRoute: $scope.mapSearchRoute});
   $scope.stepDisplay = new google.maps.InfoWindow;
   $scope.geocoder = new google.maps.Geocoder();
 
@@ -134,7 +140,7 @@ $scope.searchForRoute = function(route){
         $scope.startLocationLng = response.routes[0].legs[0].start_location.lng();
         $scope.endLocationLat = response.routes[0].legs[0].end_location.lat();
         $scope.endLocationLng = response.routes[0].legs[0].end_location.lng();
-        $http.post( $scope.baseUrl + '/routes/lookFor', {
+        $http.post( $scope.baseUrl + '/routes/lookfor', {
           startPoint: route.startingPoint,
           endPoint: route.endingPoint,
           startLatitud: $scope.startLocationLat,
@@ -153,6 +159,47 @@ $scope.searchForRoute = function(route){
     });
 
 }
+
+$scope.directionForMap = {};
+$scope.requestRoute = null;
+
+$scope.openMapModal = function(routeIndex){
+  var route = $scope.searchResult[routeIndex];
+  // First, remove any existing markers from the map.
+  for (var i = 0; i < $scope.markerArray.length; i++) {
+    $scope.markerArray[i].setMap(null);
+  };
+  $scope.directionsService.route({
+    origin: route.startPoint,
+    destination: route.endPoint,
+    travelMode: google.maps.TravelMode.DRIVING}, function(response, status) {
+      if (status === google.maps.DirectionsStatus.OK) {
+        $scope.directionsDisplayForSearch.setMap($scope.mapSearchRoute);
+        $scope.directionsDisplayForSearch.setDirections(response);
+        $scope.directionForMap = {lat: route.startLatitud , lng: route.startLongitud};
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });     
+};
+
+$("#modalSearchRoute").on('shown.bs.modal', function () {
+  google.maps.event.trigger($scope.mapSearchRoute, 'resize');
+  $scope.mapSearchRoute.setCenter($scope.directionForMap);
+  $scope.mapSearchRoute.setZoom(10);
+});
+
+$scope.request = function(routeIndex){
+  $scope.requestRoute = $scope.searchResult[routeIndex];
+};
+
+$scope.aceptedRequestOfRoute = function() {
+ $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/suscribeRoute', $scope.requestRoute).success(function() {
+    $scope.showRouteSuccess = true;
+  }).error(function() {
+    $scope.showRouteError = true;
+  })
+};
 
 $scope.initRoute = function(){
   $scope.myRoutes(1);

@@ -8,29 +8,15 @@ import unq.tpi.desapp.model.subscription.SubscriptionState;
 public class SubscriptionRequestBuilder {
 
 	private User candidate;
-	private String mapPoint;
-	private String message;
 	private SubscriptionState subscriptionState;
 
 	public SubscriptionRequestBuilder() {
 		candidate = new UserBuilder().build();
-		mapPoint = "Roque Sáenz Peña 352";
-		message = "Roque Sáenz Peña 150";
 		subscriptionState = new SubscriptionPending();
 	}
 
 	public SubscriptionRequestBuilder setCandidate(User candidate) {
 		this.candidate = candidate;
-		return this;
-	}
-
-	public SubscriptionRequestBuilder setMapPoint(String mapPoint) {
-		this.mapPoint = mapPoint;
-		return this;
-	}
-
-	public SubscriptionRequestBuilder setMessage(String message) {
-		this.message = message;
 		return this;
 	}
 
@@ -40,7 +26,7 @@ public class SubscriptionRequestBuilder {
 	}
 
 	public SubscriptionRequest build() {
-		return new SubscriptionRequest(candidate, mapPoint, message, subscriptionState);
+		return new SubscriptionRequest(candidate, subscriptionState);
 	}
 
 }

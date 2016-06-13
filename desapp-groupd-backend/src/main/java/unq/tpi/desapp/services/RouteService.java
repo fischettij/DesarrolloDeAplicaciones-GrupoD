@@ -1,6 +1,6 @@
 package unq.tpi.desapp.services;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,7 +21,7 @@ public class RouteService{
 	}
 
 	@Transactional
-	public List<Route> lookForRoutes(RequestRoute requestRoute) {
+	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
 		return this.getRepository().lookForRoutes(requestRoute);
 	}
 	

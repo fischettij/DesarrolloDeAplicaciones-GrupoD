@@ -1,6 +1,6 @@
 package unq.tpi.desapp.rest;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -28,7 +28,7 @@ public class RouteRest {
 	@Path("/lookfor")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public List<Route> lookForRoutes(RequestRoute requestRoute) {
+	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
 		return getRouteService().lookForRoutes(requestRoute);
 	}
 
