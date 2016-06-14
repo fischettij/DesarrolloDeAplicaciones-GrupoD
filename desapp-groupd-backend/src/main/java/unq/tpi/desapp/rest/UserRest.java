@@ -64,7 +64,7 @@ public class UserRest {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/like/{userName}")
 	@Produces("application/json")
@@ -84,7 +84,7 @@ public class UserRest {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/{id}/routes/{page}")
 	@Produces("application/json")
@@ -111,18 +111,19 @@ public class UserRest {
 	public List<Product> getProducts(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getProducts(id, page, 20);
 	}
-	
+
 	@POST
-	@Path("/{id}/suscribeRoute")
+	@Path("/{id}/suscribeRoute/{idRoute}/from/{idOwner}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response subscribeToRoute(@PathParam("id") final Long id, Route route) {
+	public Response subscribeToRoute(@PathParam("id") final Long id, @PathParam("idRoute") final Long idRoute,
+			@PathParam("idOwner") final Long idOwner) {
 		try {
-			getUserService().subscribeToRoute(id, route);
+			getUserService().subscribeToRoute(id, idRoute,idOwner);
 			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
-	
+
 }

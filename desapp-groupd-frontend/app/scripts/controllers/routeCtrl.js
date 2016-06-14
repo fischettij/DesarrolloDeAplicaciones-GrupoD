@@ -194,7 +194,7 @@ $scope.request = function(routeIndex){
 };
 
 $scope.aceptedRequestOfRoute = function() {
- $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/suscribeRoute', $scope.requestRoute).success(function() {
+ $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/suscribeRoute/' + $scope.requestRoute.owner.id + '/from/' + $scope.requestRoute.id).success(function() {
     $scope.showRouteSuccess = true;
   }).error(function() {
     $scope.showRouteError = true;

@@ -115,14 +115,14 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public void subscribeToRoute(Long id, Route route) throws Exception {
+	public void subscribeToRoute(Long id, Long idRoute, Long idOwner) throws Exception {
 		User user = this.getRepository().findById(id);
-		User routeOwner = this.getRepository().findById(route.getOwner().getId());
-		Route realRoute = routeOwner.managerImplementing(RouteManager.class).find(route.getId());
+		User owner = this.getRepository().findById(idOwner);
+		Route realRoute = owner.managerImplementing(RouteManager.class).find(idRoute);
 		user.managerImplementing(InscriptionManager.class).add(new Inscription(realRoute, new InscriptionPending()));
 		realRoute.addSubscriptionRequest(new SubscriptionRequest(user, new SubscriptionPending()));
 		this.update(user);
-		this.update(routeOwner);
+		this.update(owner);
 	}
 
 }

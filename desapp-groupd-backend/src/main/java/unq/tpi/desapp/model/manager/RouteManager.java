@@ -44,8 +44,11 @@ public class RouteManager extends Manager {
 		return "RouteManager";
 	}
 
-	public Route find(Long id) {
-		return this.getRoutes().stream().filter(route -> route.getId() == id).findFirst().get();
+	public Route find(Long id) throws Exception {
+		for (Route route: this.getRoutes()){
+			if(route.getId().equals(id)){return route;}
+		}
+		throw new Exception();
 	}
 
 }
