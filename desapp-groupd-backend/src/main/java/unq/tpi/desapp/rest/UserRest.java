@@ -125,5 +125,18 @@ public class UserRest {
 			return Response.serverError().build();
 		}
 	}
-
+	
+	@POST
+	@Path("/{id}/removeproduct")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response removeProduct(@PathParam("id") final Long id, Product product) {
+		try {
+			getUserService().removeProduct(id, product);
+			return Response.ok().build();
+		}catch (Exception e) {
+			return Response.serverError().build();
+		}		
+	}
+	
 }

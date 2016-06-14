@@ -91,7 +91,9 @@
     VEHICLE: 'Vehiculo',
     LOOK: 'Buscar',
     SEARCH_ROUTE: 'Buscar Ruta',
-    CLOSE: 'Cerrar'
+    CLOSE: 'Cerrar',
+    ACTION_SUCCESS: 'Acción completada',
+    ACTION_ERROR: 'Fallo la acción '
   });
 
 $translateProvider.translations('en', {

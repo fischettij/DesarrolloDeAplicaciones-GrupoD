@@ -20,6 +20,7 @@ import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
+import unq.tpi.desapp.repositories.ProductRepository;
 import unq.tpi.desapp.repositories.UserRepository;
 
 public class UserService implements Serializable {
@@ -124,5 +125,11 @@ public class UserService implements Serializable {
 		this.update(user);
 		this.update(owner);
 	}
-
+	
+	@Transactional
+	public void removeProduct(Long id,Product product){
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(ProductManager.class).remove(product);
+	}
+	
 }
