@@ -3,6 +3,7 @@ package unq.tpi.desapp.model.manager;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Test;
 
@@ -25,13 +26,14 @@ public class ProductManagerTest {
 	@Test
 	public void testRemoveProduct() throws Exception {
 		Product mockProduct = mock(Product.class);
+		when(mockProduct.getId()).thenReturn(1l);
 		ProductManager productManager = new ProductManagerBuilder().build();
 		assertTrue(productManager.getProducts().isEmpty());
 
 		productManager .add(mockProduct);
 		assertEquals(productManager .getProducts().size(), 1);
 
-		productManager.remove(mockProduct);
+		productManager.remove(1l);
 		assertTrue(productManager.getProducts().isEmpty());
 	}
 }
