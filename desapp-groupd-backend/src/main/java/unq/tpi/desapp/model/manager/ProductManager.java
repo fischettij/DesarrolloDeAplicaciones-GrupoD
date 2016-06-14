@@ -3,8 +3,10 @@ package unq.tpi.desapp.model.manager;
 import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonProperty;
 
 import unq.tpi.desapp.model.Product;
+import unq.tpi.desapp.model.Route;
 
 public class ProductManager extends Manager {
 
@@ -17,10 +19,12 @@ public class ProductManager extends Manager {
 		this.products = someProducts;
 	}
 	
+	@JsonProperty
 	public void setProducts(List<Product> products){
 		this.products = products;
 	}
 	
+	@JsonIgnore
 	public List<Product> getProducts(){
 		return products;
 	}
@@ -34,8 +38,15 @@ public class ProductManager extends Manager {
 		return "ProductManager";
 	}
 
-	public void remove(Product productToRemove) {
-		products.remove(productToRemove);
+	public void remove(Long productId) throws Exception {
+		products.remove(this.find(productId));
 	}
 
+	public Product find(Long id) throws Exception {
+		for (Product product: this.getProducts()){
+			if(product.getId().equals(id)){return product;}
+		}
+		throw new Exception();
+	}
+	
 }

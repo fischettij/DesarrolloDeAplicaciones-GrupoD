@@ -76,6 +76,12 @@ public abstract class HibernateGenericDAO<T> extends HibernateDaoSupport impleme
     @Override
     public void update(final T entity) {
         this.getHibernateTemplate().update(entity);
+        this.getHibernateTemplate().flush();
+    }
+    
+    @Override 
+    public void saveOrUpdate(final T entity){
+    	this.getHibernateTemplate().saveOrUpdate(entity);
     }
 
 }

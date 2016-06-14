@@ -127,9 +127,10 @@ public class UserService implements Serializable {
 	}
 	
 	@Transactional
-	public void removeProduct(Long id,Product product){
+	public void removeProduct(Long id,Product product) throws Exception{
 		User user = this.getRepository().findById(id);
-		user.managerImplementing(ProductManager.class).remove(product);
+		user.managerImplementing(ProductManager.class).remove(product.getId());
+		this.getRepository().saveOrUpdate(user);
 	}
 	
 }

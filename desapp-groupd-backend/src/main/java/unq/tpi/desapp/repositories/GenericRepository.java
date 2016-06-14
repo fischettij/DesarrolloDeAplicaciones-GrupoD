@@ -26,4 +26,6 @@ public interface GenericRepository<T> {
 
 	List<T> findByExample(T exampleObject);
 
+	void saveOrUpdate(T entity);
+
 }

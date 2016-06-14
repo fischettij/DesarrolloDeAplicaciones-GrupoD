@@ -88,8 +88,8 @@
 		<subclass name="unq.tpi.desapp.model.manager.ProductManager"
 			discriminator-value="PRODUCT_MANAGER">
 
-			<list name="products" table="PRODUCTS" inverse="false" cascade="all"
-				lazy="false">
+			<list name="products" table="PRODUCTS" inverse="false" cascade="all,delete-orphan"
+				lazy="true">
 				<key not-null="true">
 					<column name="ID_MANAGER" not-null="true" />
 				</key>
