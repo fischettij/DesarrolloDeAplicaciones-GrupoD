@@ -93,7 +93,8 @@
     SEARCH_ROUTE: 'Buscar Ruta',
     CLOSE: 'Cerrar',
     ACTION_SUCCESS: 'Acción completada',
-    ACTION_ERROR: 'Fallo la acción '
+    ACTION_ERROR: 'Fallo la acción ',
+    OWNER: 'Dueño',
   });
 
 $translateProvider.translations('en', {
@@ -150,13 +151,14 @@ $translateProvider.translations('en', {
   DESCRIPTION: 'Description',
   REQUIRED_POINTS: 'Required points',
   STOCK: 'Stock',
-  PRODUCTS: 'Products'
+  PRODUCTS: 'Products',
   VEHICLE: 'Vehicle',
   LOOK: 'Look',
   SEARCH_ROUTE: 'Look route',
   CLOSE: 'Close',
   ACTION_SUCCESS: 'Action complete',
-  ACTION_ERROR: 'Action Failer'
+  ACTION_ERROR: 'Action Failer',
+  OWNER: 'Owner',
 });
 
 $translateProvider.preferredLanguage('es');

@@ -53,8 +53,6 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
       $scope.auth2 = gapi.auth2.init({
         client_id: '694615735422-dkgv5pmv8at39h5i1hqgdh0i10jjb26c.apps.googleusercontent.com',
         cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
       });
       $scope.attachSignin(document.getElementById('gooogleLogin'));
     });
@@ -65,7 +63,7 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
   }
 
   $scope.onLoginError = function(error) {
-    console.log(JSON.stringify(error, undefined, 2));
+    $scope.loginError();
   };
 
   $scope.onLoginSuccess = function(googleUser) {

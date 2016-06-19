@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-sm-12">
+    <div class="box">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{"MY_ROUTES" | translate }}</h3>
+      </div>
+      <div class="box-body" style="display: block;">
+
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
+          <table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+            <thead>
+              <tr role="row">
+                <th colspan="1" rowspan="1" tabindex="0">{{ "STARTING_POINT" | translate }}</th>
+                <th colspan="1" rowspan="1" tabindex="0">{{ "ENDING_POINT" | translate }}</th>
+                <th colspan="1" rowspan="1" tabindex="0">{{ "VEHICLE" | translate }}</th>
+                <th colspan="1" rowspan="1" tabindex="0">{{ "DAYS_OF_WEEK" | translate }}</th>        
+                <th colspan="1" rowspan="1" tabindex="0">{{ "ACTIONS" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="route in getMyRoutes()">
+                <td>{{ route.startPoint }}</td>
+                <td>{{ route.endPoint }}</td>
+                <td>{{ route.vehicle.registrationNumber }} - {{ route.vehicle.model }}</td>
+                <td><span ng-repeat="day in route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
+                <th>
+                  <button class="btn btn-primary fa fa-book" ng-click="openSubscriptionRequest(route)"></button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

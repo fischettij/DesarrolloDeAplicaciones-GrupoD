@@ -11,7 +11,7 @@
 		<many-to-one name="candidate" column="ID_CANDIDATE" unique="false"
 			class="unq.tpi.desapp.model.User" not-null="false" lazy="false" />
 
-		<many-to-one name="subscriptionState" column="ID_SUBSCRIPTION_STATE"
+		<many-to-one name="subscriptionState" column="ID_SUBSCRIPTION_STATE" lazy="false"
 			unique="true" class="unq.tpi.desapp.model.subscription.SubscriptionState"
 			not-null="true" />
 

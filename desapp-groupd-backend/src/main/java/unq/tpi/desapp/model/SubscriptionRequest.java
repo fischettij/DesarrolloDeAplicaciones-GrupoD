@@ -4,6 +4,8 @@ import unq.tpi.desapp.model.subscription.SubscriptionState;
 
 public class SubscriptionRequest extends Entity {
 
+	private static final long serialVersionUID = 4469725679355349099L;
+
 	private User candidate;
 	private SubscriptionState subscriptionState;
 

@@ -66,17 +66,6 @@ angular.module('desappGroupdFrontendApp')
     google.maps.event.trigger($scope.mapRegisterRoute, 'resize');
     $scope.mapRegisterRoute.setCenter({lat: -34.603684, lng: -58.3815591});
   });
-  // ------------------------------------------
-
-  // $scope.mapForLookingRoutes = new google.maps.Map(
-  //   document.getElementById('mapForLookingRoutes'), {
-  //     zoom: 4,
-  //     center: {lat: -34.603684, lng: -58.3815591}}); 
-
-  // $scope.markerArray2 = [];
-  // $scope.directionsService2 = new google.maps.DirectionsService;
-  // $scope.directionsDisplay2 = new google.maps.DirectionsRenderer({mapForLookingRoutes: $scope.mapForLookingRoutes});
-  // $scope.stepDisplay2 = new google.maps.InfoWindow;
 
 ///// End - Google Maps
 
@@ -206,5 +195,20 @@ $scope.initRoute = function(){
 };
 
 $scope.initRoute();
+
+// Subscription Request
+$scope.subscriptionRequests = [];
+
+$scope.openSubscriptionRequest = function(route){
+  $http.get( $scope.baseUrl + '/routes/subscriptionrequests/' + route.id).success(function(result){
+    $scope.subscriptionRequests = result;
+  });
+};
+
+$scope.getSubscriptionRequest = function(){
+  return $scope.subscriptionRequests;
+};
+
+
 
 } ]);

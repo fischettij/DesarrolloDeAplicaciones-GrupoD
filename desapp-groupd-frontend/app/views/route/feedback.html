@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 alert alert-danger alert-dismissible" ng-show="showVehicleError === true;">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <p><i class="icon fa fa-ban"></i>{{ "ROUTE_ERROR" | translate}}</p>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10 alert alert-success alert-dismissible" ng-show="showVehicleSuccess === true;">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <p><i class="icon fa fa-check"></i>{{ "ROUTE_SUCCESS" | translate}}</p>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
