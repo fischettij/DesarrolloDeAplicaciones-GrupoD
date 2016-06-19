@@ -38,4 +38,17 @@ public class LoginRest {
 		}
 	}
 
+	@POST
+	@Path("/googleconnect")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response googleConnect(LoginUser loginUser) {
+		try {
+			User user = this.getRegisterUserService().googleConnect(loginUser);
+			return Response.ok(user).build();
+		} catch (NotFoundException e) {
+			return Response.serverError().build();
+		}
+	}
+
 }

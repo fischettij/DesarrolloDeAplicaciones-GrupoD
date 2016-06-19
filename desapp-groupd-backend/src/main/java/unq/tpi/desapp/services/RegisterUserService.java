@@ -10,6 +10,8 @@ import unq.tpi.desapp.model.request.LoginUser;
 
 public class RegisterUserService extends GenericService<RegisterUser> {
 
+	private static final long serialVersionUID = -2589951635350079174L;
+
 	@Transactional
 	public User login(LoginUser loginUser) throws NotFoundException {
 		for (RegisterUser registerUser : this.retriveAll()) {
@@ -17,7 +19,7 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 				return registerUser.getUser();
 		}
 		throw new NotFoundException("User doesn't exists");
-	}	
+	}
 
 	@Transactional
 	public void register(LoginUser loginUser) {
@@ -25,6 +27,20 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 			if (user.is(loginUser))
 				throw new RuntimeException("User already exists");
 		}
+		this.registerNewUser(loginUser);
+	}
+
+	@Transactional
+	public User googleConnect(LoginUser loginUser) throws NotFoundException {
+		for (RegisterUser registerUser : this.retriveAll()) {
+			if (registerUser.is(loginUser))
+				return registerUser.getUser();
+		}
+		this.registerNewUser(loginUser);
+		return this.login(loginUser);
+	}
+
+	private void registerNewUser(LoginUser loginUser) {
 		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
 				new UserBuilder().setName(loginUser.getName()).addAllManagers().build());
 		this.save(registerUser);
