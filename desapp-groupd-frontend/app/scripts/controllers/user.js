@@ -2,28 +2,41 @@
 
 angular.module('desappGroupdFrontendApp')
 .controller('user_ctrl', [ '$http', '$scope', '$window', '$cookies',
-  '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
+  '$locale', '$filter', '$translate', function($http, $scope, $window, $cookies, $locale, $filter, $translate) {
 
-    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
-    $scope.user = {};
-    $scope.searchUserContent = '';
-    $scope.foundUsers = [];
+  $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
+  $scope.user = {managers:[]};
+  $scope.searchUserContent = '';
+  $scope.foundUsers = [];
 
-    $scope.init = function(){
-      var userID = $cookies.get('user');
-      $http.get($scope.baseUrl + '/users/' + userID).success(function(user){
-       $scope.user = user;
-     }).error(function(){
-       $window.location.href = '/404.html';
-     }) 
-   };
+  $scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
 
-   $scope.signOut = function(){
+  $scope.selectLanguage = function(){
+    if (navigator.language.slice(0, 2) == "es") {
+      $scope.changeLanguage("es");
+    } else {
+      $scope.changeLanguage("en");
+    };
+  };
+
+  $scope.init = function(){
+    var userID = $cookies.get('user');
+    $http.get($scope.baseUrl + '/users/' + userID).success(function(user){
+      $scope.user = user;
+    }).error(function(){
+     $window.location.href = '/404.html';
+    });
+  };
+
+  $scope.signOut = function(){
     $cookies.remove('user')
     $window.location.href='/'
-  }
+  };
 
   $scope.init();
+  $scope.selectLanguage(); 
 
   $scope.activeManager = 'dashboard';
 
@@ -68,27 +81,27 @@ angular.module('desappGroupdFrontendApp')
   };
 
   $scope.getContainer = function(){
-   return 'views/' + $scope.activeManager +'.html';
- };
+    return 'views/' + $scope.activeManager +'.html';
+  };
 
- $scope.getScore = function(){
-   return $filter('lookForManager')('ScoreManager', $scope.user.managers).score;                  
- };
+  $scope.getScore = function(){
+    return $filter('lookForManager')('ScoreManager', $scope.user.managers).score;                  
+  };
 
- $scope.searchUser = function(serchName){
-  $scope.searchUserContent = '';
-  $scope.findUsersLike(serchName);
-  $scope.goTo('searchUser');
- };
+  $scope.searchUser = function(serchName){
+    $scope.searchUserContent = '';
+    $scope.findUsersLike(serchName);
+    $scope.goTo('searchUser');
+  };
 
   $scope.findUsersLike = function(userName){
-       $http.get($scope.baseUrl + '/users/like/' + userName).success(function(userList){
-        $scope.foundUsers = userList;
-        console.log(userList);
-      }).error(function(){
-        $window.location.href = '/404.html';
-      }) 
-    };
+    $http.get($scope.baseUrl + '/users/like/' + userName).success(function(userList){
+      $scope.foundUsers = userList;
+      console.log(userList);
+    }).error(function(){
+      $window.location.href = '/404.html';
+    });
+  };
 
 
 } ]);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$scope', '$window', '$cookies', 
-  '$locale', function($http, $scope, $window, $cookies, $locale) {
+  '$locale', '$translate', function($http, $scope, $window, $cookies, $locale, $translate) {
 
   $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
 
@@ -86,6 +86,21 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
     $scope.showLoginError = true;
   }
 
+  // Select Language
+
+  $scope.changeLanguage = function (langKey) {
+    $translate.use(langKey);
+  };
+
+  $scope.selectLanguage = function(){
+    if (navigator.language.slice(0, 2) == "es") {
+      $scope.changeLanguage("es");
+    } else {
+      $scope.changeLanguage("en");
+    };
+  };
+
   $scope.startApp();
+  $scope.selectLanguage();
 
 } ]);
