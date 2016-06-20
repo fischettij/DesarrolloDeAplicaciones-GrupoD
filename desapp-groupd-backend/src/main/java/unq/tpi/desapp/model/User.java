@@ -6,6 +6,8 @@ import unq.tpi.desapp.model.manager.Manager;
 
 public class User extends Entity {
 
+	private static final long serialVersionUID = 7181636845463109784L;
+
 	private String name;
 	List<Manager> managers;
 
@@ -25,6 +27,7 @@ public class User extends Entity {
 		this.name = name;
 	}
 
+	@SuppressWarnings("unchecked")
 	public <E extends Manager> E managerImplementing(Class<E> managerClass) {
 		for (Manager manager : this.managers) {
 			if (manager.isA(managerClass)) {

@@ -19,20 +19,16 @@ public class RouteTest {
 
 	@Test
 	public void testAccessing() {
-		Set<DaysOfWeekEnum> mockDaysOfTheWeek= mock(Set.class);
+		@SuppressWarnings("unchecked")
+		Set<DaysOfWeekEnum> mockDaysOfTheWeek = mock(Set.class);
 
-		Route route = new RouteBuilder()
-				.setStartLatitud(1d)
-				.setStartLongitud(1d)
-				.setEndLatitud(2d)
-				.setEndLongitud(2d)
-				.setDaysOfWeek(mockDaysOfTheWeek)
-				.build();
+		Route route = new RouteBuilder().setStartLatitud(1d).setStartLongitud(1d).setEndLatitud(2d).setEndLongitud(2d)
+				.setDaysOfWeek(mockDaysOfTheWeek).build();
 
-		assertEquals(route.getStartLatitud(),1d,0);
-		assertEquals(route.getStartLongitud(), 1d,0);
-		assertEquals(route.getEndLatitud(),2d,0);
-		assertEquals(route.getEndLongitud(), 2d,0);
+		assertEquals(route.getStartLatitud(), 1d, 0);
+		assertEquals(route.getStartLongitud(), 1d, 0);
+		assertEquals(route.getEndLatitud(), 2d, 0);
+		assertEquals(route.getEndLongitud(), 2d, 0);
 		assertEquals(route.getDaysOfWeek(), mockDaysOfTheWeek);
 		assertTrue(route.getSubscriptionRequests().isEmpty());
 	}

@@ -9,6 +9,8 @@ import unq.tpi.desapp.model.Comment;
 
 public class CommentManager extends Manager {
 
+	private static final long serialVersionUID = 7526228322870361599L;
+
 	@JsonIgnore
 	private List<Comment> comments;
 

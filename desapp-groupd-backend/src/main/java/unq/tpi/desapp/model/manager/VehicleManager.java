@@ -5,6 +5,7 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.Vehicle;
 
 public class VehicleManager extends Manager {
@@ -52,8 +53,13 @@ public class VehicleManager extends Manager {
 		return "VehicleManager";
 	}
 
-	public Vehicle find(Long idVehicle) {
-		return this.vehicles.stream().filter(aVehicle -> aVehicle.getId() == idVehicle).findFirst().get();
+	public Vehicle find(Long idVehicle) throws NotFoundException {
+		for (Vehicle vehicle : this.getVehicles()) {
+			if (vehicle.getId().equals(idVehicle)) {
+				return vehicle;
+			}
+		}
+		throw new NotFoundException("No vehicle found");
 	}
 
 }

@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import org.junit.Test;
 
 import unq.tpi.desapp.builders.ProductManagerBuilder;
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.Product;
 
 public class ProductManagerTest {
@@ -35,5 +36,23 @@ public class ProductManagerTest {
 
 		productManager.remove(1l);
 		assertTrue(productManager.getProducts().isEmpty());
+	}
+	
+	@Test
+	public void testFind() throws NotFoundException{
+		Product mockProduct = mock(Product.class);
+		when(mockProduct.getId()).thenReturn(1l);
+		ProductManager productManager = new ProductManagerBuilder().build();
+		productManager.add(mockProduct);
+		assertEquals(mockProduct, productManager.find(1l));		
+	}
+	
+	@Test(expected= NotFoundException.class)
+	public void testFindWithOutProduct() throws NotFoundException{
+		Product mockProduct = mock(Product.class);
+		when(mockProduct.getId()).thenReturn(2l);
+		ProductManager productManager = new ProductManagerBuilder().build();
+		productManager.add(mockProduct);
+		productManager.find(1l);		
 	}
 }

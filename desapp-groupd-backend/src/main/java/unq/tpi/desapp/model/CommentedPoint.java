@@ -2,11 +2,14 @@ package unq.tpi.desapp.model;
 
 public class CommentedPoint extends Entity {
 
+	private static final long serialVersionUID = 2096581432717097874L;
+
 	private User user;
 	private Boolean isNegative;
 	private String comment;
-	
-	public CommentedPoint(){}
+
+	public CommentedPoint() {
+	}
 
 	public CommentedPoint(User someUser, Boolean isNegative, String someComment) {
 		this.user = someUser;

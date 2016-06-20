@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.RouteBuilder;
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
@@ -20,7 +21,6 @@ import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
-import unq.tpi.desapp.repositories.ProductRepository;
 import unq.tpi.desapp.repositories.UserRepository;
 
 public class UserService implements Serializable {
@@ -95,7 +95,7 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public void addNewRoute(Long id, RequestRoute requestRoute) {
+	public void addNewRoute(Long id, RequestRoute requestRoute) throws NotFoundException {
 		User user = this.getRepository().findById(id);
 		Vehicle vehicle = user.managerImplementing(VehicleManager.class).find(requestRoute.getIdVehicle());
 		Route route = new RouteBuilder().buildWith(requestRoute, vehicle, user);
@@ -125,12 +125,12 @@ public class UserService implements Serializable {
 		this.update(user);
 		this.update(owner);
 	}
-	
+
 	@Transactional
-	public void removeProduct(Long id,Product product) throws Exception{
+	public void removeProduct(Long id, Product product) throws Exception {
 		User user = this.getRepository().findById(id);
 		user.managerImplementing(ProductManager.class).remove(product.getId());
 		this.getRepository().saveOrUpdate(user);
 	}
-	
+
 }

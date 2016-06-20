@@ -10,6 +10,8 @@ import unq.tpi.desapp.model.User;
 
 public class ScoreManager extends Manager {
 
+	private static final long serialVersionUID = 5210193007832017618L;
+
 	private Integer score;
 	@JsonIgnore
 	private List<CommentedPoint> commentedPoints;
@@ -94,7 +96,7 @@ public class ScoreManager extends Manager {
 	public void setCommentedPoints(List<CommentedPoint> commentedPoints) {
 		this.commentedPoints = commentedPoints;
 	}
-	
+
 	public String getManager() {
 		return "ScoreManager";
 	}

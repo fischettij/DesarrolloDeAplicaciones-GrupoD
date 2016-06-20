@@ -4,6 +4,8 @@ import unq.tpi.desapp.model.inscription.InscriptionState;
 
 public class Inscription extends Entity {
 
+	private static final long serialVersionUID = -3561213472825124843L;
+	
 	private Route route;
 	private InscriptionState inscriptionState;
 

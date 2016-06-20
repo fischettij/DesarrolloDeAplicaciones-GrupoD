@@ -5,10 +5,12 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.Product;
-import unq.tpi.desapp.model.Route;
 
 public class ProductManager extends Manager {
+
+	private static final long serialVersionUID = -7925313348966372887L;
 
 	@JsonIgnore
 	private List<Product> products;
@@ -42,11 +44,11 @@ public class ProductManager extends Manager {
 		products.remove(this.find(productId));
 	}
 
-	public Product find(Long id) throws Exception {
+	public Product find(Long id) throws NotFoundException {
 		for (Product product: this.getProducts()){
 			if(product.getId().equals(id)){return product;}
 		}
-		throw new Exception();
+		throw new NotFoundException("No product");
 	}
 	
 }

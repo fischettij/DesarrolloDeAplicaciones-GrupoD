@@ -7,6 +7,8 @@ import unq.tpi.desapp.model.manager.InscriptionManager;
 
 public abstract class SubscriptionState extends Entity {
 
+	private static final long serialVersionUID = 67069272360865877L;
+
 	public abstract void accepted(SubscriptionRequest subscriptionRequest, Route route);
 
 	public void canceled(SubscriptionRequest subscriptionRequest, Route route) {

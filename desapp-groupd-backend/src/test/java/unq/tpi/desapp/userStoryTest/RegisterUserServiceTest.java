@@ -56,7 +56,7 @@ public class RegisterUserServiceTest {
 		assertTrue(registerUserService.retriveAll().isEmpty());
 
 		LoginUser loginUser = new LoginUserBuilder().setEmail("lala@lala.com").setPassword("supersecreto").build();
-		User userLogin = registerUserService.login(loginUser);
+		registerUserService.login(loginUser);
 
 	}
 

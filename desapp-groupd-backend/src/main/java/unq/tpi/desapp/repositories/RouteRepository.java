@@ -6,7 +6,6 @@ import java.util.Set;
 
 import org.hibernate.Query;
 
-import unq.tpi.desapp.model.DaysOfWeekEnum;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.request.RequestRoute;
 
@@ -21,9 +20,8 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 
 	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
 		String hql = "SELECT r " + "FROM " + this.getDomainClass().getName() + " r "
-				+ "JOIN r.daysOfWeek days WHERE days IN (:setOfEnum)"
-				+ "AND r.startLatitud <= :routeStartingLatitud + " + this.getDistance()
-				+ "AND r.startLatitud >= :routeStartingLatitud - " + this.getDistance()
+				+ "JOIN r.daysOfWeek days WHERE days IN (:setOfEnum)" + "AND r.startLatitud <= :routeStartingLatitud + "
+				+ this.getDistance() + "AND r.startLatitud >= :routeStartingLatitud - " + this.getDistance()
 				+ "AND r.startLongitud <= :routeStartingLongitud + " + this.getDistance()
 				+ "AND r.startLongitud >= :routeStartingLongitud - " + this.getDistance()
 				+ "AND r.endLatitud <= :routeEndingLatitud + " + this.getDistance()
@@ -36,21 +34,13 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 		query.setParameter("routeStartingLatitud", requestRoute.getStartLatitud());
 		query.setParameter("routeStartingLongitud", requestRoute.getStartLongitud());
 		query.setParameter("routeEndingLatitud", requestRoute.getEndLatitud());
-		query.setParameter("routeEndingLongitud",requestRoute.getEndLongitud());
+		query.setParameter("routeEndingLongitud", requestRoute.getEndLongitud());
 
 		@SuppressWarnings("unchecked")
 		List<Route> foundRoute = query.list();
 
 		return new HashSet<Route>(foundRoute);
 
-	}
-
-	private String getDays(RequestRoute requestRoute) {
-		String ret = "(";
-		for (DaysOfWeekEnum daysOfWeekEnum : requestRoute.getDaysOfWeek()) {
-			ret = ret + "'" + daysOfWeekEnum + "'";
-		}
-		return ret + ")";
 	}
 
 	private Double getDistance() {

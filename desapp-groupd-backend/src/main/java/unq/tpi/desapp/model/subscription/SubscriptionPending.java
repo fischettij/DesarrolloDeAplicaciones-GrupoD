@@ -6,6 +6,8 @@ import unq.tpi.desapp.model.manager.InscriptionManager;
 
 public class SubscriptionPending extends SubscriptionState {
 
+	private static final long serialVersionUID = -1556644719663209187L;
+
 	public SubscriptionPending() {
 	}
 

@@ -4,6 +4,8 @@ import unq.tpi.desapp.model.request.LoginUser;
 
 public class RegisterUser extends Entity {
 
+	private static final long serialVersionUID = 7574549676905963814L;
+
 	private String email;
 	private String password;
 	private User user;
@@ -46,6 +48,6 @@ public class RegisterUser extends Entity {
 	}
 
 	public Boolean is(RegisterUser registerUser) {
-		return this.email == registerUser.getEmail() && this.password == registerUser.getPassword();
+		return this.email.equals(registerUser.getEmail()) && this.password.equals(registerUser.getPassword());
 	}
 }

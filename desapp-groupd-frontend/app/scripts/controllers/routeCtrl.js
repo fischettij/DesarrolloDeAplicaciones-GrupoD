@@ -4,17 +4,17 @@ angular.module('desappGroupdFrontendApp')
 .controller('route_ctrl', [ '$http', '$scope', '$window', '$cookies',
   '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
 
-    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
-    $scope.user = $cookies.get('user');
-    $scope.listOfRoutes = [];
-    $scope.searchResult = [];
+  $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
+  $scope.user = $cookies.get('user');
+  $scope.listOfRoutes = [];
+  $scope.searchResult = [];
 
-    $scope.showRouteSuccess = false;
-    $scope.showRouteError = false;
+  $scope.showRouteSuccess = false;
+  $scope.showRouteError = false;
 
-    $scope.daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+  $scope.daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
-    $scope.vehicles = [];
+  $scope.vehicles = [];
   //// Start Google maps
 
   //Create a map and center it on Argentina.

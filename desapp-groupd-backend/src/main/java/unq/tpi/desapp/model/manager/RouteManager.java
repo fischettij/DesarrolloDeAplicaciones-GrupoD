@@ -5,6 +5,7 @@ import java.util.List;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.Route;
 
 public class RouteManager extends Manager {
@@ -44,11 +45,11 @@ public class RouteManager extends Manager {
 		return "RouteManager";
 	}
 
-	public Route find(Long id) throws Exception {
+	public Route find(Long id) throws NotFoundException {
 		for (Route route: this.getRoutes()){
 			if(route.getId().equals(id)){return route;}
 		}
-		throw new Exception();
+		throw new NotFoundException("No route found");
 	}
 
 }

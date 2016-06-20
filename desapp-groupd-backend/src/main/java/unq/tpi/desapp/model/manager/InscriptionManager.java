@@ -10,9 +10,11 @@ import unq.tpi.desapp.model.Route;
 
 public class InscriptionManager extends Manager {
 
+	private static final long serialVersionUID = -3498209227418559363L;
+
 	@JsonIgnore
 	private List<Inscription> inscriptions;
-	
+
 	public InscriptionManager() {
 	}
 
@@ -59,10 +61,9 @@ public class InscriptionManager extends Manager {
 	public void setInscriptions(List<Inscription> inscriptions) {
 		this.inscriptions = inscriptions;
 	}
-	
+
 	public String getManager() {
 		return "InscriptionManager";
 	}
-
 
 }

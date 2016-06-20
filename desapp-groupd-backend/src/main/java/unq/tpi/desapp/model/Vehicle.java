@@ -2,10 +2,12 @@ package unq.tpi.desapp.model;
 
 public class Vehicle extends Entity {
 
+	private static final long serialVersionUID = -5869675942943979500L;
+
 	private String model;
 	private Integer maxNumberPassangers;
 	private String registrationNumber;
-	
+
 	public Vehicle() {
 	}
 
