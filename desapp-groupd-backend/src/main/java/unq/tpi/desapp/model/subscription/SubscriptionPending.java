@@ -16,5 +16,9 @@ public class SubscriptionPending extends SubscriptionState {
 		subscriptionRequest.setSubscriptionState(new SubscriptionAccepted());
 		subscriptionRequest.getCandidate().managerImplementing(InscriptionManager.class).requestAccepted(route);
 	}
+	
+	public String getName(){
+		return "Pending";
+	}
 
 }

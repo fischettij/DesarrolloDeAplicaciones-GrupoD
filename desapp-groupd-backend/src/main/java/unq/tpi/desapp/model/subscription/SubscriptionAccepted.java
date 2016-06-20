@@ -13,5 +13,9 @@ public class SubscriptionAccepted extends SubscriptionState {
 	@Override
 	public void accepted(SubscriptionRequest subscriptionRequest, Route route) {
 	}
+	
+	public String getName(){
+		return "Accepted";
+	}
 
 }

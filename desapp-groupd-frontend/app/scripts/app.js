@@ -95,6 +95,10 @@
     ACTION_SUCCESS: 'Acción completada',
     ACTION_ERROR: 'Fallo la acción ',
     OWNER: 'Dueño',
+    CANDIDATE: 'Candidato',
+    SUBSCRIPTION_STATE: 'Estado de la subscripción',
+    Pending: 'Pendiente',
+    Accepted: 'Aceptado',
   });
 
 $translateProvider.translations('en', {
@@ -159,6 +163,10 @@ $translateProvider.translations('en', {
   ACTION_SUCCESS: 'Action complete',
   ACTION_ERROR: 'Action Failer',
   OWNER: 'Owner',
+  CANDIDATE: 'Candidate',
+  SUBSCRIPTION_STATE: 'Subscription State',
+  Pending: 'Pending',
+  Accepted: 'Accepted',
 });
 
 $translateProvider.preferredLanguage('es');

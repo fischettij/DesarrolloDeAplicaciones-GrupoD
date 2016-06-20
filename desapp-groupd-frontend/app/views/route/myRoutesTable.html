@@ -24,7 +24,7 @@
                 <td>{{ route.vehicle.registrationNumber }} - {{ route.vehicle.model }}</td>
                 <td><span ng-repeat="day in route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
                 <th>
-                  <button class="btn btn-primary fa fa-book" ng-click="openSubscriptionRequest(route)"></button>
+                  <button class="btn btn-primary fa fa-book" ng-click="openSubscriptionRequest(route)" data-toggle="modal" data-target="#modalSubscriptionRequest"></button>
                 </th>
               </tr>
             </tbody>
@@ -35,3 +35,44 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Subscription Request -->
+
+
+<div class="modal fade bs-example-modal-lg" id="modalSubscriptionRequest" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{ "ADD_ROUTE" | translate }}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="dataTables_wrapper form-inline dt-bootstrap">
+          <table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+            <thead>
+              <tr role="row">
+                <th colspan="1" rowspan="1" tabindex="0">{{ "CANDIDATE" | translate }}</th>
+                <th colspan="1" rowspan="1" tabindex="0">{{ "SUBSCRIPTION_STATE" | translate }}</th>
+                <th colspan="1" rowspan="1" tabindex="0">{{ "ACTIONS" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="subscription in getSubscriptionRequest()">
+                <td>{{ subscription.candidate.name }}</td>
+                <td>{{ subscription.subscriptionState.name | translate }}</td>
+                <th>
+                  <button class="btn btn-success fa fa-check" ng-click="acceptedRequest(subscription.id)"></button>
+                  <button class="btn btn-danger fa fa-close" ng-click="denyRequest(subscription.id)"></button>
+                </th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End Modal Subscription Request -->
