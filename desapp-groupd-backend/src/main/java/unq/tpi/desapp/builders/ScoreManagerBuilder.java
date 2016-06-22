@@ -8,19 +8,19 @@ import unq.tpi.desapp.model.manager.ScoreManager;
 
 public class ScoreManagerBuilder {
 
-	private Integer score;
 	private List<CommentedPoint> comments;
+	private Integer amountOfPositiveComments;
 	private Integer amountOfNegativeComments;
-
+	
 	public ScoreManagerBuilder() {
 		super();
-		this.score = 0;
 		this.comments = new ArrayList<CommentedPoint>();
 		this.amountOfNegativeComments = 0;
+		this.amountOfPositiveComments = 0;
 	}
 
-	public ScoreManagerBuilder setScore(Integer score) {
-		this.score = score;
+	public ScoreManagerBuilder setAmountOfPositiveComments(Integer amountOfPositiveComments) {
+		this.amountOfPositiveComments = amountOfPositiveComments;
 		return this;
 	}
 
@@ -35,7 +35,7 @@ public class ScoreManagerBuilder {
 	}
 
 	public ScoreManager build() {
-		return new ScoreManager(score, comments, amountOfNegativeComments);
+		return new ScoreManager(comments, amountOfPositiveComments, amountOfNegativeComments);
 	}
 
 }

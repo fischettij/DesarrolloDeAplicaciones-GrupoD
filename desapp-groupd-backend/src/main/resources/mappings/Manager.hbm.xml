@@ -69,8 +69,6 @@
 		<subclass name="unq.tpi.desapp.model.manager.ScoreManager"
 			discriminator-value="SCORE_MANAGER">
 
-			<property name="score" type="java.lang.Integer" column="SCORE" />
-
 			<list name="commentedPoints" table="COMMENTED_POINTS" inverse="false"
 				cascade="all" lazy="true">
 				<key not-null="true">
@@ -82,6 +80,9 @@
 
 			<property name="amountOfNegativeComments" type="java.lang.Integer"
 				column="AMOUNT_OF_NEGATIVE_COMMENTS" />
+			
+			<property name="amountOfPositiveComments" type="java.lang.Integer"
+				column="AMOUNT_OF_POSITIVE_COMMENTS" />
 
 		</subclass>
 		

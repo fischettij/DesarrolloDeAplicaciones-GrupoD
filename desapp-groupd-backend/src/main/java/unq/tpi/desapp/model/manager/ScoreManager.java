@@ -12,79 +12,70 @@ public class ScoreManager extends Manager {
 
 	private static final long serialVersionUID = 5210193007832017618L;
 
-	private Integer score;
 	@JsonIgnore
 	private List<CommentedPoint> commentedPoints;
+	@JsonIgnore
+	private Integer amountOfPositiveComments;
+	@JsonIgnore
 	private Integer amountOfNegativeComments;
 
 	public ScoreManager() {
 	}
 
-	public ScoreManager(Integer score, List<CommentedPoint> comments, Integer amountOfNegativeComments) {
+	public ScoreManager(List<CommentedPoint> commentedPoints, Integer amountOfPositiveComments,
+			Integer amountOfNegativeComments) {
 		super();
-		this.score = score;
-		this.commentedPoints = comments;
+		this.commentedPoints = commentedPoints;
+		this.amountOfPositiveComments = amountOfPositiveComments;
 		this.amountOfNegativeComments = amountOfNegativeComments;
 	}
 
 	public void add(CommentedPoint commentedPoint) {
-		if (this.includesUser(commentedPoint)) {
-			this.replaceComment(commentedPoint);
-		} else {
-			if (commentedPoint.isNegative()) {
-				this.amountOfNegativeComments += 1;
-				this.executePendingComments();
-			} else {
-				this.score += 500;
+		this.removeCommentFromUser(commentedPoint.getUser());
+		commentedPoint.increasePoints(this);
+		this.commentedPoints.add(commentedPoint);
+	}
+
+	public void increasePositiveCommentedPoint() {
+		this.amountOfPositiveComments += 1;
+	}
+
+	public void increaseNegativeCommentedPoint() {
+		this.amountOfNegativeComments += 1;
+	}
+
+	public void decreasePositiveCommentedPoint() {
+		this.amountOfPositiveComments -= 1;
+	}
+
+	public void decreaseNegativeCommentedPoint() {
+		this.amountOfNegativeComments -= 1;
+	}
+
+	private void removeCommentFromUser(User user) {
+		CommentedPoint commentToRemove = null;
+		for (CommentedPoint commentedPoint : this.getCommentedPoints()) {
+			if (commentedPoint.getUser().equals(user)) {
+				commentToRemove = commentedPoint;
+				commentedPoint.decreasePoint(this);
+				break;
 			}
-			this.commentedPoints.add(commentedPoint);
 		}
-	}
-
-	private Boolean includesUser(CommentedPoint commentedPoint) {
-		return this.commentedPoints.stream().anyMatch(comment -> comment.getUser() == commentedPoint.getUser());
-	}
-
-	private void executePendingComments() {
-		if (amountOfNegativeComments == 2) {
-			this.amountOfNegativeComments = 0;
-			this.score -= 1000;
-		}
-	}
-
-	private CommentedPoint lookFor(User user) {
-		return this.commentedPoints.stream().filter(comment -> comment.getUser() == user).findFirst().get();
-	}
-
-	private void replaceComment(CommentedPoint commentedPoint) {
-		CommentedPoint comment = this.lookFor(commentedPoint.getUser());
-		if (comment.isNegative()) {
-			if (amountOfNegativeComments == 1) {
-				amountOfNegativeComments -= 1;
-			} else {
-				score += 500;
-			}
-		} else {
-			score -= 500;
-		}
-		this.commentedPoints.remove(comment);
-		this.add(commentedPoint);
+		this.getCommentedPoints().remove(commentToRemove);
 	}
 
 	public Integer getScore() {
-		return score;
+		return this.getAmountOfPositiveComments() * 500 - this.getAmountOfPositiveComments() / 2 * 1000;
 	}
 
+	@JsonIgnore
 	public Integer getAmountOfNegativeComments() {
 		return amountOfNegativeComments;
 	}
 
+	@JsonProperty
 	public void setAmountOfNegativeComments(Integer amountOfNegativeComments) {
 		this.amountOfNegativeComments = amountOfNegativeComments;
-	}
-
-	public void setScore(Integer score) {
-		this.score = score;
 	}
 
 	@JsonIgnore
@@ -99,6 +90,16 @@ public class ScoreManager extends Manager {
 
 	public String getManager() {
 		return "ScoreManager";
+	}
+
+	@JsonIgnore
+	public Integer getAmountOfPositiveComments() {
+		return amountOfPositiveComments;
+	}
+
+	@JsonProperty
+	public void setAmountOfPositiveComments(Integer amountOfPositiveComments) {
+		this.amountOfPositiveComments = amountOfPositiveComments;
 	}
 
 }

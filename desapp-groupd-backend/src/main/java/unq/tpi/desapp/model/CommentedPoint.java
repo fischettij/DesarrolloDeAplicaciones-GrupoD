@@ -1,5 +1,7 @@
 package unq.tpi.desapp.model;
 
+import unq.tpi.desapp.model.manager.ScoreManager;
+
 public class CommentedPoint extends Entity {
 
 	private static final long serialVersionUID = 2096581432717097874L;
@@ -43,6 +45,22 @@ public class CommentedPoint extends Entity {
 
 	public User getUser() {
 		return user;
+	}
+
+	public void increasePoints(ScoreManager scoreManager) {
+		if (this.isNegative) {
+			scoreManager.increaseNegativeCommentedPoint();
+		} else {
+			scoreManager.increasePositiveCommentedPoint();
+		}
+	}
+
+	public void decreasePoint(ScoreManager scoreManager) {
+		if (this.isNegative) {
+			scoreManager.decreaseNegativeCommentedPoint();
+		} else {
+			scoreManager.decreasePositiveCommentedPoint();
+		}
 	}
 
 }
