@@ -16,6 +16,7 @@ import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.model.request.RequestRoute;
+import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.services.UserService;
 
 @Path("/users")
@@ -136,7 +137,14 @@ public class UserRest {
 			return Response.ok().build();
 		}catch (Exception e) {
 			return Response.serverError().build();
-		}		
+		}
+	}
+	
+	@GET
+	@Path("/profile/{id}")
+	@Produces("application/json")
+	public UserProfile getProfile(@PathParam("id") final Long id) {
+		return getUserService().getUserProfile(id);
 	}
 	
 }

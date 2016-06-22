@@ -2,9 +2,8 @@
 
 angular.module('desappGroupdFrontendApp')
 .controller('route_ctrl', [ '$http', '$scope', '$window', '$cookies',
-  '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
+  '$locale', '$filter', 'baseUrl', function($http, $scope, $window, $cookies, $locale, $filter, baseUrl) {
 
-  $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
   $scope.user = $cookies.get('user');
   $scope.listOfRoutes = [];
   $scope.searchResult = [];
@@ -70,7 +69,7 @@ angular.module('desappGroupdFrontendApp')
 ///// End - Google Maps
 
 $scope.myRoutes = function(page){
-  $http.get( $scope.baseUrl + '/users/'+ $scope.user + '/routes/' + page).success(function(result) {
+  $http.get( baseUrl + '/users/'+ $scope.user + '/routes/' + page).success(function(result) {
     $scope.listOfRoutes = result;
   })
 };
@@ -83,7 +82,7 @@ $scope.cleanLocations = function(){
 };
 
 $scope.createRoute = function(newRoute){
-  $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newroute', {
+  $http.post( baseUrl + '/users/'+ $scope.user + '/newroute', {
     startPoint: newRoute.startingPoint,
     endPoint: newRoute.endingPoint,
     startLatitud: $scope.startLocationLat,
@@ -110,7 +109,7 @@ $scope.myVehicles = function(){
 };
 
 $scope.getVehicles = function(){
-  $http.get( $scope.baseUrl + '/users/' + $scope.user + '/vehicles/1').success(function(result){
+  $http.get( baseUrl + '/users/' + $scope.user + '/vehicles/1').success(function(result){
     $scope.vehicles = result;
   });
 };
@@ -129,7 +128,7 @@ $scope.searchForRoute = function(route){
         $scope.startLocationLng = response.routes[0].legs[0].start_location.lng();
         $scope.endLocationLat = response.routes[0].legs[0].end_location.lat();
         $scope.endLocationLng = response.routes[0].legs[0].end_location.lng();
-        $http.post( $scope.baseUrl + '/routes/lookfor', {
+        $http.post( baseUrl + '/routes/lookfor', {
           startPoint: route.startingPoint,
           endPoint: route.endingPoint,
           startLatitud: $scope.startLocationLat,
@@ -183,7 +182,7 @@ $scope.request = function(routeIndex){
 };
 
 $scope.aceptedRequestOfRoute = function() {
- $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/suscribeRoute/' + $scope.requestRoute.owner.id + '/from/' + $scope.requestRoute.id).success(function() {
+ $http.post( baseUrl + '/users/'+ $scope.user + '/suscribeRoute/' + $scope.requestRoute.owner.id + '/from/' + $scope.requestRoute.id).success(function() {
     $scope.showRouteSuccess = true;
   }).error(function() {
     $scope.showRouteError = true;
@@ -200,7 +199,7 @@ $scope.initRoute();
 $scope.subscriptionRequests = [];
 
 $scope.openSubscriptionRequest = function(route){
-  $http.get( $scope.baseUrl + '/routes/subscriptionrequests/' + route.id).success(function(result){
+  $http.get( baseUrl + '/routes/subscriptionrequests/' + route.id).success(function(result){
     $scope.subscriptionRequests = result;
   });
 };

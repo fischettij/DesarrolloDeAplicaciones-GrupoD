@@ -2,9 +2,8 @@
 
 angular.module('desappGroupdFrontendApp')
 .controller('vehicle_ctrl', [ '$http', '$scope', '$window', '$cookies',
-  '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
+  '$locale', '$filter' , 'baseUrl', function($http, $scope, $window, $cookies, $locale, $filter, baseUrl) {
 
-    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
     $scope.user = $cookies.get('user');
     $scope.listOfVehicles = [];
 
@@ -12,14 +11,14 @@ angular.module('desappGroupdFrontendApp')
     $scope.showVehicleError = false;
 
     $scope.vehicles = function(page){
-      $http.get( $scope.baseUrl + '/users/'+ $scope.user + '/vehicles/' + page).success(function(result) {
+      $http.get( baseUrl + '/users/'+ $scope.user + '/vehicles/' + page).success(function(result) {
         $scope.listOfVehicles = result;
       })
     };
 
 
     $scope.createVehicle = function(newVehicle){
-      $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newvehicle', {
+      $http.post( baseUrl + '/users/'+ $scope.user + '/newvehicle', {
         model : newVehicle.model,
         maxNumberPassangers : newVehicle.maxNumberPassanger,
         registrationNumber : newVehicle.registrationNumber

@@ -1,11 +1,10 @@
 'use strict';
 
 angular.module('desappGroupdFrontendApp')
-.controller('user_ctrl', [ '$http', '$scope', '$window', '$cookies',
-  '$locale', '$filter', '$translate','utils', 'baseUrl', function($http, $scope, $window, $cookies, $locale, $filter, $translate,utils, baseUrl) {
+.controller('navigation_ctrl', [ '$http', '$scope', '$window', '$cookies',
+  '$locale', '$filter', '$translate','utils' ,'baseUrl' , function($http, $scope, $window, $cookies, $locale, $filter, $translate,utils,baseUrl) {
 
   $scope.user = {managers:[]};
-  $scope.searchUserContent = '';
   $scope.foundUsers = [];
   $scope.utils = utils;
 
@@ -76,29 +75,26 @@ angular.module('desappGroupdFrontendApp')
     }
   };
 
-  $scope.getContainer = function(){
-    //return 'views/' + $scope.activeManager +'.html';
-    return ;
-  };
-
   $scope.getScore = function(){
     return $filter('lookForManager')('ScoreManager', $scope.user.managers).score;                  
   };
 
   $scope.searchUser = function(serchName){
-    $scope.searchUserContent = '';
     $scope.findUsersLike(serchName);
-    $scope.goTo('searchUser');
+    utils.goTo('searchUser');
   };
 
   $scope.findUsersLike = function(userName){
     $http.get(baseUrl + '/users/like/' + userName).success(function(userList){
       $scope.foundUsers = userList;
-      console.log(userList);
     }).error(function(){
       $window.location.href = '/404.html';
     });
   };
 
+  $scope.goToUser = function(user){
+    $cookies.put('userProfileId',user.id);
+    utils.goTo('userProfile')
+  }
 
 } ]);

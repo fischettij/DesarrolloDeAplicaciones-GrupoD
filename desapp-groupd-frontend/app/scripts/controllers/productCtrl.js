@@ -2,9 +2,8 @@
 
 angular.module('desappGroupdFrontendApp')
 .controller('product_ctrl', [ '$http', '$scope', '$window', '$cookies',
-  '$locale', '$filter', function($http, $scope, $window, $cookies, $locale, $filter) {
+  '$locale', '$filter', 'baseUrl', function($http, $scope, $window, $cookies, $locale, $filter, baseUrl) {
 
-    $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
     $scope.user = $cookies.get('user');
     $scope.listOfProducts = [];
     $scope.showProductSuccess = false;

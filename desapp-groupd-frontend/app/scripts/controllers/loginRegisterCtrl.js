@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$scope', '$window', '$cookies', 
-  '$locale', '$translate', function($http, $scope, $window, $cookies, $locale, $translate) {
-
-  $scope.baseUrl = "http://localhost:8080/desapp-groupd-backend/rest";
+  '$locale', '$translate' , 'baseUrl', function($http, $scope, $window, $cookies, $locale, $translate,baseUrl) {
+  
 
   // Register
 
@@ -12,7 +11,7 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
   $scope.registerUser = {};
 
   $scope.register = function(user) {
-    $http.post( $scope.baseUrl + '/register/newuser', {
+    $http.post( baseUrl + '/register/newuser', {
       name : user.name,
       email : user.email,
       password : user.password
@@ -33,7 +32,7 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
   $scope.showLoginError = false;
 
   $scope.login = function(user) {
-    $http.post( $scope.baseUrl + '/login/connect', {
+    $http.post( baseUrl + '/login/connect', {
       email : user.email,
       password : user.password,
       name : ""
@@ -68,7 +67,7 @@ angular.module('desappGroupdFrontendApp').controller('main_ctrl', [ '$http', '$s
 
   $scope.onLoginSuccess = function(googleUser) {
     var profile = googleUser.getBasicProfile();
-    $http.post( $scope.baseUrl + '/login/googleconnect', {
+    $http.post( baseUrl + '/login/googleconnect', {
       email : profile.getEmail(),
       password : "",
       name : profile.getName()

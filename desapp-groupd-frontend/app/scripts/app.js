@@ -29,6 +29,26 @@
   }
 })
 
+desappGroupdFrontendApp.factory('utils',function(){
+
+  var utils = {};
+  var activeWindow = 'dashboard'
+
+  utils.getActiveWindow = function(){
+    return 'views/' + activeWindow +'.html';
+  }
+
+  utils.goTo = function(view){
+    activeWindow = view;
+  }
+
+  return utils
+})
+
+desappGroupdFrontendApp.factory('baseUrl',function(){
+  return "http://localhost:8080/desapp-groupd-backend/rest";
+})
+
  desappGroupdFrontendApp.config(['$translateProvider', function ($translateProvider) {
   
   $translateProvider.useSanitizeValueStrategy(null);
@@ -99,6 +119,7 @@
     SUBSCRIPTION_STATE: 'Estado de la subscripción',
     Pending: 'Pendiente',
     Accepted: 'Aceptado',
+    SCORE: 'Puntuación'
   });
 
 $translateProvider.translations('en', {
@@ -167,7 +188,9 @@ $translateProvider.translations('en', {
   SUBSCRIPTION_STATE: 'Subscription State',
   Pending: 'Pending',
   Accepted: 'Accepted',
+  SCORE: 'Score'
 });
 
 $translateProvider.preferredLanguage('es');
+
 }]);

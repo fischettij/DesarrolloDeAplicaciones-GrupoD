@@ -20,6 +20,7 @@ import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
 import unq.tpi.desapp.model.request.RequestRoute;
+import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
 import unq.tpi.desapp.repositories.UserRepository;
 
@@ -131,6 +132,11 @@ public class UserService implements Serializable {
 		User user = this.getRepository().findById(id);
 		user.managerImplementing(ProductManager.class).remove(product.getId());
 		this.getRepository().saveOrUpdate(user);
+	}
+	
+	@Transactional
+	public UserProfile getUserProfile(Long id){
+		return new UserProfile(getUser(id));
 	}
 
 }

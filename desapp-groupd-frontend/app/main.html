@@ -8,14 +8,14 @@
   <title>SubiQueTeLLEVO</title>
 </head>
 
-<body class="skin-blue sidebar-mini sidebar-open" ng-app="desappGroupdFrontendApp" ng-controller="user_ctrl">
-  <div class="wrapper">
+<body class="skin-blue sidebar-mini sidebar-open" ng-app="desappGroupdFrontendApp">
+  <div class="wrapper" ng-controller="navigation_ctrl">
     
     <ng-include src="'views/header.html'"></ng-include>
 
     <ng-include src="'views/sidebar.html'"></ng-include>
 
-    <ng-include src="getContainer()"></ng-include>
+    <ng-include src="utils.getActiveWindow()"></ng-include>
 
     <footer class="main-footer"></footer>
 
@@ -73,9 +73,10 @@
     <script src="scripts/controllers/user.js"></script>
     <script src="scripts/controllers/vehicleCtrl.js"></script>
     <script src="scripts/controllers/routeCtrl.js"></script>
-    <script src="scripts/controllers/productCtrl.js"></script>    
+    <script src="scripts/controllers/productCtrl.js"></script>
+    <script src="scripts/controllers/navigationCtrl.js"></script>
+    <script src="scripts/controllers/userProfileCtrl.js"></script>
     <!-- endbuild -->
-
 
   </body>
   </html>
