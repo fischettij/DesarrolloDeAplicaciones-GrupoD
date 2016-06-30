@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.RouteBuilder;
 import unq.tpi.desapp.exception.NotFoundException;
+import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
@@ -18,7 +19,9 @@ import unq.tpi.desapp.model.inscription.InscriptionPending;
 import unq.tpi.desapp.model.manager.InscriptionManager;
 import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
+import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
+import unq.tpi.desapp.model.request.CommentedPointForUser;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
@@ -137,6 +140,16 @@ public class UserService implements Serializable {
 	@Transactional
 	public UserProfile getUserProfile(Long id){
 		return new UserProfile(getUser(id));
+	}
+	
+	
+	@Transactional
+	public void rateUserFrom(long id, CommentedPointForUser commentedPointForUser){
+		User guestUser = getUser(id);
+		User userCommented = getUser(commentedPointForUser.getCommentedUser());		
+		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(), commentedPointForUser.getComment());
+		
+		userCommented.managerImplementing(ScoreManager.class).add(commentedPoint);
 	}
 
 }

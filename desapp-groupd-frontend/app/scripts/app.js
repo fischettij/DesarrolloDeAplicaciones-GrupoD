@@ -119,7 +119,10 @@ desappGroupdFrontendApp.factory('baseUrl',function(){
     SUBSCRIPTION_STATE: 'Estado de la subscripción',
     Pending: 'Pendiente',
     Accepted: 'Aceptado',
-    SCORE: 'Puntuación'
+    SCORE: 'Puntuación',
+    NEGATIVE: 'Negativo',
+    POSITIVE: 'Positivo',
+    COMMENT: 'Comentario'
   });
 
 $translateProvider.translations('en', {
@@ -188,7 +191,10 @@ $translateProvider.translations('en', {
   SUBSCRIPTION_STATE: 'Subscription State',
   Pending: 'Pending',
   Accepted: 'Accepted',
-  SCORE: 'Score'
+  SCORE: 'Score',
+  NEGATIVE: 'Negative',
+  POSITIVE: 'Positive',
+  COMMENT: 'Comment'
 });
 
 $translateProvider.preferredLanguage('es');

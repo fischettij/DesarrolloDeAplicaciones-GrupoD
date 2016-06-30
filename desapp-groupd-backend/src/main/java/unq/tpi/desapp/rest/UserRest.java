@@ -11,10 +11,12 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.request.CommentedPointForUser;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.services.UserService;
@@ -145,6 +147,19 @@ public class UserRest {
 	@Produces("application/json")
 	public UserProfile getProfile(@PathParam("id") final Long id) {
 		return getUserService().getUserProfile(id);
+	}
+	
+	@POST
+	@Path("/{id}/rateUser")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response rateUser(@PathParam("id") final Long id, CommentedPointForUser commentedPointForUser) {
+		try {			
+			getUserService().rateUserFrom(id,commentedPointForUser);			
+			return Response.ok().build();
+		}catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 	
 }
