@@ -1,5 +1,6 @@
 package unq.tpi.desapp.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -16,7 +17,7 @@ import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
-import unq.tpi.desapp.model.request.CommentedPointForUser;
+import unq.tpi.desapp.model.request.CommentedPointRequest;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.services.UserService;
@@ -150,16 +151,28 @@ public class UserRest {
 	}
 	
 	@POST
-	@Path("/{id}/rateUser")
+	@Path("/rate/{id}")
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response rateUser(@PathParam("id") final Long id, CommentedPointForUser commentedPointForUser) {
+	public Response rateUser(@PathParam("id") final Long id, CommentedPointRequest commentedPointWithId) {
 		try {			
-			getUserService().rateUserFrom(id,commentedPointForUser);			
+			getUserService().rateUser(id,commentedPointWithId);			
 			return Response.ok().build();
 		}catch (Exception e) {
 			return Response.serverError().build();
 		}
+	}
+	
+	@GET
+	@Path("/{id}/commentedPoints/{page}")
+	@Produces("application/json")
+	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		List<CommentedPoint> commentedPoints = getUserService().getCommentedPoints(id, page, 20);
+		List<CommentedPointRequest> returnCollection = new ArrayList<CommentedPointRequest>();
+		for (CommentedPoint commentedPoint : commentedPoints) {
+			returnCollection.add(new CommentedPointRequest(commentedPoint));
+		}		
+		return returnCollection;
 	}
 	
 }

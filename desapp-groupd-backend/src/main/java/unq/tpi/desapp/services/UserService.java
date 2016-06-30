@@ -21,7 +21,7 @@ import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
-import unq.tpi.desapp.model.request.CommentedPointForUser;
+import unq.tpi.desapp.model.request.CommentedPointRequest;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
@@ -144,12 +144,17 @@ public class UserService implements Serializable {
 	
 	
 	@Transactional
-	public void rateUserFrom(long id, CommentedPointForUser commentedPointForUser){
-		User guestUser = getUser(id);
-		User userCommented = getUser(commentedPointForUser.getCommentedUser());		
-		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(), commentedPointForUser.getComment());
-		
+	public void rateUser(long id, CommentedPointRequest commentedPointForUser){
+		User userCommented = getUser(id);
+		User guestUser  = getUser(commentedPointForUser.getUserId());		
+		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(), commentedPointForUser.getComment());		
 		userCommented.managerImplementing(ScoreManager.class).add(commentedPoint);
+	}
+	
+	@Transactional
+	public List<CommentedPoint> getCommentedPoints(Long id, Integer page, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<CommentedPoint>(user.managerImplementing(ScoreManager.class).getCommentedPoints());
 	}
 
 }

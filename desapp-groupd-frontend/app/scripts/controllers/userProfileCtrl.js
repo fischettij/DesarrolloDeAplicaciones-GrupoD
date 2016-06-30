@@ -6,33 +6,55 @@ angular.module('desappGroupdFrontendApp')
 
   $scope.logedUser = $cookies.get('user');
   $scope.userProfile;
+  $scope.userProfileId;
+  $scope.commentedPoints;
 
   $scope.requestUserProfile = function(){
-    var userProfileId = $cookies.get('userProfileId');
-    $cookies.remove('userProfileId');
 
-    $http.get( baseUrl + '/users/profile/'+ userProfileId).success(function(result) { 
+    $http.get( baseUrl + '/users/profile/'+ $scope.userProfileId).success(function(result) { 
       $scope.userProfile = result;
-      $scope.userProfile.id = userProfileId;
+    })
+  }
+
+  $scope.requestCommentedPoints = function(){
+    $http.get( baseUrl + '/users/'+ $scope.userProfileId + '/commentedPoints/1').success(function(result) { 
+      $scope.commentedPoints = result;      
     })
   }
 
   $scope.init = function(){
-    $scope.userProfile = $scope.requestUserProfile()
+    $scope.userProfileId = $cookies.get('userProfileId');
+    $cookies.remove('userProfileId');
+
+    $scope.userProfile = $scope.requestUserProfile();
+    $scope.commentedPoints = $scope.requestCommentedPoints();
   };
 
   $scope.rateUser = function(commentedPoint){
     var comment;
     if (commentedPoint.comment === undefined){comment = ""}else{comment = commentedPoint.comment};
 
-    $http.post( baseUrl + '/users/' + $scope.logedUser + '/rateUser', {
-        commentedUser : $scope.userProfile.id,
+    $http.post( baseUrl + '/users/rate/' + $scope.userProfile.id , {
+        userId : $scope.logedUser,
+        userName: "",
         isNegative : commentedPoint.isNegative,
         comment : comment
     }).success(function(){
       
     })
   }
+
+  $scope.getCommentedPoints = function(){
+    return $scope.commentedPoints;
+  }
+
+  $scope.iconForCommentedPoint = function(commentedPoint){
+    if (commentedPoint.isNegative){
+      return 'fa fa-thumbs-o-down';
+    }else{
+      return 'fa fa-thumbs-o-up';
+    }
+  };
 
   $scope.init();
 

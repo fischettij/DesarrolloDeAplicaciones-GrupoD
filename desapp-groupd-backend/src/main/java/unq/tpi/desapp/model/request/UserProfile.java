@@ -5,11 +5,13 @@ import unq.tpi.desapp.model.manager.ScoreManager;
 
 public class UserProfile {
 
+	public long id;
 	public String name;
 	public Integer score;
 	
 	public UserProfile(User user){
-		this.name =user.getName();
+		this.id = user.getId();
+		this.name = user.getName();
 		this.score = user.managerImplementing(ScoreManager.class).getScore();
 	}	
 }
