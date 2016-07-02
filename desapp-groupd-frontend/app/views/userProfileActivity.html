@@ -1,13 +1,14 @@
 <div class="nav-tabs-custom">
   <ul class="nav nav-tabs">
     <li class=""><a aria-expanded="false" href="#points" data-toggle="tab">{{ "POINTS" | translate }}</a></li>
+    <li class=""><a aria-expanded="false" href="#comments" data-toggle="tab">{{ "POINTS" | translate }}</a></li>
   </ul>
   <div class="tab-content">
     <div class="tab-pane" id="points">
       <!-- The timeline -->
       <ul class="timeline timeline-inverse">
         
-        <li ng-repeat="commentedPoint in getCommentedPoints()">
+        <li class="active" ng-repeat="commentedPoint in getCommentedPoints()">
 
           <i class={{iconForCommentedPoint(commentedPoint)}}></i>
 
@@ -28,6 +29,37 @@
       </ul>
     </div>
     <!-- /.tab-pane -->
+
+    <div class="tab-pane" id="comments">
+      <form class="form-horizontal">
+        <div class="form-group margin-bottom-none">
+          <div class="col-sm-9">
+            <input class="form-control input-sm" placeholder="Response" ng-model="comment.message">
+          </div>
+          <div class="col-sm-3">
+            <button type="submit" class="btn btn-danger pull-right btn-block btn-sm" ng-click="newComment(comment)">{{ "COMMENT" | translate }}</button>
+          </div>
+        </div>
+      </form>
+      <!-- /.tab-pane from comment -->  
+      <div class="" ng-repeat="comment in getComments()">
+        <div class="post">
+          <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="images/yeoman.png" alt="user image">
+                <span class="username">
+                  <a href="#">{{comment.userName}}</a>
+                  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+                </span>
+          </div>
+          <!-- /.user-block -->
+          <p>
+            {{comment.message}}
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.tab-pane comments -->
   </div>
   <!-- /.tab-content -->
 </div>

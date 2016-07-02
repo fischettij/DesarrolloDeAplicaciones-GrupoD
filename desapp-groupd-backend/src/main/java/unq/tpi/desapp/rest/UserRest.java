@@ -17,6 +17,7 @@ import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.request.CommentRequest;
 import unq.tpi.desapp.model.request.CommentedPointRequest;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
@@ -173,6 +174,26 @@ public class UserRest {
 			returnCollection.add(new CommentedPointRequest(commentedPoint));
 		}		
 		return returnCollection;
+	}
+	
+	@POST
+	@Path("/comment/{id}")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response commentUser(@PathParam("id") final Long id, CommentRequest commentRequest) {
+		try {			
+			getUserService().commentUser(id,commentRequest);			
+			return Response.ok().build();
+		}catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+	
+	@GET
+	@Path("/{id}/comments/{page}")
+	@Produces("application/json")
+	public List<CommentRequest> getComments(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		return getUserService().getCommentRequests(id, page, 20);
 	}
 	
 }

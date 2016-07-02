@@ -22,12 +22,25 @@ angular.module('desappGroupdFrontendApp')
     })
   }
 
+  $scope.updateCommentedPoints = function(){
+    $http.get( baseUrl + '/users/'+ $scope.userProfileId + '/commentedPoints/1').success(function(result) { 
+      $scope.commentedPoints = result;      
+    })
+  }
+
+  $scope.updateComments = function(){
+    $http.get( baseUrl + '/users/'+ $scope.userProfileId + '/comments/1').success(function(result) { 
+      $scope.comments = result;      
+    }) 
+  }
+
   $scope.init = function(){
     $scope.userProfileId = $cookies.get('userProfileId');
     $cookies.remove('userProfileId');
 
     $scope.userProfile = $scope.requestUserProfile();
-    $scope.commentedPoints = $scope.requestCommentedPoints();
+    $scope.updateCommentedPoints();
+    $scope.updateComments;
   };
 
   $scope.rateUser = function(commentedPoint){
@@ -55,6 +68,21 @@ angular.module('desappGroupdFrontendApp')
       return 'fa fa-thumbs-o-up';
     }
   };
+
+  $scope.newComment = function(newComment){
+    $http.post( baseUrl + '/users/comment/' + $scope.userProfile.id , {
+        userId : $scope.logedUser,
+        userName: "",
+        message: newComment.message,
+        date: null,
+    }).success(function(){
+      $scope.updateComments();
+    })
+  }
+
+  $scope.getComments = function(){
+    return $scope.comments;
+  }
 
   $scope.init();
 

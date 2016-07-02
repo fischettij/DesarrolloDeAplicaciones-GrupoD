@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
 import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.RouteBuilder;
 import unq.tpi.desapp.exception.NotFoundException;
+import unq.tpi.desapp.model.Comment;
 import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
@@ -16,11 +18,13 @@ import unq.tpi.desapp.model.SubscriptionRequest;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.model.inscription.InscriptionPending;
+import unq.tpi.desapp.model.manager.CommentManager;
 import unq.tpi.desapp.model.manager.InscriptionManager;
 import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
+import unq.tpi.desapp.model.request.CommentRequest;
 import unq.tpi.desapp.model.request.CommentedPointRequest;
 import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.model.request.UserProfile;
@@ -149,6 +153,7 @@ public class UserService implements Serializable {
 		User guestUser  = getUser(commentedPointForUser.getUserId());		
 		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(), commentedPointForUser.getComment());		
 		userCommented.managerImplementing(ScoreManager.class).add(commentedPoint);
+		this.update(userCommented);
 	}
 	
 	@Transactional
@@ -157,4 +162,25 @@ public class UserService implements Serializable {
 		return new ArrayList<CommentedPoint>(user.managerImplementing(ScoreManager.class).getCommentedPoints());
 	}
 
+	@Transactional
+	public void commentUser(long id, CommentRequest commentRequest){
+		User userCommented = getUser(id);
+		User guestUser  = getUser(commentRequest.getUserId());
+		Comment comment = new Comment(guestUser, commentRequest.getMessage(), DateTime.now());
+		userCommented.managerImplementing(CommentManager.class).add(comment);
+		this.update(userCommented);
+	}
+
+	public List<CommentRequest> getCommentRequests(Long id, Integer page, int i) {
+		User user = this.getRepository().findById(id);
+		List<Comment> comments = new ArrayList<Comment>(user.managerImplementing(CommentManager.class).getComments());
+		
+		List<CommentRequest> returnCollection = new ArrayList<CommentRequest>();
+		
+		for (Comment comment : comments) {
+			returnCollection.add(new CommentRequest(comment));
+		}		
+		return returnCollection;
+	}
+	
 }
