@@ -140,22 +140,22 @@ public class UserService implements Serializable {
 		user.managerImplementing(ProductManager.class).remove(product.getId());
 		this.getRepository().saveOrUpdate(user);
 	}
-	
+
 	@Transactional
-	public UserProfile getUserProfile(Long id){
+	public UserProfile getUserProfile(Long id) {
 		return new UserProfile(getUser(id));
 	}
-	
-	
+
 	@Transactional
-	public void rateUser(long id, CommentedPointRequest commentedPointForUser){
+	public void rateUser(long id, CommentedPointRequest commentedPointForUser) {
 		User userCommented = getUser(id);
-		User guestUser  = getUser(commentedPointForUser.getUserId());		
-		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(), commentedPointForUser.getComment());		
+		User guestUser = getUser(commentedPointForUser.getUserId());
+		CommentedPoint commentedPoint = new CommentedPoint(guestUser, commentedPointForUser.getIsNegative(),
+				commentedPointForUser.getComment());
 		userCommented.managerImplementing(ScoreManager.class).add(commentedPoint);
 		this.update(userCommented);
 	}
-	
+
 	@Transactional
 	public List<CommentedPoint> getCommentedPoints(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
@@ -163,24 +163,38 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public void commentUser(long id, CommentRequest commentRequest){
+	public void commentUser(long id, CommentRequest commentRequest) {
 		User userCommented = getUser(id);
-		User guestUser  = getUser(commentRequest.getUserId());
+		User guestUser = getUser(commentRequest.getUserId());
 		Comment comment = new Comment(guestUser, commentRequest.getMessage(), DateTime.now());
 		userCommented.managerImplementing(CommentManager.class).add(comment);
 		this.update(userCommented);
 	}
 
+	@Transactional
 	public List<CommentRequest> getCommentRequests(Long id, Integer page, int i) {
 		User user = this.getRepository().findById(id);
 		List<Comment> comments = new ArrayList<Comment>(user.managerImplementing(CommentManager.class).getComments());
-		
+
 		List<CommentRequest> returnCollection = new ArrayList<CommentRequest>();
-		
+
 		for (Comment comment : comments) {
 			returnCollection.add(new CommentRequest(comment));
-		}		
+		}
 		return returnCollection;
 	}
-	
+
+	@Transactional
+	public void denyRequest(Long id, Long routeID, Long subscriptionID) throws NotFoundException {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(RouteManager.class).find(routeID).canceledSubscriptionRequest(subscriptionID);
+		this.update(user);
+	}
+
+	@Transactional
+	public void acceptedRequest(Long id, Long routeID, Long subscriptionID) throws NotFoundException {
+		User user = this.getRepository().findById(id);
+		user.managerImplementing(RouteManager.class).find(routeID).acceptedSubscriptionRequest(subscriptionID);
+		this.update(user);
+	}
 }

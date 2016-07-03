@@ -63,8 +63,8 @@
                 <td>{{ subscription.candidate.name }}</td>
                 <td>{{ subscription.subscriptionState.name | translate }}</td>
                 <th>
-                  <button class="btn btn-success fa fa-check" ng-click="acceptedRequest(subscription.id)"></button>
-                  <button class="btn btn-danger fa fa-close" ng-click="denyRequest(subscription.id)"></button>
+                  <button class="btn btn-success fa fa-check" ng-click="acceptedRequest(subscription.id)" data-dismiss="modal"></button>
+                  <button class="btn btn-danger fa fa-close" ng-click="denyRequest(subscription.id)" data-dismiss="modal"></button>
                 </th>
               </tr>
             </tbody>

@@ -193,14 +193,16 @@ $scope.initRoute = function(){
   $scope.myRoutes(1);
 };
 
-$scope.initRoute();
-
 // Subscription Request
 $scope.subscriptionRequests = [];
+$scope.routeID = 0;
+
+$scope.initRoute();
 
 $scope.openSubscriptionRequest = function(route){
   $http.get( baseUrl + '/routes/subscriptionrequests/' + route.id).success(function(result){
     $scope.subscriptionRequests = result;
+    $scope.routeID = route.id;
   });
 };
 
@@ -208,6 +210,13 @@ $scope.getSubscriptionRequest = function(){
   return $scope.subscriptionRequests;
 };
 
+$scope.acceptedRequest = function(subscriptionID){
+  $http.post( baseUrl + '/users/'+ $scope.user + '/route/' +  $scope.routeID  + '/acceptedRequest/' + subscriptionID).success(function(result){});
+}
+
+$scope.denyRequest = function(subscriptionID){
+  $http.post( baseUrl + '/users/'+ $scope.user + '/route/' +  $scope.routeID + '/denyRequest/' + subscriptionID).success(function(result){});
+}
 
 
 } ]);

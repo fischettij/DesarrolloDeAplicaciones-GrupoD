@@ -140,4 +140,22 @@ public class Route extends Entity {
 		this.endPoint = endPoint;
 	}
 
+	public void canceledSubscriptionRequest(Long subscriptionID) {
+		for (SubscriptionRequest subscription : this.getSubscriptionRequests()) {
+			if (subscription.getId().equals(subscriptionID)) {
+				this.canceledSubscriptionRequest(subscription);
+				return;
+			}
+		}
+	}
+
+	public void acceptedSubscriptionRequest(Long subscriptionID) {
+		for (SubscriptionRequest subscription : this.getSubscriptionRequests()) {
+			if (subscription.getId().equals(subscriptionID)) {
+				this.acceptedSubscriptionRequest(subscription);
+				return;
+			}
+		}
+	}
+
 }

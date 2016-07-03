@@ -124,13 +124,13 @@ public class UserRest {
 	public Response subscribeToRoute(@PathParam("id") final Long id, @PathParam("idRoute") final Long idRoute,
 			@PathParam("idOwner") final Long idOwner) {
 		try {
-			getUserService().subscribeToRoute(id, idRoute,idOwner);
+			getUserService().subscribeToRoute(id, idRoute, idOwner);
 			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@POST
 	@Path("/{id}/removeproduct")
 	@Produces("application/json")
@@ -139,61 +139,88 @@ public class UserRest {
 		try {
 			getUserService().removeProduct(id, product);
 			return Response.ok().build();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/profile/{id}")
 	@Produces("application/json")
 	public UserProfile getProfile(@PathParam("id") final Long id) {
 		return getUserService().getUserProfile(id);
 	}
-	
+
 	@POST
 	@Path("/rate/{id}")
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response rateUser(@PathParam("id") final Long id, CommentedPointRequest commentedPointWithId) {
-		try {			
-			getUserService().rateUser(id,commentedPointWithId);			
+		try {
+			getUserService().rateUser(id, commentedPointWithId);
 			return Response.ok().build();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/{id}/commentedPoints/{page}")
 	@Produces("application/json")
-	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id,
+			@PathParam("page") final Integer page) {
 		List<CommentedPoint> commentedPoints = getUserService().getCommentedPoints(id, page, 20);
 		List<CommentedPointRequest> returnCollection = new ArrayList<CommentedPointRequest>();
 		for (CommentedPoint commentedPoint : commentedPoints) {
 			returnCollection.add(new CommentedPointRequest(commentedPoint));
-		}		
+		}
 		return returnCollection;
 	}
-	
+
 	@POST
 	@Path("/comment/{id}")
 	@Produces("application/json")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response commentUser(@PathParam("id") final Long id, CommentRequest commentRequest) {
-		try {			
-			getUserService().commentUser(id,commentRequest);			
+		try {
+			getUserService().commentUser(id, commentRequest);
 			return Response.ok().build();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			return Response.serverError().build();
 		}
 	}
-	
+
 	@GET
 	@Path("/{id}/comments/{page}")
 	@Produces("application/json")
 	public List<CommentRequest> getComments(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getCommentRequests(id, page, 20);
 	}
-	
+
+	@POST
+	@Path("{id}/route/{routeID}/denyRequest/{subscriptionID}")
+	@Produces("application/json")
+	public Response denyRequest(@PathParam("id") final Long id, @PathParam("routeID") final Long routeID,
+			@PathParam("subscriptionID") final Long subscriptionID) {
+		try {
+			getUserService().denyRequest(id, routeID, subscriptionID);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+
+	@POST
+	@Path("{id}/route/{routeID}/acceptedRequest/{subscriptionID}")
+	@Produces("application/json")
+	public Response acceptedRequest(@PathParam("id") final Long id, @PathParam("routeID") final Long routeID,
+			@PathParam("subscriptionID") final Long subscriptionID) {
+		try {
+			getUserService().acceptedRequest(id, routeID, subscriptionID);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+
 }
