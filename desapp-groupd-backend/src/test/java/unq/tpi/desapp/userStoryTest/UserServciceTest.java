@@ -51,7 +51,7 @@ public class UserServciceTest {
 		user = userService.getRepository().findAll().get(0);
 		userService.addNewVehicle(user.getId(), vehicle);
 		
-		vehicle = userService.getVehicles(user.getId(), 1, 15).get(0);
+		vehicle = userService.getVehicles(user.getId(), 0, 15).get(0);
 		
 		Route route = new RouteBuilder()
 				.setVehicle(vehicle)
