@@ -1,18 +1,40 @@
 <div class="dataTables_wrapper form-inline dt-bootstrap">
-	<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
-		<thead>
-			<tr role="row">
-				<th colspan="1" rowspan="1" tabindex="0">{{ "MODEL" | translate }}</th>
-				<th colspan="1" rowspan="1" tabindex="0">{{ "REGISTRATION_NUMBER" | translate }}</th>
-				<th colspan="1" rowspan="1" tabindex="0">{{ "MAX_NUMBER_PASSANGER" | translate }}</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="vehicle in getVehicles()">
-				<td>{{ vehicle.model }}</td>
-				<td>{{ vehicle.registrationNumber }}</td>
-				<td>{{ vehicle.maxNumberPassangers }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="row">
+		<div class="col-sm-6"></div>
+		<div class="col-sm-6"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-hover dataTable" role="grid">
+				<thead>
+					<tr role="row">
+						<th colspan="1" rowspan="1" tabindex="0">{{ "MODEL" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "REGISTRATION_NUMBER" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "MAX_NUMBER_PASSANGER" | translate }}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="vehicle in getVehicles()">
+						<td>{{ vehicle.model }}</td>
+						<td>{{ vehicle.registrationNumber }}</td>
+						<td>{{ vehicle.maxNumberPassangers }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-7">
+			<div class="dataTables_paginate paging_simple_numbers">
+				<ul class="pagination">
+					<li ng-class="{'disabled': pageIs(0)}"><a href="#"  ng-click="!pageIs(0) && vehiclesPrevious()" ><span aria-hidden="true">«</span></a></li>
+					<li ng-repeat="number in howMuchVehicles()" class="paginate_button" ng-class="{'active': pageIs(number)}" ng-click="vehicles(number)">
+						<a>{{number + 1}}</a>
+					</li>
+					<li ng-class="{'disabled': pageIsMax()}"><a href="#" ng-click="!pageIsMax() && vehiclesNext()"><span aria-hidden="true">»</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </div>

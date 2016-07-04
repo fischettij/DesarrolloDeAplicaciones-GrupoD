@@ -108,8 +108,8 @@ $scope.myVehicles = function(){
   return $scope.vehicles;
 };
 
-$scope.getVehicles = function(){
-  $http.get( baseUrl + '/users/' + $scope.user + '/vehicles/1').success(function(result){
+$scope.getVehicles = function(page){
+  $http.get( baseUrl + '/users/' + $scope.user + '/vehicles/' + page).success(function(result){
     $scope.vehicles = result;
   });
 };

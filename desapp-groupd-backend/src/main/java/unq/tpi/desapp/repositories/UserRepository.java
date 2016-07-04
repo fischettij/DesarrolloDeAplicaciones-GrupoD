@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.model.Vehicle;
 
 public class UserRepository extends HibernateGenericDAO<User> implements GenericRepository<User> {
 
@@ -27,6 +28,31 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 		List<User> foundUsers = query.list();
 
 		return foundUsers;
+	}
+
+	public List<Vehicle> getVehicles(Long idManager, Integer pages, Integer quantity) {
+		
+		String hql = "SELECT r " + " FROM " + Vehicle.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
+
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+
+		query.setParameter("idManager", idManager);
+		query.setFirstResult(pages * quantity);
+		query.setMaxResults(quantity);
+
+		@SuppressWarnings("unchecked")
+		List<Vehicle> foundVehicles = query.list();
+
+		return foundVehicles;
+	}
+
+	public Integer getCountVehiclesFor(Long idManager, Integer quantity) {
+		String hql = "SELECT count(*) " + " FROM " + Vehicle.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
+
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+
+		query.setParameter("idManager", idManager);
+		return (int) ((Long) query.uniqueResult() / quantity);
 	}
 
 }

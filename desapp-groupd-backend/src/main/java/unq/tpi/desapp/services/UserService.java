@@ -80,7 +80,7 @@ public class UserService implements Serializable {
 	@Transactional
 	public List<Vehicle> getVehicles(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return new ArrayList<Vehicle>(user.managerImplementing(VehicleManager.class).getVehicles());
+		return this.getRepository().getVehicles(user.managerImplementing(VehicleManager.class).getId(), page, quantity);
 	}
 
 	@Transactional
@@ -196,5 +196,11 @@ public class UserService implements Serializable {
 		User user = this.getRepository().findById(id);
 		user.managerImplementing(RouteManager.class).find(routeID).acceptedSubscriptionRequest(subscriptionID);
 		this.update(user);
+	}
+	
+	@Transactional
+	public Integer getCountVehiclesFor(Long id, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return this.getRepository().getCountVehiclesFor(user.managerImplementing(VehicleManager.class).getId(), quantity);
 	}
 }

@@ -54,7 +54,14 @@ public class UserRest {
 	@Path("/{id}/vehicles/{page}")
 	@Produces("application/json")
 	public List<Vehicle> getVehicles(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
-		return getUserService().getVehicles(id, page, 20);
+		return getUserService().getVehicles(id, page, 10);
+	}
+
+	@GET
+	@Path("/{id}/howMuchVehicles")
+	@Produces("application/json")
+	public Integer howMuchVehicles(@PathParam("id") final Long id) {
+		return getUserService().getCountVehiclesFor(id, 10);
 	}
 
 	@POST
