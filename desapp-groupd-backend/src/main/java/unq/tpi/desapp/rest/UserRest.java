@@ -174,14 +174,8 @@ public class UserRest {
 	@GET
 	@Path("/{id}/commentedPoints/{page}")
 	@Produces("application/json")
-	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id,
-			@PathParam("page") final Integer page) {
-		List<CommentedPoint> commentedPoints = getUserService().getCommentedPoints(id, page, 20);
-		List<CommentedPointRequest> returnCollection = new ArrayList<CommentedPointRequest>();
-		for (CommentedPoint commentedPoint : commentedPoints) {
-			returnCollection.add(new CommentedPointRequest(commentedPoint));
-		}
-		return returnCollection;
+	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		return getUserService().getCommentedPointRequests(id, page, 20);
 	}
 
 	@POST
@@ -200,7 +194,7 @@ public class UserRest {
 	@GET
 	@Path("/{id}/comments/{page}")
 	@Produces("application/json")
-	public List<CommentRequest> getComments(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+	public List<CommentRequest> getCommentRequests(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getCommentRequests(id, page, 20);
 	}
 

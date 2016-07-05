@@ -9,7 +9,7 @@
 		</id>
 		
 		<many-to-one name="user" column="ID_USER"
-					 unique="true" class="unq.tpi.desapp.model.User"
+					 unique="false" class="unq.tpi.desapp.model.User"
 					 not-null="true" />
 
 		<property name="isNegative" type="boolean" column="IS_NEGATIVE" />

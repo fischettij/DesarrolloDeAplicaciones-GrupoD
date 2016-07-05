@@ -157,10 +157,17 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public List<CommentedPoint> getCommentedPoints(Long id, Integer page, Integer quantity) {
+	public List<CommentedPointRequest> getCommentedPointRequests(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return new ArrayList<CommentedPoint>(user.managerImplementing(ScoreManager.class).getCommentedPoints());
+		List<CommentedPoint> commentedPoints = user.managerImplementing(ScoreManager.class).getCommentedPoints();
+		
+		List<CommentedPointRequest> returnCollection = new ArrayList<CommentedPointRequest>();
+		for (CommentedPoint commentedPoint : commentedPoints) {
+			returnCollection.add(new CommentedPointRequest(commentedPoint));
+		}
+		return returnCollection;
 	}
+	
 
 	@Transactional
 	public void commentUser(long id, CommentRequest commentRequest) {
@@ -174,7 +181,7 @@ public class UserService implements Serializable {
 	@Transactional
 	public List<CommentRequest> getCommentRequests(Long id, Integer page, int i) {
 		User user = this.getRepository().findById(id);
-		List<Comment> comments = new ArrayList<Comment>(user.managerImplementing(CommentManager.class).getComments());
+		List<Comment> comments = user.managerImplementing(CommentManager.class).getComments();
 
 		List<CommentRequest> returnCollection = new ArrayList<CommentRequest>();
 
@@ -203,4 +210,5 @@ public class UserService implements Serializable {
 		User user = this.getRepository().findById(id);
 		return this.getRepository().getCountVehiclesFor(user.managerImplementing(VehicleManager.class).getId(), quantity);
 	}
+	
 }
