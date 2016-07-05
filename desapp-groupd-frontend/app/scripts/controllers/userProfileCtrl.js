@@ -40,7 +40,7 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.userProfile = $scope.requestUserProfile();
     $scope.updateCommentedPoints();
-    $scope.updateComments;
+    $scope.updateComments();
   };
 
   $scope.rateUser = function(commentedPoint){
@@ -53,7 +53,7 @@ angular.module('desappGroupdFrontendApp')
         isNegative : commentedPoint.isNegative,
         comment : comment
     }).success(function(){
-      
+      $scope.updateCommentedPoints();
     })
   }
 

@@ -13,7 +13,7 @@
 		<subclass name="unq.tpi.desapp.model.manager.CommentManager"
 			discriminator-value="COMMENT_MANAGER">
 
-			<list name="comments" table="COMMENTS" cascade="all" lazy="false">
+			<list name="comments" table="COMMENTS" cascade="all" lazy="true">
 				<key not-null="true">
 					<column name="ID_MANAGER" not-null="true" />
 				</key>
