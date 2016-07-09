@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.SubscriptionRequest;
-import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.repositories.RouteRepository;
+import unq.tpi.desapp.services.request.RequestRoute;
 
 public class RouteService{
 	

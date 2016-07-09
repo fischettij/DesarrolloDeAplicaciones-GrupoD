@@ -1,4 +1,4 @@
-package unq.tpi.desapp.model.request;
+package unq.tpi.desapp.services.request;
 
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.manager.ScoreManager;

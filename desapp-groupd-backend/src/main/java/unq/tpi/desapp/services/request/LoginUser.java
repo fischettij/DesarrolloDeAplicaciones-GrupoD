@@ -1,4 +1,4 @@
-package unq.tpi.desapp.model.request;
+package unq.tpi.desapp.services.request;
 
 public class LoginUser {
 

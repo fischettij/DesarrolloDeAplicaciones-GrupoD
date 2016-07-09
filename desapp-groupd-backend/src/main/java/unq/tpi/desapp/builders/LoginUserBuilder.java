@@ -1,6 +1,6 @@
 package unq.tpi.desapp.builders;
 
-import unq.tpi.desapp.model.request.LoginUser;
+import unq.tpi.desapp.services.request.LoginUser;
 
 public class LoginUserBuilder {
 

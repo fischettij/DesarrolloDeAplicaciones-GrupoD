@@ -17,11 +17,11 @@ import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
-import unq.tpi.desapp.model.request.CommentRequest;
-import unq.tpi.desapp.model.request.CommentedPointRequest;
-import unq.tpi.desapp.model.request.RequestRoute;
-import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.services.UserService;
+import unq.tpi.desapp.services.request.CommentRequest;
+import unq.tpi.desapp.services.request.CommentedPointRequest;
+import unq.tpi.desapp.services.request.RequestRoute;
+import unq.tpi.desapp.services.request.UserProfile;
 
 @Path("/users")
 public class UserRest {

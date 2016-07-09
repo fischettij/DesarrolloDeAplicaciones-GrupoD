@@ -24,12 +24,12 @@ import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.RouteManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.model.manager.VehicleManager;
-import unq.tpi.desapp.model.request.CommentRequest;
-import unq.tpi.desapp.model.request.CommentedPointRequest;
-import unq.tpi.desapp.model.request.RequestRoute;
-import unq.tpi.desapp.model.request.UserProfile;
 import unq.tpi.desapp.model.subscription.SubscriptionPending;
 import unq.tpi.desapp.repositories.UserRepository;
+import unq.tpi.desapp.services.request.CommentRequest;
+import unq.tpi.desapp.services.request.CommentedPointRequest;
+import unq.tpi.desapp.services.request.RequestRoute;
+import unq.tpi.desapp.services.request.UserProfile;
 
 public class UserService implements Serializable {
 

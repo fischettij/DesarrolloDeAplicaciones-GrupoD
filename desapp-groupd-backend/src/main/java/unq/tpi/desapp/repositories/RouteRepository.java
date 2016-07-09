@@ -7,7 +7,7 @@ import java.util.Set;
 import org.hibernate.Query;
 
 import unq.tpi.desapp.model.Route;
-import unq.tpi.desapp.model.request.RequestRoute;
+import unq.tpi.desapp.services.request.RequestRoute;
 
 public class RouteRepository extends HibernateGenericDAO<Route> implements GenericRepository<Route> {
 

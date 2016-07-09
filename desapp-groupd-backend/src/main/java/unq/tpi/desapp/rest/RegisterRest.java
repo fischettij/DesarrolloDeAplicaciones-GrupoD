@@ -7,8 +7,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
+import unq.tpi.desapp.services.request.LoginUser;
 
 @Path("/register")
 public class RegisterRest {

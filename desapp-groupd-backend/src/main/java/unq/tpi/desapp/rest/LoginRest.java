@@ -9,8 +9,8 @@ import javax.ws.rs.core.Response;
 
 import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.User;
-import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
+import unq.tpi.desapp.services.request.LoginUser;
 
 @Path("/login")
 public class LoginRest {

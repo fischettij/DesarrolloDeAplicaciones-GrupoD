@@ -5,7 +5,7 @@ import static org.mockito.Mockito.*;
 
 import org.junit.Test;
 
-import unq.tpi.desapp.model.request.LoginUser;
+import unq.tpi.desapp.services.request.LoginUser;
 
 public class RegisterUserTest {
 

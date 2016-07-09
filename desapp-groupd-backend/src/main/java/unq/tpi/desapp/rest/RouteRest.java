@@ -12,8 +12,8 @@ import javax.ws.rs.Produces;
 
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.SubscriptionRequest;
-import unq.tpi.desapp.model.request.RequestRoute;
 import unq.tpi.desapp.services.RouteService;
+import unq.tpi.desapp.services.request.RequestRoute;
 
 @Path("/routes")
 public class RouteRest {

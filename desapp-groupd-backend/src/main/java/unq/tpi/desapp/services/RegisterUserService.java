@@ -6,7 +6,7 @@ import unq.tpi.desapp.builders.UserBuilder;
 import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.RegisterUser;
 import unq.tpi.desapp.model.User;
-import unq.tpi.desapp.model.request.LoginUser;
+import unq.tpi.desapp.services.request.LoginUser;
 
 public class RegisterUserService extends GenericService<RegisterUser> {
 

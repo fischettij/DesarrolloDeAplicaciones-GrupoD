@@ -10,7 +10,7 @@ import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.SubscriptionRequest;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
-import unq.tpi.desapp.model.request.RequestRoute;
+import unq.tpi.desapp.services.request.RequestRoute;
 
 public class RouteBuilder {
 

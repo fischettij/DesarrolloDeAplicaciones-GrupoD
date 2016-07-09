@@ -14,8 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import unq.tpi.desapp.builders.LoginUserBuilder;
 import unq.tpi.desapp.exception.NotFoundException;
 import unq.tpi.desapp.model.User;
-import unq.tpi.desapp.model.request.LoginUser;
 import unq.tpi.desapp.services.RegisterUserService;
+import unq.tpi.desapp.services.request.LoginUser;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "/META-INF/spring-persistence-context.xml", "/META-INF/spring-services-context.xml" })
