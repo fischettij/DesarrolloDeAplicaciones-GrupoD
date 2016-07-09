@@ -6,6 +6,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import unq.tpi.desapp.model.CommentedPoint;
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.User;
 
 public class ScoreManager extends Manager {
@@ -18,6 +19,8 @@ public class ScoreManager extends Manager {
 	private Integer amountOfPositiveComments;
 	@JsonIgnore
 	private Integer amountOfNegativeComments;
+	@JsonIgnore
+	private Integer usedPoints;
 
 	public ScoreManager() {
 	}
@@ -28,6 +31,7 @@ public class ScoreManager extends Manager {
 		this.commentedPoints = commentedPoints;
 		this.amountOfPositiveComments = amountOfPositiveComments;
 		this.amountOfNegativeComments = amountOfNegativeComments;
+		this.usedPoints = 0;
 	}
 
 	public void add(CommentedPoint commentedPoint) {
@@ -100,6 +104,15 @@ public class ScoreManager extends Manager {
 	@JsonProperty
 	public void setAmountOfPositiveComments(Integer amountOfPositiveComments) {
 		this.amountOfPositiveComments = amountOfPositiveComments;
+	}
+
+	public void purchaseProduct(Product product) {
+		if ((this.getScore() - this.usedPoints-product.getRequiredPoints()) >= 0) {
+			this.usedPoints = this.usedPoints + product.getRequiredPoints();
+			product.removeStock(1);
+		}else{
+			//TIRAR EXCEPCION
+		}
 	}
 
 }

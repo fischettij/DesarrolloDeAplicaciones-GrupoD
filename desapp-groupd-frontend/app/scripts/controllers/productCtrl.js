@@ -10,13 +10,13 @@ angular.module('desappGroupdFrontendApp')
     $scope.showProductError = false;
 
     $scope.products = function(page){
-      $http.get( $scope.baseUrl + '/users/'+ $scope.user + '/products/' + page).success(function(result) {
+      $http.get( baseUrl + '/users/'+ $scope.user + '/products/' + page).success(function(result) {
         $scope.listOfProducts = result;
       })
     };
 
     $scope.createProduct = function(newProduct){
-      $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/newproduct', {
+      $http.post( baseUrl + '/users/'+ $scope.user + '/newproduct', {
         description : newProduct.description,
         requiredPoints : newProduct.requiredPoints,
         stock : newProduct.stock
@@ -29,7 +29,7 @@ angular.module('desappGroupdFrontendApp')
     };
 
     $scope.removeProduct = function(product){
-      $http.post( $scope.baseUrl + '/users/'+ $scope.user + '/removeproduct', {
+      $http.post( baseUrl + '/users/'+ $scope.user + '/removeproduct', {
         id : product.id,
         description : product.description,
         requiredPoints : product.requiredPoints,

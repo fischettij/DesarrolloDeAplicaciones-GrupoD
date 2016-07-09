@@ -1,0 +1,25 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+	<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+		<thead>
+			<tr role="row">
+				<th colspan="1" rowspan="1" tabindex="0">{{ "DESCRIPTION" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "REQUIRED_POINTS" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0">{{ "STOCK" | translate }}</th>
+				<th colspan="1" rowspan="1" tabindex="0"> {{ "ACTIONS" | translate }}
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in getProducts()">
+				<td>{{ product.description }}</td>
+				<td>{{ product.requiredPoints }}</td>
+				<td>{{ product.stock }}</td>
+				<td>
+					<ul class="list-inline">
+	                    <li class="pull-right">
+	                      <button type="submit" class="btn btn-danger btn-xs pull-right fa fa-remove " ng-click="purchaseProduct(product)"></li>
+	                  </ul>				
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

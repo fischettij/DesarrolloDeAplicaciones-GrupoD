@@ -25,7 +25,8 @@
 	</bean>
 	
 	<bean id="services.product" class="unq.tpi.desapp.services.ProductService">
-		<property name="repository" ref="persistence.productRepository" />
+		<property name="productRepository" ref="persistence.productRepository" />
+		<property name="userRepository" ref="persistence.userrepository" />
 	</bean>
 		
 
