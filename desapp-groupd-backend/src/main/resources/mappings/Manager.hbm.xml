@@ -83,6 +83,9 @@
 			
 			<property name="amountOfPositiveComments" type="java.lang.Integer"
 				column="AMOUNT_OF_POSITIVE_COMMENTS" />
+				
+			<property name="usedPoints" type="java.lang.Integer"
+				column="USED_POINTS" />
 
 		</subclass>
 		
