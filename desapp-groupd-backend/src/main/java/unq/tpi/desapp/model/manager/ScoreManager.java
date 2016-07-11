@@ -117,14 +117,6 @@ public class ScoreManager extends Manager {
 		this.usedPoints = usedPoints;
 	}
 
-	public Integer getUsedPoints() {
-		return usedPoints;
-	}
-
-	public void setUsedPoints(Integer usedPoints) {
-		this.usedPoints = usedPoints;
-	}
-
 	public void purchaseProduct(Product product) {
 		if ((this.getScore() - this.usedPoints - product.getRequiredPoints()) >= 0) {
 			this.usedPoints = this.usedPoints + product.getRequiredPoints();
