@@ -9,12 +9,11 @@ import org.aspectj.lang.annotation.Aspect;
 
 @Aspect
 public class ExceptionAspect {
-	
 
-	private Logger log = Logger.getLogger(ExceptionAspect.class);
+	private Logger log = Logger.getLogger("ErrorRest");
 	
-	@AfterThrowing(pointcut = "execution(* unq.tpi.desapp.services..*(..))",throwing = "exception")
+	@AfterThrowing(pointcut = "execution(* unq.tpi.desapp.rest..*(..))",throwing = "exception")
 	public void log(JoinPoint joinPoint, Exception exception){
-		log.error("# " + LocalDate.now() + " -> " + exception.getMessage());
+		log.error("#ERROR " + LocalDate.now() + " -> " + exception.getMessage());
 	}
 }

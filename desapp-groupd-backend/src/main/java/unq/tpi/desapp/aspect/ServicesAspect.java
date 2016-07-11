@@ -13,7 +13,7 @@ import org.aspectj.lang.annotation.Aspect;
 @Aspect
 public class ServicesAspect {
 
-	private Logger log = Logger.getLogger(ServicesAspect.class);
+	private Logger log = Logger.getLogger("FileServiceInvocation");
 
 	@After("execution(* unq.tpi.desapp.services..*(..))")
 	public void log(JoinPoint point) {
