@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 
@@ -48,6 +49,30 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 
 	public Integer getCountVehiclesFor(Long idManager, Integer quantity) {
 		String hql = "SELECT count(*) " + " FROM " + Vehicle.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
+
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+
+		query.setParameter("idManager", idManager);
+		return (int) ((Long) query.uniqueResult() / quantity);
+	}
+
+	public List<Inscription> getInscriptions(Long idManager, Integer pages, int quantity) {
+		String hql = "SELECT r " + " FROM " + Inscription.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
+
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+
+		query.setParameter("idManager", idManager);
+		query.setFirstResult(pages * quantity);
+		query.setMaxResults(quantity);
+
+		@SuppressWarnings("unchecked")
+		List<Inscription> foundInscriptions = query.list();
+
+		return foundInscriptions;
+	}
+
+	public Integer getCountInscriptionsFor(Long idManager, int quantity) {
+		String hql = "SELECT count(*) " + " FROM " + Inscription.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
 
 		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
 

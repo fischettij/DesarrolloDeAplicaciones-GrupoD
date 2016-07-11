@@ -125,7 +125,14 @@ desappGroupdFrontendApp.factory('baseUrl',function(){
     COMMENT: 'Comentario',
     YOU_PURCHASE: 'Felicitaciones! Canjeaste',
     PRINT_PRODUCT_VOUCHER: 'Aga click en el boton imprimir para imprimir el voucher.',
-    PRINT: 'Imprimir'
+    PRINT: 'Imprimir',
+    POINTS: 'Puntos',
+    REQUEST_ROUTE: 'Solicitud de inscripción a ruta',
+    REQUEST_ROUTE_QUESTION: '¿Esta seguro de enviar la Solicitud?',
+    INSCRIPTION_ERROR: 'Error al procesar la inscripción',
+    INSCRIPTION_SUCCESS: 'La inscripción se proceso correctamente',
+    INSCRIPTIONS: 'Inscripciones',
+    INSCRIPTION_STATE: 'Estado de la Inscripción',
   });
 
 $translateProvider.translations('en', {
@@ -200,8 +207,14 @@ $translateProvider.translations('en', {
   COMMENT: 'Comment',
   YOU_PURCHASE: 'Congratulations! You redeemed',
   PRINT_PRODUCT_VOUCHER: 'Click on the print button to print voucher.',
-  PRINT: 'Print'
-
+  PRINT: 'Print',
+  POINTS: 'Points',
+  REQUEST_ROUTE: 'Request form of Inscription of route' ,
+  REQUEST_ROUTE_QUESTION: 'Are you sure you send the request?',
+  INSCRIPTION_ERROR: 'Error processing the Inscription',
+  INSCRIPTION_SUCCESS: 'The Inscription process correctly',
+  INSCRIPTIONS: 'Inscriptions',
+  INSCRIPTION_STATE: 'Inscription State',
 });
 
 $translateProvider.preferredLanguage('es');

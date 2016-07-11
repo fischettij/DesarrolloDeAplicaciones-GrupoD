@@ -12,5 +12,10 @@ public class InscriptionAccepted extends InscriptionState {
 	@Override
 	public void accepted(Inscription inscription) {
 	}
+	
+	public String getName(){
+		return "Accepted";
+	}
+
 
 }

@@ -8,4 +8,5 @@ http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<aop:aspectj-autoproxy />
 	<bean id="servicesAspect" class="unq.tpi.desapp.aspect.ServicesAspect" />
+	<bean id="exceptionAspect" class= "unq.tpi.desapp.aspect.ExceptionAspect" />
 </beans>

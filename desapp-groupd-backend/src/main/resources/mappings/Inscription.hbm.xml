@@ -8,9 +8,10 @@
 			<generator class="identity" />
 		</id>
 
-		<many-to-one name="route" column="ID_ROUTE" cascade="all" />
+		<many-to-one name="route" column="ID_ROUTE" unique="false"
+			class="unq.tpi.desapp.model.Route" not-null="false" lazy="false" />
 		
-		<many-to-one name="inscriptionState" column="INSCRIPTION_STATE"
+		<many-to-one name="inscriptionState" column="INSCRIPTION_STATE" lazy="false"
 					 unique="true" class="unq.tpi.desapp.model.inscription.InscriptionState"
 					 not-null="true" />
 

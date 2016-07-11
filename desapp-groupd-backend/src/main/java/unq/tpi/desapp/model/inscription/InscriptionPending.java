@@ -13,5 +13,10 @@ public class InscriptionPending extends InscriptionState {
 	public void accepted(Inscription inscription) {
 		inscription.setInscriptionState(new InscriptionAccepted());
 	}
+	
+	public String getName(){
+		return "Pending";
+	}
+
 
 }

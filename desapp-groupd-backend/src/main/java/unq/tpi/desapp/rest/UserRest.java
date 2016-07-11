@@ -13,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import unq.tpi.desapp.model.CommentedPoint;
+import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
@@ -57,6 +58,13 @@ public class UserRest {
 		return getUserService().getVehicles(id, page, 10);
 	}
 
+	@GET
+	@Path("/{id}/allvehicles")
+	@Produces("application/json")
+	public List<Vehicle> getAllVehicles(@PathParam("id") final Long id) {
+		return getUserService().getAllVehicles(id);
+	}
+	
 	@GET
 	@Path("/{id}/howMuchVehicles")
 	@Produces("application/json")
@@ -224,4 +232,18 @@ public class UserRest {
 		}
 	}
 
+	@GET
+	@Path("/{id}/inscriptions/{page}")
+	@Produces("application/json")
+	public List<Inscription> getInscriptions(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+		return getUserService().getInscriptions(id, page, 10);
+	}
+	
+	@GET
+	@Path("/{id}/howMuchInscriptions")
+	@Produces("application/json")
+	public Integer howMuchInscriptions(@PathParam("id") final Long id) {
+		return getUserService().getCountInscriptionsFor(id, 10);
+	}
+	
 }
