@@ -105,6 +105,17 @@ public class ScoreManager extends Manager {
 	public void setAmountOfPositiveComments(Integer amountOfPositiveComments) {
 		this.amountOfPositiveComments = amountOfPositiveComments;
 	}
+	
+	
+	@JsonProperty
+	public Integer getUsedPoints() {
+		return usedPoints;
+	}
+
+	@JsonProperty
+	public void setUsedPoints(Integer usedPoints) {
+		this.usedPoints = usedPoints;
+	}
 
 	public void purchaseProduct(Product product) {
 		if ((this.getScore() - this.usedPoints-product.getRequiredPoints()) >= 0) {

@@ -39,7 +39,7 @@ public class ProductService implements Serializable  {
 		return this.getProductRepository().findAll();
 	}
 
-	@Transactional
+	@Transactional	
 	public void purchaseProduct(Long userId, Long productId) {
 		User user = this.getUserRepository().findById(userId);
 		Product product = this.getProductRepository().findById(productId);

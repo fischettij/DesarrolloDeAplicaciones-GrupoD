@@ -8,6 +8,7 @@ angular.module('desappGroupdFrontendApp')
     $scope.products = [];
     $scope.showProductSuccess = false;
     $scope.showProductError = false;
+    $scope.selectedProduct = null;
 
     $scope.updateProducts = function(page){
       $http.get( baseUrl + '/products/all/' + page).success(function(result) {
@@ -17,7 +18,10 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.purchaseProduct = function(product){
       $http.post( baseUrl + '/products/' + product.id + '/purchaseBy/' + $scope.user).success(function() {
+        $scope.selectedProduct = product;
         $scope.showProductSuccess = true;
+        $('#modalVoucher').modal('show');
+        $scope.updateProducts;
       }).error(function() {
         $scope.showProductError = true;
       })
@@ -30,6 +34,22 @@ angular.module('desappGroupdFrontendApp')
     $scope.init = function(){
       $scope.updateProducts(0);
     };
+
+    $scope.getSelectedProduct = function(){
+      return $scope.selectedProduct;
+    }
+
+    $scope.printDiv = function(divName){
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+
+      document.body.innerHTML = printContents;
+
+      window.print();
+
+      document.body.innerHTML = originalContents;
+      window.print();
+    }
 
     $scope.init();
 

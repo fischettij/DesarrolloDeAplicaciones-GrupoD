@@ -1,5 +1,5 @@
 <div class="dataTables_wrapper form-inline dt-bootstrap">
-	<table aria-describedby="example2_info" role="grid" id="example2" class="table table-bordered table-hover dataTable">
+	<table role="grid" class="table table-bordered table-hover dataTable">
 		<thead>
 			<tr role="row">
 				<th colspan="1" rowspan="1" tabindex="0">{{ "DESCRIPTION" | translate }}</th>
@@ -15,11 +15,32 @@
 				<td>{{ product.stock }}</td>
 				<td>
 					<ul class="list-inline">
-	                    <li class="pull-right">
-	                      <button type="submit" class="btn btn-danger btn-xs pull-right fa fa-remove " ng-click="purchaseProduct(product)"></li>
-	                  </ul>				
+            <li class="pull-right">
+              <button type="submit" class="btn btn-success btn-xs pull-right fa fa-check-circle " ng-click="purchaseProduct(product)"></li>
+          </ul>				
 				</td>
 			</tr>
 		</tbody>
 	</table>
+</div>
+
+
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" data-target="#modalVoucher" id="modalVoucher">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      	<h4 class="modal-title">{{selectedProduct.description}}</h4>
+    	</div>
+    	<div class="modal-body">
+      	<P>{{ "YOU_PURCHASE" | translate }} {{selectedProduct.description}}</P>
+      	<P>{{ "PRINT_PRODUCT_VOUCHER" | translate }}</P>
+  		</div>
+  		<div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="printDiv('modalVoucher')">{{ "PRINT" | translate }}</button>
+      </div>
+		</div>
+	</div>
 </div>

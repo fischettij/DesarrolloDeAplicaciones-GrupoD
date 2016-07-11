@@ -122,7 +122,10 @@ desappGroupdFrontendApp.factory('baseUrl',function(){
     SCORE: 'Puntuación',
     NEGATIVE: 'Negativo',
     POSITIVE: 'Positivo',
-    COMMENT: 'Comentario'
+    COMMENT: 'Comentario',
+    YOU_PURCHASE: 'Felicitaciones! Canjeaste',
+    PRINT_PRODUCT_VOUCHER: 'Aga click en el boton imprimir para imprimir el voucher.',
+    PRINT: 'Imprimir'
   });
 
 $translateProvider.translations('en', {
@@ -194,7 +197,11 @@ $translateProvider.translations('en', {
   SCORE: 'Score',
   NEGATIVE: 'Negative',
   POSITIVE: 'Positive',
-  COMMENT: 'Comment'
+  COMMENT: 'Comment',
+  YOU_PURCHASE: 'Congratulations! You redeemed',
+  PRINT_PRODUCT_VOUCHER: 'Click on the print button to print voucher.',
+  PRINT: 'Print'
+
 });
 
 $translateProvider.preferredLanguage('es');
