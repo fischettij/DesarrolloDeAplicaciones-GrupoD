@@ -30,11 +30,25 @@
             </tbody>
           </table>
         </div>
-        
+          <div class="row">
+            <div class="col-sm-5"></div>
+            <div class="col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers">
+                <ul class="pagination">
+                  <li ng-class="{'disabled': pageIs(0)}"><a href="#"  ng-click="!pageIs(0) && routesPrevious()" ><span aria-hidden="true">«</span></a></li>
+                  <li ng-repeat="number in howMuchMyRoutes()" class="paginate_button" ng-class="{'active': pageIs(number)}" ng-click="myRoutes(number)">
+                    <a>{{number + 1}}</a>
+                  </li>
+                  <li ng-class="{'disabled': pageIsMax()}"><a href="#" ng-click="!pageIsMax() && routesNext()"><span aria-hidden="true">»</span></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <!-- Modal Subscription Request -->
 

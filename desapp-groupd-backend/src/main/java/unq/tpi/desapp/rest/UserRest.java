@@ -109,8 +109,16 @@ public class UserRest {
 	@Path("/{id}/routes/{page}")
 	@Produces("application/json")
 	public List<Route> getRoutes(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
-		return getUserService().getRoutes(id, page, 20);
+		return getUserService().getRoutes(id, page, 10);
 	}
+	
+	@GET
+	@Path("/{id}/howMuchMyRoutes")
+	@Produces("application/json")
+	public Integer howMuchMyRoutes(@PathParam("id") final Long id) {
+		return getUserService().getCountMyRoutesFor(id, 10);
+	}
+	
 
 	@POST
 	@Path("/{id}/newproduct")
@@ -199,6 +207,8 @@ public class UserRest {
 		}
 	}
 
+	
+	
 	@GET
 	@Path("/{id}/comments/{page}")
 	@Produces("application/json")

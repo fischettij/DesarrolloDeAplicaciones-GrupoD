@@ -14,6 +14,64 @@ angular.module('desappGroupdFrontendApp')
   $scope.daysOfWeek = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 
   $scope.vehicles = [];
+  /// Paginacion
+  
+  $scope.amountPages = 0;
+  $scope.page = 0;
+  $scope.amountPagesSearchRoute = 0;
+  $scope.pageSearchRoute = 0;
+
+  $scope.howMuchMyRoutesRest = function(){
+      $http.get( baseUrl + '/users/'+ $scope.user + '/howMuchMyRoutes').success(function(result) {
+        $scope.amountPages = result;
+      })
+    };
+
+    $scope.howMuchMyRoutes = function(){
+      return Array.apply(null, {length: $scope.amountPages +1}).map(Number.call, Number);
+    };
+
+    $scope.getPage = function(){
+      return scope.page;
+    }
+
+    $scope.pageIs = function(number){
+      return number === $scope.page;
+    }
+
+    $scope.pageIsMax = function(){
+      return $scope.amountPages === $scope.page;
+    }
+
+    $scope.routesPrevious = function(){
+      $scope.myRoutes($scope.page -1);
+    }
+
+    $scope.routesNext = function(){
+      $scope.myRoutes($scope.page +1);
+    }
+
+  $scope.howMuchSearchRoutesRest = function(){
+      $http.get( baseUrl + '/users/'+ $scope.user + '/howMuchSearchRoutes').success(function(result) {
+        $scope.amountPagesSearchRoute = result;
+      })
+    };
+
+    $scope.getPageSearchRoute = function(){
+      return scope.pageSearchRoute;
+    }
+
+    $scope.pageIsSearchRoute = function(number){
+      return number === $scope.pageSearchRoute;
+    }
+
+    $scope.pageIsMaxSearchRoute = function(){
+      return $scope.amountPagesSearchRoute === $scope.pageSearchRoute;
+    }
+
+  /// Fin Paginacion
+
+
   //// Start Google maps
 
   //Create a map and center it on Argentina.
@@ -93,7 +151,7 @@ $scope.createRoute = function(newRoute){
     idVehicle: newRoute.idVehicle,
   }).success(function() {
     $scope.showRouteSuccess = true;
-    $scope.myRoutes(1);
+    $scope.myRoutes(0);
     $scope.cleanLocations();
   }).error(function() {
     $scope.showRouteError = true;
@@ -190,7 +248,7 @@ $scope.aceptedRequestOfRoute = function() {
 };
 
 $scope.initRoute = function(){
-  $scope.myRoutes(1);
+  $scope.myRoutes(0);
 };
 
 // Subscription Request

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import unq.tpi.desapp.model.Inscription;
+import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 
@@ -30,34 +31,42 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 
 		return foundUsers;
 	}
-
-	public List<Vehicle> getVehicles(Long idManager, Integer pages, Integer quantity) {
-		
-		String hql = "SELECT r " + " FROM " + Vehicle.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
-
-		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
-
-		query.setParameter("idManager", idManager);
-		query.setFirstResult(pages * quantity);
-		query.setMaxResults(quantity);
-
-		@SuppressWarnings("unchecked")
-		List<Vehicle> foundVehicles = query.list();
-
-		return foundVehicles;
+	
+	public List<Route> getRoutes(Long idManager, Integer pages, Integer quantity) {
+		return paginationInTable(Route.class, idManager, pages, quantity);
 	}
 
-	public Integer getCountVehiclesFor(Long idManager, Integer quantity) {
-		String hql = "SELECT count(*) " + " FROM " + Vehicle.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
-
-		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
-
-		query.setParameter("idManager", idManager);
-		return (int) ((Long) query.uniqueResult() / quantity);
+	public List<Vehicle> getVehicles(Long idManager, Integer pages, Integer quantity) {
+		return paginationInTable(Vehicle.class, idManager, pages, quantity);
 	}
 
 	public List<Inscription> getInscriptions(Long idManager, Integer pages, int quantity) {
-		String hql = "SELECT r " + " FROM " + Inscription.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
+		return paginationInTable(Inscription.class, idManager, pages, quantity);
+	}
+
+	public Integer getCountVehiclesFor(Long idManager, Integer quantity) {
+		return countElementsInTable(Vehicle.class.getName(), idManager, quantity);
+	}
+	
+	public Integer getCountInscriptionsFor(Long idManager, int quantity) {
+		return countElementsInTable(Inscription.class.getName(), idManager, quantity);
+	}
+
+	public Integer getCountMyRoutesFor(Long idManager, int quantity) {
+		return countElementsInTable(Route.class.getName(), idManager, quantity);
+	}
+
+	private Integer countElementsInTable(String nameClass, Long idManager, int quantity) {
+		String hql = "SELECT count(*) " + " FROM " + nameClass + " r " + " WHERE ID_MANAGER = :idManager";
+
+		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
+
+		query.setParameter("idManager", idManager);
+		return (int) ((Long) query.uniqueResult() / quantity);
+	}
+	
+	private <E> List<E> paginationInTable(Class<E> class1, Long idManager, Integer pages, Integer quantity) {
+		String hql = "SELECT r " + " FROM " + class1.getName() + " r " + " WHERE ID_MANAGER = :idManager";
 
 		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
 
@@ -66,18 +75,9 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 		query.setMaxResults(quantity);
 
 		@SuppressWarnings("unchecked")
-		List<Inscription> foundInscriptions = query.list();
+		List<E> found = query.list();
 
-		return foundInscriptions;
+		return found;
 	}
-
-	public Integer getCountInscriptionsFor(Long idManager, int quantity) {
-		String hql = "SELECT count(*) " + " FROM " + Inscription.class.getName() + " r " + " WHERE ID_MANAGER = :idManager";
-
-		Query query = getHibernateTemplate().getSessionFactory().getCurrentSession().createQuery(hql);
-
-		query.setParameter("idManager", idManager);
-		return (int) ((Long) query.uniqueResult() / quantity);
-	}
-
+	
 }
