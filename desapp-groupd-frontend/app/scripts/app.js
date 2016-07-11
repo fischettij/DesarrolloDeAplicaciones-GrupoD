@@ -122,7 +122,15 @@ desappGroupdFrontendApp.factory('baseUrl',function(){
     SCORE: 'Puntuación',
     NEGATIVE: 'Negativo',
     POSITIVE: 'Positivo',
-    COMMENT: 'Comentario'
+    COMMENT: 'Comentario',
+    POINTS: 'Puntos',
+    REQUEST_ROUTE: 'Solicitud de inscripción a ruta',
+    REQUEST_ROUTE_QUESTION: '¿Esta seguro de enviar la Solicitud?',
+    INSCRIPTION_ERROR: 'Error al procesar la inscripción',
+    INSCRIPTION_SUCCESS: 'La inscripción se proceso correctamente',
+    INSCRIPTIONS: 'Inscripciones',
+    INSCRIPTION_STATE: 'Estado de la Inscripción',
+
   });
 
 $translateProvider.translations('en', {
@@ -194,7 +202,15 @@ $translateProvider.translations('en', {
   SCORE: 'Score',
   NEGATIVE: 'Negative',
   POSITIVE: 'Positive',
-  COMMENT: 'Comment'
+  COMMENT: 'Comment',
+  POINTS: 'Points',
+  REQUEST_ROUTE: 'Request form of Inscription of route' ,
+  REQUEST_ROUTE_QUESTION: 'Are you sure you send the request?',
+  INSCRIPTION_ERROR: 'Error processing the Inscription',
+  INSCRIPTION_SUCCESS: 'The Inscription process correctly',
+  INSCRIPTIONS: 'Inscriptions',
+  INSCRIPTION_STATE: 'Inscription State',
+
 });
 
 $translateProvider.preferredLanguage('es');

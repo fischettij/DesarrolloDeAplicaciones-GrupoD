@@ -1,0 +1,72 @@
+<div class="dataTables_wrapper form-inline dt-bootstrap">
+	<div class="row">
+		<div class="col-sm-6"></div>
+		<div class="col-sm-6"></div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-hover dataTable" role="grid">
+				<thead>
+					<tr role="row">
+						<th colspan="1" rowspan="1" tabindex="0">{{ "OWNER" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "VEHICLE" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "STARTING_POINT" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "ENDING_POINT" | translate }}</th>
+                		<th colspan="1" rowspan="1" tabindex="0">{{ "DAYS_OF_WEEK" | translate }}</th>
+						<th colspan="1" rowspan="1" tabindex="0">{{ "INSCRIPTION_STATE" | translate }}</th>
+						<!--<th colspan="1" rowspan="1" tabindex="0">{{ "ACTIONS" | translate }}</th> -->
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="inscription in getInscriptions() track by $index">
+					    <td>{{ inscription.route.owner.name }}</td>
+						<td>{{ inscription.route.vehicle.registrationNumber }} - {{ inscription.route.vehicle.model }}</td>
+					    <td>{{ inscription.route.startPoint }}</td>
+                		<td>{{ inscription.route.endPoint }}</td>
+						<td><span ng-repeat="day in inscription.route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
+						<td>{{ inscription.inscriptionState.name}} </td>
+                		<!--<td>
+                			<button class="btn btn-primary fa fa-book" ng-click="request($index)" data-toggle="modal" data-target="#modalRemoveRequest"></button>
+						</td> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-5"></div>
+		<div class="col-sm-7">
+			<div class="dataTables_paginate paging_simple_numbers">
+				<ul class="pagination">
+					<li ng-class="{'disabled': pageIs(0)}"><a href="#"  ng-click="!pageIs(0) && inscriptionsPrevious()" ><span aria-hidden="true">«</span></a></li>
+					<li ng-repeat="number in howMuchInscriptions()" class="paginate_button" ng-class="{'active': pageIs(number)}" ng-click="inscriptions(number)">
+						<a>{{number + 1}}</a>
+					</li>
+					<li ng-class="{'disabled': pageIsMax()}"><a href="#" ng-click="!pageIsMax() && inscriptionsNext()"><span aria-hidden="true">»</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal Subscription Request -->
+
+<div class="modal fade bs-example-modal-lg" id="modalRemoveRequest" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">{{ "REMOVE_INSCRIPTION" | translate }}</h4>
+      </div>
+      <div class="modal-body">
+         <p>{{ 'REMOVE_INSCRIPTION_QUESTION' | translate}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{{ 'CANCEL' | translate}}</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="aceptedRemoveInscription()">{{ 'ACCEPT' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -23,9 +23,9 @@
                 <td>{{ route.endPoint }}</td>
                 <td>{{ route.vehicle.registrationNumber }} - {{ route.vehicle.model }}</td>
                 <td><span ng-repeat="day in route.daysOfWeek">{{ day | translate }}&nbsp;</span></td>
-                <th>
+                <td>
                   <button class="btn btn-primary fa fa-book" ng-click="openSubscriptionRequest(route)" data-toggle="modal" data-target="#modalSubscriptionRequest"></button>
-                </th>
+                </td>
               </tr>
             </tbody>
           </table>

@@ -210,5 +210,23 @@ public class UserService implements Serializable {
 		User user = this.getRepository().findById(id);
 		return this.getRepository().getCountVehiclesFor(user.managerImplementing(VehicleManager.class).getId(), quantity);
 	}
+
+	@Transactional
+	public List<Vehicle> getAllVehicles(Long id) {
+		User user = this.getRepository().findById(id);
+		return new ArrayList<Vehicle>(user.managerImplementing(VehicleManager.class).getVehicles());
+	}
+
+	@Transactional
+	public List<Inscription> getInscriptions(Long id, Integer page, int quantity) {
+		User user = this.getRepository().findById(id);
+		return this.getRepository().getInscriptions(user.managerImplementing(InscriptionManager.class).getId(), page, quantity);
+	}
+
+	@Transactional
+	public Integer getCountInscriptionsFor(Long id, int quantity) {
+		User user = this.getRepository().findById(id);
+		return this.getRepository().getCountInscriptionsFor(user.managerImplementing(InscriptionManager.class).getId(), quantity);
+	}
 	
 }
