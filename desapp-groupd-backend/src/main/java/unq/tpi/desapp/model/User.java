@@ -44,5 +44,15 @@ public class User extends Entity {
 	public void setManagers(List<Manager> managers) {
 		this.managers = managers;
 	}
+	
+	public <E> void removeManager(Class<E> managerClass){
+		Manager managerToRemove = null;
+		for (Manager manager : this.managers) {
+			if (manager.isA(managerClass)) {
+				managerToRemove = manager;
+			}
+		}
+		this.getManagers().remove(managerToRemove);
+	}
 
 }

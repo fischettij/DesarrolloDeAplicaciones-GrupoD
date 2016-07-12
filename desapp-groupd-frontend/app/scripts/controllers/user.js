@@ -8,6 +8,8 @@ angular.module('desappGroupdFrontendApp')
   $scope.searchUserContent = '';
   $scope.foundUsers = [];
   $scope.utils = utils;
+  $scope.commentedPoints;
+  $scope.comments;
 
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
@@ -28,15 +30,14 @@ angular.module('desappGroupdFrontendApp')
     }).error(function(){
      $window.location.href = '/404.html';
     });
+    $scope.updateCommentedPoints(userID);
+    $scope.updateComments(userID);
   };
 
   $scope.signOut = function(){
     $cookies.remove('user')
     $window.location.href='/'
   };
-
-  $scope.init();
-  $scope.selectLanguage(); 
 
   $scope.activeManager = 'dashboard';
 
@@ -100,5 +101,36 @@ angular.module('desappGroupdFrontendApp')
     });
   };
 
+  $scope.getCommentedPoints = function(){
+    return $scope.commentedPoints;
+  }
+
+  $scope.iconForCommentedPoint = function(commentedPoint){
+    if (commentedPoint.isNegative){
+      return 'fa fa-thumbs-o-down negativeComment';
+    }else{
+      return 'fa fa-thumbs-o-up positiveComment';
+    }
+  };
+  
+  $scope.getComments = function(){
+    return $scope.comments;
+  }
+
+  $scope.updateCommentedPoints = function(userID){
+    console.log(userID);
+    $http.get( baseUrl + '/users/'+ userID+ '/commentedPoints/1').success(function(result) { 
+      $scope.commentedPoints = result;      
+    })
+  }
+
+  $scope.updateComments = function(userID){
+    $http.get( baseUrl + '/users/'+ userID + '/comments/1').success(function(result) { 
+      $scope.comments = result;      
+    }) 
+  }
+
+  $scope.init();
+  $scope.selectLanguage(); 
 
 } ]);

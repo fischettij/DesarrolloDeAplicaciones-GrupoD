@@ -20,12 +20,12 @@
 		</form>
 		<ul class="sidebar-menu">
 			<li class="header sidebarHeader">{{ "MENU" | translate }}</li>
-			<li ng-class="{'active': handling('dashboard')}"><a ng-click="utils.goTo('dashboard')">
+			<li ng-class="{'active': utils.handling('dashboard')}"><a href="#" ng-click="utils.goTo('dashboard')">
 				<i class="fa fa-dashboard"></i>
 				<span>{{ "Dashboard" | translate }}</span></a>
 			</li>
-			<li ng-repeat="manager in managers()" ng-class="{'active': handling(manager.manager)}">
-				<a ng-click="utils.goTo(manager.manager)">
+			<li ng-repeat="manager in managers()" ng-class="{'active': utils.handling(manager.manager)}">
+				<a href="#" ng-click="utils.goTo(manager.manager)">
 					<i class={{iconFor(manager.manager)}}></i>
 					<span>{{ manager.manager | translate }}</span>
 				</a></li>

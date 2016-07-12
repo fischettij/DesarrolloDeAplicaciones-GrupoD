@@ -1,0 +1,51 @@
+<div class="nav-tabs-custom">
+  <ul class="nav nav-tabs">
+    <li class="active"><a aria-expanded="false" href="#points" data-toggle="tab">{{ "POINTS" | translate }}</a></li>
+    <li class=""><a aria-expanded="false" href="#comments" data-toggle="tab">{{ "COMMENT" | translate }}</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="active tab-pane" id="points">
+      <!-- The timeline -->
+      <ul class="timeline timeline-inverse">
+        
+        <li class="active" ng-repeat="commentedPoint in getCommentedPoints()">
+
+          <i class={{iconForCommentedPoint(commentedPoint)}}></i>
+
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+
+            <h3 class="timeline-header">
+              <button ng-click="goToUser(commentedPoint.userId)" type="button" class="btn btn-link">
+              {{commentedPoint.userName}}
+          </button></h3>
+
+            <div class="timeline-body">
+              {{ commentedPoint.comment }}
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+    <!-- /.tab-pane -->
+
+    <div class="tab-pane" id="comments">
+      <!-- /.tab-pane from comment -->  
+      <div class="post" ng-repeat="comment in getComments()">
+          <div class="user-block">
+            <img class="img-circle img-bordered-sm" src="images/yeoman.png" alt="user image">
+                <span class="username">
+                  <a href="#">{{comment.userName}}</a>
+                </span>
+                <span class="description">{{comment.message}}</span>
+          <!-- /.user-block -->
+   
+        </div>
+      </div>
+
+    </div>
+    <!-- /.tab-pane comments -->
+  </div>
+  <!-- /.tab-content -->
+</div>

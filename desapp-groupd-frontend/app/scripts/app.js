@@ -38,6 +38,10 @@ desappGroupdFrontendApp.factory('utils',function(){
     return 'views/' + activeWindow +'.html';
   }
 
+  utils.handling = function(managerName){
+    return activeWindow === managerName;
+  };
+
   utils.goTo = function(view){
     activeWindow = view;
   }
