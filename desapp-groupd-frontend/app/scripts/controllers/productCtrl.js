@@ -8,6 +8,7 @@ angular.module('desappGroupdFrontendApp')
     $scope.listOfProducts = [];
     $scope.showProductSuccess = false;
     $scope.showProductError = false;
+    $scope.productToUpdate = null;
 
     $scope.products = function(page){
       $http.get( baseUrl + '/users/'+ $scope.user + '/products/' + page).success(function(result) {
@@ -29,18 +30,33 @@ angular.module('desappGroupdFrontendApp')
     };
 
     $scope.removeProduct = function(product){
-      $http.post( baseUrl + '/users/'+ $scope.user + '/removeproduct', {
-        id : product.id,
-        description : product.description,
-        requiredPoints : product.requiredPoints,
-        stock : product.stock
+          $http.post( baseUrl + '/users/'+ $scope.user + '/removeproduct', {
+            id : product.id,
+            description : product.description,
+            requiredPoints : product.requiredPoints,
+            stock : product.stock
+          }).success(function() {
+            $scope.showProductSuccess = true;
+            $scope.products(1);
+          }).error(function() {
+            $scope.showProductError = true;
+          })
+    };
+
+    $scope.updateProduct = function(product){
+      $http.post( baseUrl + '/products/update/'+ product.id , {
+        requestedBy : $scope.user,
+        requestObject: {id: product.id,
+                        description : product.description,
+                        requiredPoints : product.requiredPoints,
+                        stock : product.stock}
       }).success(function() {
         $scope.showProductSuccess = true;
         $scope.products(1);
       }).error(function() {
         $scope.showProductError = true;
       })
-    };
+    }
 
     $scope.getProducts = function(){
       return $scope.listOfProducts;
@@ -49,6 +65,10 @@ angular.module('desappGroupdFrontendApp')
     $scope.initProducts = function(){
       $scope.products(1);
     };
+    
+    $scope.setProductToUpdate = function(product){
+      $scope.productToUpdate = product;
+    }
 
     $scope.initProducts();
 

@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.User;
+import unq.tpi.desapp.model.manager.ProductManager;
 import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.repositories.ProductRepository;
 import unq.tpi.desapp.repositories.UserRepository;
+import unq.tpi.desapp.services.request.GenericRequest;
 
 public class ProductService implements Serializable  {
 
@@ -45,5 +47,13 @@ public class ProductService implements Serializable  {
 		Product product = this.getProductRepository().findById(productId);
 		ScoreManager scoreManager = user.managerImplementing(ScoreManager.class);
 		scoreManager.purchaseProduct(product);		
+	}
+
+	@Transactional
+	public void updateProduct(Long productId, GenericRequest<Product> request) {
+		User requestUser = getUserRepository().findById(request.getRequestedBy());
+		requestUser.managerImplementing(ProductManager.class);
+		
+		getProductRepository().saveOrUpdate(request.getRequestObject());
 	}
 }

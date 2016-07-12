@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.services.ProductService;
+import unq.tpi.desapp.services.request.GenericRequest;
 
 @Path("/products")
 public class ProductRest {
@@ -41,6 +42,19 @@ public class ProductRest {
 	public Response purchaseProduct(@PathParam("userId") final Long userId, @PathParam("productId") final Long productId) {
 		try {
 			getProductService().purchaseProduct(userId, productId);
+			return Response.ok().build();
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
+	}
+	
+	@POST
+	@Path("/update/{productId}")
+	@Produces("application/json")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateProduct(@PathParam("productId") final Long productId,GenericRequest<Product> request) {
+		try {
+			getProductService().updateProduct(productId,request);
 			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.serverError().build();
