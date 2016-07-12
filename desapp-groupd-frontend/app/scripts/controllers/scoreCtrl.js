@@ -10,7 +10,44 @@ angular.module('desappGroupdFrontendApp')
     $scope.showProductError = false;
     $scope.selectedProduct = null;
 
+
+    // Paginacion
+    $scope.amountPages = 0;
+    $scope.page = 0;
+
+    $scope.howMuchProductsRest = function(){
+      $http.get( baseUrl + '/products/howMuchProducts').success(function(result) {
+        $scope.amountPages = result;
+      })
+    };
+
+    $scope.getPage = function(){
+      return scope.page;
+    }
+
+    $scope.pageIs = function(number){
+      return number === $scope.page;
+    }
+
+    $scope.pageIsMax = function(){
+      return $scope.amountPages === $scope.page;
+    }
+
+    $scope.howMuchProducts = function(){
+      return Array.apply(null, {length: $scope.amountPages +1}).map(Number.call, Number);
+    }
+
+    $scope.productsPrevious = function(){
+      $scope.updateProducts($scope.page -1);
+    }
+
+    $scope.productsNext = function(){
+      $scope.updateProducts($scope.page +1);
+    }
+    // Fin Paginacion
+
     $scope.updateProducts = function(page){
+      $scope.page = page;
       $http.get( baseUrl + '/products/all/' + page).success(function(result) {
         $scope.products = result;
       })
@@ -33,6 +70,7 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.init = function(){
       $scope.updateProducts(0);
+      $scope.howMuchProductsRest();
     };
 
     $scope.getSelectedProduct = function(){

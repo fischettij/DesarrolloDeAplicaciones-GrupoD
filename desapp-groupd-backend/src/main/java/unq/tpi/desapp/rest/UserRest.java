@@ -1,6 +1,5 @@
 package unq.tpi.desapp.rest;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -12,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import unq.tpi.desapp.model.CommentedPoint;
 import unq.tpi.desapp.model.Inscription;
 import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
@@ -137,9 +135,17 @@ public class UserRest {
 	@Path("/{id}/products/{page}")
 	@Produces("application/json")
 	public List<Product> getProducts(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
-		return getUserService().getProducts(id, page, 20);
+		return getUserService().getProducts(id, page, 10);
 	}
-
+	
+	@GET
+	@Path("/{id}/howMuchProducts")
+	@Produces("application/json")
+	public Integer howMuchProducts(@PathParam("id") final Long id) {
+		return getUserService().getCountProductsFor(id, 10);
+	}
+	
+	
 	@POST
 	@Path("/{id}/suscribeRoute/{idRoute}/from/{idOwner}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -255,6 +261,5 @@ public class UserRest {
 	public Integer howMuchInscriptions(@PathParam("id") final Long id) {
 		return getUserService().getCountInscriptionsFor(id, 10);
 	}
-	
 	
 }

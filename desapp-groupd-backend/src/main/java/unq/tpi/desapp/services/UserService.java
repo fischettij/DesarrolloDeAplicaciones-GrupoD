@@ -120,7 +120,7 @@ public class UserService implements Serializable {
 	@Transactional
 	public List<Product> getProducts(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return new ArrayList<Product>(user.managerImplementing(ProductManager.class).getProducts());
+		return this.getRepository().getProducts(user.managerImplementing(ProductManager.class).getId(), page, quantity);
 	}
 
 	@Transactional
@@ -160,14 +160,13 @@ public class UserService implements Serializable {
 	public List<CommentedPointRequest> getCommentedPointRequests(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
 		List<CommentedPoint> commentedPoints = user.managerImplementing(ScoreManager.class).getCommentedPoints();
-		
+
 		List<CommentedPointRequest> returnCollection = new ArrayList<CommentedPointRequest>();
 		for (CommentedPoint commentedPoint : commentedPoints) {
 			returnCollection.add(new CommentedPointRequest(commentedPoint));
 		}
 		return returnCollection;
 	}
-	
 
 	@Transactional
 	public void commentUser(long id, CommentRequest commentRequest) {
@@ -179,7 +178,7 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public List<CommentRequest> getCommentRequests(Long id, Integer page, int i) {
+	public List<CommentRequest> getCommentRequests(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
 		List<Comment> comments = user.managerImplementing(CommentManager.class).getComments();
 
@@ -204,11 +203,12 @@ public class UserService implements Serializable {
 		user.managerImplementing(RouteManager.class).find(routeID).acceptedSubscriptionRequest(subscriptionID);
 		this.update(user);
 	}
-	
+
 	@Transactional
 	public Integer getCountVehiclesFor(Long id, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return this.getRepository().getCountVehiclesFor(user.managerImplementing(VehicleManager.class).getId(), quantity);
+		return this.getRepository().getCountVehiclesFor(user.managerImplementing(VehicleManager.class).getId(),
+				quantity);
 	}
 
 	@Transactional
@@ -218,20 +218,29 @@ public class UserService implements Serializable {
 	}
 
 	@Transactional
-	public List<Inscription> getInscriptions(Long id, Integer page, int quantity) {
+	public List<Inscription> getInscriptions(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return this.getRepository().getInscriptions(user.managerImplementing(InscriptionManager.class).getId(), page, quantity);
+		return this.getRepository().getInscriptions(user.managerImplementing(InscriptionManager.class).getId(), page,
+				quantity);
 	}
 
 	@Transactional
-	public Integer getCountInscriptionsFor(Long id, int quantity) {
+	public Integer getCountInscriptionsFor(Long id, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return this.getRepository().getCountInscriptionsFor(user.managerImplementing(InscriptionManager.class).getId(), quantity);
+		return this.getRepository().getCountInscriptionsFor(user.managerImplementing(InscriptionManager.class).getId(),
+				quantity);
 	}
 
 	@Transactional
-	public Integer getCountMyRoutesFor(Long id, int quantity) {
+	public Integer getCountMyRoutesFor(Long id, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return this.getRepository().getCountMyRoutesFor(user.managerImplementing(RouteManager.class).getId(), quantity);	}
-	
+		return this.getRepository().getCountMyRoutesFor(user.managerImplementing(RouteManager.class).getId(), quantity);
+	}
+
+	@Transactional
+	public Integer getCountProductsFor(Long id, Integer quantity) {
+		User user = this.getRepository().findById(id);
+		return this.getRepository().getCountProductsFor(user.managerImplementing(ProductManager.class).getId(), quantity);
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import unq.tpi.desapp.model.Inscription;
+import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
@@ -43,6 +44,10 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 	public List<Inscription> getInscriptions(Long idManager, Integer pages, int quantity) {
 		return paginationInTable(Inscription.class, idManager, pages, quantity);
 	}
+	
+	public List<Product> getProducts(Long idManager, Integer pages, Integer quantity) {
+		return paginationInTable(Product.class, idManager, pages, quantity);
+	}
 
 	public Integer getCountVehiclesFor(Long idManager, Integer quantity) {
 		return countElementsInTable(Vehicle.class.getName(), idManager, quantity);
@@ -54,6 +59,10 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 
 	public Integer getCountMyRoutesFor(Long idManager, int quantity) {
 		return countElementsInTable(Route.class.getName(), idManager, quantity);
+	}
+	
+	public Integer getCountProductsFor(Long idManager, Integer quantity) {
+		return countElementsInTable(Product.class.getName(), idManager, quantity);
 	}
 
 	private Integer countElementsInTable(String nameClass, Long idManager, int quantity) {
@@ -74,10 +83,7 @@ public class UserRepository extends HibernateGenericDAO<User> implements Generic
 		query.setFirstResult(pages * quantity);
 		query.setMaxResults(quantity);
 
-		@SuppressWarnings("unchecked")
-		List<E> found = query.list();
-
-		return found;
+		return query.list();
 	}
-	
+		
 }

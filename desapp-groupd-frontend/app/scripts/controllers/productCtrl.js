@@ -10,7 +10,45 @@ angular.module('desappGroupdFrontendApp')
     $scope.showProductError = false;
     $scope.productToUpdate = null;
 
+    // Paginacion
+    $scope.amountPages = 0;
+    $scope.page = 0;
+
+    $scope.howMuchProductsRest = function(){
+      $http.get( baseUrl + '/users/'+ $scope.user +'/howMuchProducts').success(function(result) {
+        $scope.amountPages = result;
+      })
+    };
+
+    $scope.getPage = function(){
+      return scope.page;
+    }
+
+    $scope.pageIs = function(number){
+      return number === $scope.page;
+    }
+
+    $scope.pageIsMax = function(){
+      return $scope.amountPages === $scope.page;
+    }
+
+    $scope.howMuchProducts = function(){
+      return Array.apply(null, {length: $scope.amountPages +1}).map(Number.call, Number);
+    }
+
+    $scope.productsPrevious = function(){
+      $scope.products($scope.page -1);
+    }
+
+    $scope.productsNext = function(){
+      $scope.products($scope.page +1);
+    }
+
+    // Fin Paginacion
+
+
     $scope.products = function(page){
+      $scope.page = page;
       $http.get( baseUrl + '/users/'+ $scope.user + '/products/' + page).success(function(result) {
         $scope.listOfProducts = result;
       })
@@ -23,7 +61,8 @@ angular.module('desappGroupdFrontendApp')
         stock : newProduct.stock
       }).success(function() {
         $scope.showProductSuccess = true;
-        $scope.products(1);
+        $scope.products(0);
+        $scope.howMuchProductsRest();
       }).error(function() {
         $scope.showProductError = true;
       })
@@ -37,7 +76,8 @@ angular.module('desappGroupdFrontendApp')
             stock : product.stock
           }).success(function() {
             $scope.showProductSuccess = true;
-            $scope.products(1);
+            $scope.products(0);
+            $scope.howMuchProductsRest();
           }).error(function() {
             $scope.showProductError = true;
           })
@@ -52,7 +92,8 @@ angular.module('desappGroupdFrontendApp')
                         stock : product.stock}
       }).success(function() {
         $scope.showProductSuccess = true;
-        $scope.products(1);
+        $scope.products(0);
+        $scope.howMuchProductsRest();
       }).error(function() {
         $scope.showProductError = true;
       })
@@ -63,7 +104,8 @@ angular.module('desappGroupdFrontendApp')
     };    
 
     $scope.initProducts = function(){
-      $scope.products(1);
+      $scope.products(0);
+      $scope.howMuchProductsRest();
     };
     
     $scope.setProductToUpdate = function(product){

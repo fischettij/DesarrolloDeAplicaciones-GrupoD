@@ -32,7 +32,14 @@ public class ProductRest {
 	@Path("/all/{page}")
 	@Produces("application/json")
 	public List<Product> getProducts(@PathParam("page") final Integer page) {
-		return getProductService().getProducts(page);
+		return getProductService().getProducts(page, 10);
+	}
+	
+	@GET
+	@Path("/howMuchProducts")
+	@Produces("application/json")
+	public Integer howMuchProducts() {
+		return getProductService().getCountProducts(10);
 	}
 	
 	@POST
