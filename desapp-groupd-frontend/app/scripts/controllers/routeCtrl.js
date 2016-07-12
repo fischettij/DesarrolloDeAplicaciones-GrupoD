@@ -174,6 +174,12 @@ $scope.createRoute = function(newRoute){
   })
 };
 
+$scope.restartShows = function(){
+  sleep(5000);
+  $scope.showRouteError = false;
+  $scope.showRouteSuccess = false;
+}
+
 $scope.getMyRoutes = function(){
   return $scope.listOfRoutes;
 };
@@ -263,7 +269,7 @@ $scope.request = function(routeIndex){
 };
 
 $scope.aceptedRequestOfRoute = function() {
- $http.post( baseUrl + '/users/'+ $scope.user + '/suscribeRoute/' + $scope.requestRoute.owner.id + '/from/' + $scope.requestRoute.id).success(function() {
+ $http.post( baseUrl + '/users/'+ $scope.user + '/suscribeRoute/' + $scope.requestRoute.id + '/from/' + $scope.requestRoute.owner.id).success(function() {
     $scope.showRouteSuccess = true;
   }).error(function() {
     $scope.showRouteError = true;
