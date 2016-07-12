@@ -58,7 +58,7 @@ public class UserServciceTest {
 				.build();
 		
 		userService.addRouteToUser(user.getId(), route);
-		assertEquals(1, userService.getRoutes(user.getId(), 1, 50).size());
+		assertEquals(1, userService.getRoutes(user.getId(), 0, 50).size());
 	}
 
 	@Before

@@ -114,7 +114,7 @@ public class UserService implements Serializable {
 	@Transactional
 	public List<Route> getRoutes(Long id, Integer page, Integer quantity) {
 		User user = this.getRepository().findById(id);
-		return new ArrayList<Route>(user.managerImplementing(RouteManager.class).getRoutes());
+		return this.getRepository().getRoutes(user.managerImplementing(RouteManager.class).getId(), page, quantity);
 	}
 
 	@Transactional
@@ -228,5 +228,9 @@ public class UserService implements Serializable {
 		User user = this.getRepository().findById(id);
 		return this.getRepository().getCountInscriptionsFor(user.managerImplementing(InscriptionManager.class).getId(), quantity);
 	}
+
+	public Integer getCountMyRoutesFor(Long id, int quantity) {
+		User user = this.getRepository().findById(id);
+		return this.getRepository().getCountMyRoutesFor(user.managerImplementing(RouteManager.class).getId(), quantity);	}
 	
 }
