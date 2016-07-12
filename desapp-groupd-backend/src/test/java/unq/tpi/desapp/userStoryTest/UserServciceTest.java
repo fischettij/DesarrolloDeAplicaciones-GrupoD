@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.After;
 import org.junit.Before;
@@ -31,15 +32,9 @@ public class UserServciceTest {
 	@Test
 	public void mappingTest() {
 
-		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
-
-		userService.save(user);
-
 		List<User> listOfSavedObjects = userService.retriveAll();
 		assertFalse(listOfSavedObjects.isEmpty());
-		assertEquals(listOfSavedObjects.size(), 1);
-		assertEquals(listOfSavedObjects.get(0).getName(), "Pepe");
-
+		assertEquals(listOfSavedObjects.size(), 6);
 	}
 
 	@Test
@@ -48,7 +43,10 @@ public class UserServciceTest {
 		User user = new UserBuilder().setName("Pepe").addAllManagers().build();
 		
 		userService.save(user);
-		user = userService.getRepository().findAll().get(0);
+		
+		Predicate<User> predicate = u-> u.getName().equals("Pepe");
+		user = userService.getRepository().findAll().stream().filter(predicate).findFirst().get();
+		
 		userService.addNewVehicle(user.getId(), vehicle);
 		
 		vehicle = userService.getVehicles(user.getId(), 0, 15).get(0);
@@ -63,11 +61,11 @@ public class UserServciceTest {
 
 	@Before
 	public void setUp() {
-		userService.retriveAll().stream().forEach(user -> userService.delete(user));
+		userService.retriveAll().stream().filter(user -> user.getName() == "Pepe").forEach(user -> userService.delete(user));
 	}
 
 	@After
 	public void tearDown() {
-		userService.retriveAll().stream().forEach(user -> userService.delete(user));
+		userService.retriveAll().stream().filter(user -> user.getName() == "Pepe").forEach(user -> userService.delete(user));
 	}
 }
