@@ -24,14 +24,19 @@ public class RouteService{
 	}
 
 	@Transactional
-	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
-		return this.getRepository().lookForRoutes(requestRoute);
+	public List<Route> lookForRoutes(RequestRoute requestRoute, Integer page, int quantity) {
+		return this.getRepository().lookForRoutes(requestRoute, page, quantity);
 	}
 
 	@Transactional
 	public List<SubscriptionRequest> subscriptionFor(Long id) {
 		Route route = this.getRepository().findById(id);
 		return new ArrayList<SubscriptionRequest>(route.getSubscriptionRequests());
+	}
+
+	@Transactional
+	public Integer getCountSearchRoutesFor(RequestRoute requestRoute, int quantity) {
+		return this.getRepository().getCountSearchRoutesFor(requestRoute, quantity);
 	}
 	
 }

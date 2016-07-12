@@ -29,11 +29,11 @@ public class RouteRest {
 	}
 
 	@POST
-	@Path("/lookfor")
+	@Path("/lookfor/{page}")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
-		return getRouteService().lookForRoutes(requestRoute);
+	public List<Route> lookForRoutes(@PathParam("page") final Integer page, RequestRoute requestRoute) {
+		return getRouteService().lookForRoutes(requestRoute, page, 10);
 	}
 	
 	@GET
@@ -43,4 +43,12 @@ public class RouteRest {
 		return getRouteService().subscriptionFor(id);
 	}
 
+	@POST
+	@Path("/howMuchSearchRoutes")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public Integer howMuchSearchRoutes(RequestRoute requestRoute) {
+		return getRouteService().getCountSearchRoutesFor(requestRoute, 10);
+	}
+	
 }

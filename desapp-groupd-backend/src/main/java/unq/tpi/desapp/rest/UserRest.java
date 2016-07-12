@@ -256,4 +256,5 @@ public class UserRest {
 		return getUserService().getCountInscriptionsFor(id, 10);
 	}
 	
+	
 }

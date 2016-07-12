@@ -7,6 +7,7 @@ angular.module('desappGroupdFrontendApp')
   $scope.user = $cookies.get('user');
   $scope.listOfRoutes = [];
   $scope.searchResult = [];
+  $scope.searchRoute = {};
 
   $scope.showRouteSuccess = false;
   $scope.showRouteError = false;
@@ -52,9 +53,14 @@ angular.module('desappGroupdFrontendApp')
     }
 
   $scope.howMuchSearchRoutesRest = function(){
-      $http.get( baseUrl + '/users/'+ $scope.user + '/howMuchSearchRoutes').success(function(result) {
+      $http.post( baseUrl + '/routes/howMuchSearchRoutes',  $scope.searchRoute).success(function(result) {
+        console.log(result);
         $scope.amountPagesSearchRoute = result;
       })
+    };
+
+    $scope.howMuchSearchRoutes = function(){
+      return Array.apply(null, {length: $scope.amountPagesSearchRoute +1}).map(Number.call, Number);
     };
 
     $scope.getPageSearchRoute = function(){
@@ -67,6 +73,14 @@ angular.module('desappGroupdFrontendApp')
 
     $scope.pageIsMaxSearchRoute = function(){
       return $scope.amountPagesSearchRoute === $scope.pageSearchRoute;
+    }
+
+    $scope.searchRoutesPrevious = function(){
+      $scope.searchRoutes($scope.pageSearchRoute -1);
+    }
+
+    $scope.searchRoutesNext = function(){
+      $scope.searchRoutes($scope.pageSearchRoute +1);
     }
 
   /// Fin Paginacion
@@ -127,6 +141,7 @@ angular.module('desappGroupdFrontendApp')
 ///// End - Google Maps
 
 $scope.myRoutes = function(page){
+  $scope.page = page;
   $http.get( baseUrl + '/users/'+ $scope.user + '/routes/' + page).success(function(result) {
     $scope.listOfRoutes = result;
   })
@@ -151,6 +166,7 @@ $scope.createRoute = function(newRoute){
     idVehicle: newRoute.idVehicle,
   }).success(function() {
     $scope.showRouteSuccess = true;
+    $scope.howMuchMyRoutesRest();
     $scope.myRoutes(0);
     $scope.cleanLocations();
   }).error(function() {
@@ -186,7 +202,8 @@ $scope.searchForRoute = function(route){
         $scope.startLocationLng = response.routes[0].legs[0].start_location.lng();
         $scope.endLocationLat = response.routes[0].legs[0].end_location.lat();
         $scope.endLocationLng = response.routes[0].legs[0].end_location.lng();
-        $http.post( baseUrl + '/routes/lookfor', {
+        console.log(route.routeDaysOfWeek[1]);
+        $scope.searchRoute = {
           startPoint: route.startingPoint,
           endPoint: route.endingPoint,
           startLatitud: $scope.startLocationLat,
@@ -194,16 +211,22 @@ $scope.searchForRoute = function(route){
           endLatitud: $scope.endLocationLat, 
           endLongitud: $scope.endLocationLng,
           daysOfWeek: route.routeDaysOfWeek,
-          idVehicle: 0
-        }).success(function(result) {
-          $scope.searchResult = result;
-          $scope.cleanLocations();
-        });
+        }
+        $scope.howMuchSearchRoutesRest(),
+        $scope.searchRoutes(0);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
     });
 
+}
+
+$scope.searchRoutes = function(page){
+  $scope.pageSearchRoute = page;
+  $http.post( baseUrl + '/routes/lookfor/'+ page, $scope.searchRoute).success(function(result) {
+          $scope.searchResult = result;
+          $scope.cleanLocations();
+        });
 }
 
 $scope.directionForMap = {};
@@ -249,6 +272,7 @@ $scope.aceptedRequestOfRoute = function() {
 
 $scope.initRoute = function(){
   $scope.myRoutes(0);
+  $scope.howMuchMyRoutesRest();
 };
 
 // Subscription Request

@@ -17,9 +17,9 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 	protected Class<Route> getDomainClass() {
 		return Route.class;
 	}
-
-	public Set<Route> lookForRoutes(RequestRoute requestRoute) {
-		String hql = "SELECT r " + "FROM " + this.getDomainClass().getName() + " r "
+	
+	private Query lookForRoutesQuery(String action, RequestRoute requestRoute) {
+		String hql = action + "FROM " + this.getDomainClass().getName() + " r "
 				+ "JOIN r.daysOfWeek days WHERE days IN (:setOfEnum)" + "AND r.startLatitud <= :routeStartingLatitud + "
 				+ this.getDistance() + "AND r.startLatitud >= :routeStartingLatitud - " + this.getDistance()
 				+ "AND r.startLongitud <= :routeStartingLongitud + " + this.getDistance()
@@ -35,16 +35,24 @@ public class RouteRepository extends HibernateGenericDAO<Route> implements Gener
 		query.setParameter("routeStartingLongitud", requestRoute.getStartLongitud());
 		query.setParameter("routeEndingLatitud", requestRoute.getEndLatitud());
 		query.setParameter("routeEndingLongitud", requestRoute.getEndLongitud());
-
-		@SuppressWarnings("unchecked")
-		List<Route> foundRoute = query.list();
-
-		return new HashSet<Route>(foundRoute);
-
+		
+		return query;
 	}
-
+	
 	private Double getDistance() {
 		return 0.08;
+	}
+
+	public List<Route> lookForRoutes(RequestRoute requestRoute, Integer page, Integer quantity) {
+		Query query = lookForRoutesQuery("SELECT r ", requestRoute);
+		query.setFirstResult(page * quantity);
+		query.setMaxResults(quantity);
+		return query.list();
+	}
+
+	public Integer getCountSearchRoutesFor(RequestRoute requestRoute, Integer quantity) {
+		Query query = lookForRoutesQuery("SELECT count(*) ", requestRoute); 
+		return (int) ((Long) query.uniqueResult() / quantity);
 	}
 
 }

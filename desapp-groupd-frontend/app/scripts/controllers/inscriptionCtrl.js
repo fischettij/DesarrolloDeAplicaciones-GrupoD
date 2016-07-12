@@ -45,6 +45,7 @@ angular.module('desappGroupdFrontendApp')
     }
 
     $scope.inscriptions = function(page){
+      $scope.page = page;
       $http.get( baseUrl + '/users/'+ $scope.user + '/inscriptions/' + page).success(function(result) {
         $scope.listOfInscriptions = result;
       })
