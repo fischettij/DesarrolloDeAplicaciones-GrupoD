@@ -34,7 +34,7 @@ public class UserServciceTest {
 
 		List<User> listOfSavedObjects = userService.retriveAll();
 		assertFalse(listOfSavedObjects.isEmpty());
-		assertEquals(listOfSavedObjects.size(), 6);
+		assertEquals(listOfSavedObjects.size(), 7);
 	}
 
 	@Test
