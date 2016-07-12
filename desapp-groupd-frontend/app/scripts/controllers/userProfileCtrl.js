@@ -63,9 +63,9 @@ angular.module('desappGroupdFrontendApp')
 
   $scope.iconForCommentedPoint = function(commentedPoint){
     if (commentedPoint.isNegative){
-      return 'fa fa-thumbs-o-down';
+      return 'fa fa-thumbs-o-down negativeComment';
     }else{
-      return 'fa fa-thumbs-o-up';
+      return 'fa fa-thumbs-o-up positiveComment';
     }
   };
 

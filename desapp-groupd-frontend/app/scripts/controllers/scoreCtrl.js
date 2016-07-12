@@ -48,7 +48,6 @@ angular.module('desappGroupdFrontendApp')
       window.print();
 
       document.body.innerHTML = originalContents;
-      window.print();
     }
 
     $scope.init();

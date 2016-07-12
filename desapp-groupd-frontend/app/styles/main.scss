@@ -107,4 +107,13 @@ body {
     background-size: 100% 100%;
     color: white;
   }
+
+  /*Set background color for de icon comments */
+  .positiveComment{
+    background: rgb(157, 239, 157) !important;
+  }
+  .negativeComment{
+        background: rgb(243, 150, 150) !important;
+  }
+
 }

@@ -28,6 +28,11 @@
 		<property name="productRepository" ref="persistence.productRepository" />
 		<property name="userRepository" ref="persistence.userrepository" />
 	</bean>
+	
+	<bean id="fakeData" class="unq.tpi.desapp.fakedata.FakeDataGenerator" init-method="setUp">
+		<property name="registerUserService" ref="services.register"/>
+		<property name="userService" ref="services.user"/>
+	</bean>
 		
 
 

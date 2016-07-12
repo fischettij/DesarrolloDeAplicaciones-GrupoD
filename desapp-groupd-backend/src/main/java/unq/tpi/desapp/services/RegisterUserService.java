@@ -1,5 +1,7 @@
 package unq.tpi.desapp.services;
 
+import java.util.List;
+
 import org.springframework.transaction.annotation.Transactional;
 
 import unq.tpi.desapp.builders.UserBuilder;
@@ -14,7 +16,8 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 
 	@Transactional
 	public User login(LoginUser loginUser) throws NotFoundException {
-		for (RegisterUser registerUser : this.retriveAll()) {
+		List<RegisterUser> resgisterUsers = this.retriveAll();
+		for (RegisterUser registerUser : resgisterUsers) {
 			if (registerUser.is(loginUser))
 				return registerUser.getUser();
 		}
@@ -41,6 +44,13 @@ public class RegisterUserService extends GenericService<RegisterUser> {
 	}
 
 	private void registerNewUser(LoginUser loginUser) {
+		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
+				new UserBuilder().setName(loginUser.getName()).setStandarManagers().build());
+		this.save(registerUser);
+	}
+	
+	@Transactional
+	public void registerAdmin(LoginUser loginUser) {
 		RegisterUser registerUser = new RegisterUser(loginUser.getEmail(), loginUser.getPassword(),
 				new UserBuilder().setName(loginUser.getName()).addAllManagers().build());
 		this.save(registerUser);
