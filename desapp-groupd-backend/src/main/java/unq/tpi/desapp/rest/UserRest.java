@@ -16,6 +16,7 @@ import unq.tpi.desapp.model.Product;
 import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
+import unq.tpi.desapp.model.manager.CommentManager;
 import unq.tpi.desapp.services.UserService;
 import unq.tpi.desapp.services.request.CommentRequest;
 import unq.tpi.desapp.services.request.CommentedPointRequest;
@@ -46,7 +47,9 @@ public class UserRest {
 	@Path("/{id}")
 	@Produces("application/json")
 	public User getUser(@PathParam("id") final Long id) {
-		return getUserService().getUser(id);
+		User user = getUserService().getUser(id);
+		user.removeManager(CommentManager.class);
+		return user;
 	}
 
 	@GET
