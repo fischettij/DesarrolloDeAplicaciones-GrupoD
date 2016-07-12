@@ -93,10 +93,12 @@ angular.module('desappGroupdFrontendApp')
       }).success(function() {
         $scope.showProductSuccess = true;
         $scope.products(0);
-        $scope.howMuchProductsRest();
+      $scope.howMuchProductsRest();
       }).error(function() {
         $scope.showProductError = true;
-      })
+        $scope.products(0);
+        $scope.howMuchProductsRest();
+      })      
     }
 
     $scope.getProducts = function(){

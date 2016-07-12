@@ -9,7 +9,7 @@ angular.module('desappGroupdFrontendApp')
     $scope.showProductSuccess = false;
     $scope.showProductError = false;
     $scope.selectedProduct = null;
-
+    $scope.userProfile = {score: 0}; 
 
     // Paginacion
     $scope.amountPages = 0;
@@ -20,6 +20,7 @@ angular.module('desappGroupdFrontendApp')
         $scope.amountPages = result;
       })
     };
+
 
     $scope.getPage = function(){
       return scope.page;
@@ -71,6 +72,7 @@ angular.module('desappGroupdFrontendApp')
     $scope.init = function(){
       $scope.updateProducts(0);
       $scope.howMuchProductsRest();
+      $scope.updateProfile();
     };
 
     $scope.getSelectedProduct = function(){
@@ -86,6 +88,16 @@ angular.module('desappGroupdFrontendApp')
       window.print();
 
       document.body.innerHTML = originalContents;
+    }
+
+    $scope.updateProfile = function(){
+      $http.get( baseUrl + '/users/profile/'+ $scope.userProfileId).success(function(result) { 
+        $scope.userProfile = result;
+      })
+    }
+
+    $scope.getScore = function(){
+      return $scope.userProfile.score;
     }
 
     $scope.init();

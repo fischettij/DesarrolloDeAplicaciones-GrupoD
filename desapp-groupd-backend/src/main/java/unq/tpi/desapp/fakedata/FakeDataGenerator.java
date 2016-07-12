@@ -75,6 +75,14 @@ public class FakeDataGenerator  {
 		getUserService().addNewProduct(user.getId(), new Product("2x1 Cine 3D", 500, 30));
 		getUserService().addNewProduct(user.getId(), new Product("40Lts YPF Infinia", 1000, 100));
 		getUserService().addNewProduct(user.getId(), new Product("Cena Gratis", 9000, 24));
+		getUserService().addNewProduct(user.getId(), new Product("Patito de goma", 500, 50));
+		getUserService().addNewProduct(user.getId(), new Product("walkman", 700, 10));
+		getUserService().addNewProduct(user.getId(), new Product("Disco Rigido portable 500Gb", 1000, 96));
+		getUserService().addNewProduct(user.getId(), new Product("Ferrari", 100000000, 4));
+		getUserService().addNewProduct(user.getId(), new Product("Notebook", 1500, 8));
+		getUserService().addNewProduct(user.getId(), new Product("Bicicleta", 800, 25));
+		getUserService().addNewProduct(user.getId(), new Product("Fernet 1L", 500, 46));
+		getUserService().addNewProduct(user.getId(), new Product("Mochila", 650, 90));
 		getUserService().addNewProduct(user.getId(), new Product("Pendrive 16Gb", 800, 51));
 	}
 	
