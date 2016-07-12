@@ -10,6 +10,7 @@ angular.module('desappGroupdFrontendApp')
   $scope.utils = utils;
   $scope.commentedPoints;
   $scope.comments;
+   $scope.topFive;
 
   $scope.changeLanguage = function (langKey) {
     $translate.use(langKey);
@@ -30,6 +31,7 @@ angular.module('desappGroupdFrontendApp')
     }).error(function(){
      $window.location.href = '/404.html';
     });
+    $scope.topFiveRest();
     $scope.updateCommentedPoints(userID);
     $scope.updateComments(userID);
   };
@@ -128,6 +130,16 @@ angular.module('desappGroupdFrontendApp')
     $http.get( baseUrl + '/users/'+ userID + '/comments/1').success(function(result) { 
       $scope.comments = result;      
     }) 
+  }
+
+  $scope.getTopFive = function(){
+    return $scope.topFive;
+  }
+
+  $scope.topFiveRest = function(){
+    $http.get( baseUrl + '/users/top').success(function(result){
+       $scope.topFive = result;
+    });
   }
 
   $scope.init();

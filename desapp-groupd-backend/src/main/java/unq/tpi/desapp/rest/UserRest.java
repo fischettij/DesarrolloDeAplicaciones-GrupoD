@@ -1,5 +1,8 @@
 package unq.tpi.desapp.rest;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -17,6 +20,7 @@ import unq.tpi.desapp.model.Route;
 import unq.tpi.desapp.model.User;
 import unq.tpi.desapp.model.Vehicle;
 import unq.tpi.desapp.model.manager.CommentManager;
+import unq.tpi.desapp.model.manager.ScoreManager;
 import unq.tpi.desapp.services.UserService;
 import unq.tpi.desapp.services.request.CommentRequest;
 import unq.tpi.desapp.services.request.CommentedPointRequest;
@@ -44,6 +48,28 @@ public class UserRest {
 	}
 
 	@GET
+	@Path("/top")
+	@Produces("application/json")
+	public List<UserProfile> getTop() {
+		List<User> users = getUserService().retriveAll();
+		Collections.sort(users, new Comparator<User>() {
+			@Override
+			public int compare(User o1, User o2) {
+				return o1.managerImplementing(ScoreManager.class).getScore()
+						.compareTo(o2.managerImplementing(ScoreManager.class).getScore());
+			}
+		});
+		Collections.reverse(users);
+		List<UserProfile> usersProfiles = new ArrayList<UserProfile>();
+		for(int i = 0; i < users.size(); i++){
+			if(i < 5){
+				usersProfiles.add(new UserProfile(users.get(i)));
+			}
+		}
+		return usersProfiles;
+	}
+
+	@GET
 	@Path("/{id}")
 	@Produces("application/json")
 	public User getUser(@PathParam("id") final Long id) {
@@ -65,7 +91,7 @@ public class UserRest {
 	public List<Vehicle> getAllVehicles(@PathParam("id") final Long id) {
 		return getUserService().getAllVehicles(id);
 	}
-	
+
 	@GET
 	@Path("/{id}/howMuchVehicles")
 	@Produces("application/json")
@@ -112,14 +138,13 @@ public class UserRest {
 	public List<Route> getRoutes(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getRoutes(id, page, 10);
 	}
-	
+
 	@GET
 	@Path("/{id}/howMuchMyRoutes")
 	@Produces("application/json")
 	public Integer howMuchMyRoutes(@PathParam("id") final Long id) {
 		return getUserService().getCountMyRoutesFor(id, 10);
 	}
-	
 
 	@POST
 	@Path("/{id}/newproduct")
@@ -140,15 +165,14 @@ public class UserRest {
 	public List<Product> getProducts(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getProducts(id, page, 10);
 	}
-	
+
 	@GET
 	@Path("/{id}/howMuchProducts")
 	@Produces("application/json")
 	public Integer howMuchProducts(@PathParam("id") final Long id) {
 		return getUserService().getCountProductsFor(id, 10);
 	}
-	
-	
+
 	@POST
 	@Path("/{id}/suscribeRoute/{idRoute}/from/{idOwner}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -199,7 +223,8 @@ public class UserRest {
 	@GET
 	@Path("/{id}/commentedPoints/{page}")
 	@Produces("application/json")
-	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+	public List<CommentedPointRequest> getCommentedPoints(@PathParam("id") final Long id,
+			@PathParam("page") final Integer page) {
 		return getUserService().getCommentedPointRequests(id, page, 20);
 	}
 
@@ -216,12 +241,11 @@ public class UserRest {
 		}
 	}
 
-	
-	
 	@GET
 	@Path("/{id}/comments/{page}")
 	@Produces("application/json")
-	public List<CommentRequest> getCommentRequests(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
+	public List<CommentRequest> getCommentRequests(@PathParam("id") final Long id,
+			@PathParam("page") final Integer page) {
 		return getUserService().getCommentRequests(id, page, 20);
 	}
 
@@ -257,12 +281,12 @@ public class UserRest {
 	public List<Inscription> getInscriptions(@PathParam("id") final Long id, @PathParam("page") final Integer page) {
 		return getUserService().getInscriptions(id, page, 10);
 	}
-	
+
 	@GET
 	@Path("/{id}/howMuchInscriptions")
 	@Produces("application/json")
 	public Integer howMuchInscriptions(@PathParam("id") final Long id) {
 		return getUserService().getCountInscriptionsFor(id, 10);
 	}
-	
+
 }

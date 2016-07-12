@@ -31,8 +31,44 @@
       <div class="col-md-9">
         <ng-include src="'views/profileActivity.html'"></ng-include>
       </div>
+</section>
+<section class="content" ng-controller="user_ctrl">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <!-- Profile Image -->
+        <div class="col-sm-10">
+          <div class="box box-primary">
+            <div class="dataTables_wrapper form-inline dt-bootstrap">
+              <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6"></div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <table class="table table-bordered table-hover dataTable" role="grid">
+                    <thead>
+                      <tr role="row">
+                        <th colspan="1" rowspan="1" tabindex="0">{{ "USERNAME" | translate }}</th>
+                        <th colspan="1" rowspan="1" tabindex="0">{{ "SCORE" | translate }}</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="userProf in getTopFive()">
+                        <td>{{ userProf.name }}</td>
+                        <td>{{ userProf.score }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-1"></div>
+      </div>
 
 </section>
+
 
 <!--
 <section class="content">
