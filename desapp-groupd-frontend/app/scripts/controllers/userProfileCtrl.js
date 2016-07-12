@@ -34,11 +34,15 @@ angular.module('desappGroupdFrontendApp')
     }) 
   }
 
+  $scope.updateProfile = function(){
+    $scope.userProfile = $scope.requestUserProfile();
+  }
+
   $scope.init = function(){
     $scope.userProfileId = $cookies.get('userProfileId');
     $cookies.remove('userProfileId');
 
-    $scope.userProfile = $scope.requestUserProfile();
+    $scope.updateProfile();
     $scope.updateCommentedPoints();
     $scope.updateComments();
   };
@@ -53,6 +57,7 @@ angular.module('desappGroupdFrontendApp')
         isNegative : commentedPoint.isNegative,
         comment : comment
     }).success(function(){
+      $scope.updateProfile();
       $scope.updateCommentedPoints();
     })
   }

@@ -69,7 +69,7 @@ public class ScoreManager extends Manager {
 	}
 
 	public Integer getScore() {
-		return this.getAmountOfPositiveComments() * 500 - this.getAmountOfPositiveComments() / 2 * 1000;
+		return this.getAmountOfPositiveComments() * 500 - this.getAmountOfNegativeComments() / 2 * 1000;
 	}
 
 	@JsonIgnore
